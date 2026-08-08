@@ -500,15 +500,15 @@
 
               <div class="product-card__buttons">
                 <button
+                  type="button"
                   class="product-card__add-btn"
-                  onclick="getElementById('main-cart').addLine(event).showModal();"
-                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                  onclick="document.getElementById('main-cart').addLine(event).showModal();"
                 >ADD TO CART</button>
                 <button
+                  type="button"
                   class="product-card__buy-btn"
-                  onclick="document.querySelector('shopify-store').buyNow(event)"
-                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-                >BUY NOW (CASH ON DELIVERY)</button>
+                  onclick="document.querySelector('shopify-store').buyNow(event);"
+                >BUY NOW</button>
               </div>
             </div>
           </div>
@@ -582,12 +582,16 @@
   <div class="sticky-buy-bar" id="sticky-bar">
     <div class="sticky-buy-info">
       <span class="sticky-buy-title">HANGR Steel Hanger</span>
-      <span class="sticky-buy-price">Multi-Tier Rack</span>
+      <span class="sticky-buy-price">Multi-Tier Space Saver</span>
     </div>
-    <a href="#product-section" class="btn-sticky-buy">
-      BUY NOW (COD)
+    <button
+      type="button"
+      class="btn-sticky-buy"
+      onclick="triggerShopifyBuyNow(event)"
+    >
+      BUY NOW
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    </button>
   </div>
 
   <!-- ===== SHOPIFY CART ===== -->
@@ -608,6 +612,21 @@
       timerDisplay.textContent = `${minutes}:${seconds}`;
       if (duration > 0) duration--;
     }, 1000);
+
+    // Trigger Official Shopify Buy Now from Sticky Bar
+    function triggerShopifyBuyNow(event) {
+      const buyBtn = document.querySelector('.product-card__buy-btn');
+      if (buyBtn && !buyBtn.disabled) {
+        buyBtn.click();
+      } else {
+        const store = document.querySelector('shopify-store');
+        if (store && store.buyNow) {
+          store.buyNow(event);
+        } else {
+          document.getElementById('product-card').scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
 
     // Sticky Buy Bar on Scroll
     window.addEventListener('scroll', () => {

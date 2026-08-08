@@ -414,15 +414,15 @@
 
             <div class="product-card__buttons">
               <button
+                type="button"
                 class="product-card__add-btn"
-                onclick="getElementById('main-cart').addLine(event).showModal();"
-                shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                onclick="document.getElementById('main-cart').addLine(event).showModal();"
               >ADD TO CART</button>
               <button
+                type="button"
                 class="product-card__buy-btn"
-                onclick="document.querySelector('shopify-store').buyNow(event)"
-                shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
-              >BUY NOW (CASH ON DELIVERY)</button>
+                onclick="document.querySelector('shopify-store').buyNow(event);"
+              >BUY NOW</button>
             </div>
           </div>
         </div>
