@@ -1,6 +1,6 @@
-{% assign product = all_products['multi-tier-cloth-bangle-steel-hanger'] %}
-{% if product == blank or product.title == blank %}
-  {% assign product = collections.all.products.first %}
+{% assign main_product = all_products['multi-tier-cloth-bangle-steel-hanger'] %}
+{% if main_product == blank or main_product.title == blank %}
+  {% assign main_product = collections.all.products.first %}
 {% endif %}
 
 <!-- ===== HERO & PRODUCT PURCHASE SECTION (ABOVE THE FOLD) ===== -->
@@ -9,11 +9,11 @@
     <!-- Left Column: Interactive Product Image Gallery -->
     <div class="product-gallery-container">
       <div class="product-gallery-main">
-        {% if product.featured_image %}
+        {% if main_product.featured_image %}
           <img
             id="main-product-display"
-            src="{{ product.featured_image | image_url: width: 600 }}"
-            alt="{{ product.title }}"
+            src="{{ main_product.featured_image | image_url: width: 600 }}"
+            alt="{{ main_product.title }}"
             width="560"
             height="560"
           >
@@ -28,8 +28,8 @@
         {% endif %}
       </div>
       <div class="gallery-thumbs">
-        {% if product.images.size > 0 %}
-          {% for img in product.images limit: 5 %}
+        {% if main_product.images.size > 0 %}
+          {% for img in main_product.images limit: 5 %}
             <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 150 }}" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
           {% endfor %}
         {% else %}
@@ -42,13 +42,13 @@
       </div>
     </div>
 
-    <!-- Right Column: Native Shopify Product Buy Box (Zero Blank Space) -->
+    <!-- Right Column: Native Shopify Product Buy Box -->
     <div class="hero__product-card" id="product-card">
       <div class="product-brand-tag">
-        {{ product.vendor | default: 'HANGR' }} • Official Store
+        {{ main_product.vendor | default: 'HANGR' }} • Official Store
       </div>
       <h1 class="product-headline-title">
-        {{ product.title | default: 'Multi-Tier Heavy Duty Stainless Steel Hanger Pack of 2' }}
+        {{ main_product.title | default: 'Multi-Tier Heavy Duty Stainless Steel Hanger Pack of 2' }}
       </h1>
 
       <div class="product-rating-row">
@@ -60,8 +60,8 @@
       <div class="product-price-box">
         <div class="price-main">
           <span class="price-current" id="product-price-display">
-            {% if product.price %}
-              {{ product.price | money }}
+            {% if main_product.price %}
+              {{ main_product.price | money }}
             {% else %}
               Rs. 499.00 - Rs. 849.00
             {% endif %}
@@ -100,12 +100,14 @@
 
       <!-- Native Shopify Product Form -->
       <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-        {% if product.variants.size > 1 %}
-          <div style="margin-bottom: 16px;">
-            <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Select Size / Layers</label>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              {% for variant in product.variants %}
-                <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 18px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
+        <input type="hidden" name="quantity" value="1">
+
+        <div style="margin-bottom: 18px;">
+          <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 10px;">Select Size / Layers</label>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            {% if main_product.variants.size > 0 %}
+              {% for variant in main_product.variants %}
+                <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
                   <input
                     type="radio"
                     name="id"
@@ -116,22 +118,38 @@
                   {{ variant.title }} — {{ variant.price | money }}
                 </label>
               {% endfor %}
-            </div>
+            {% else %}
+              <!-- Fallback Shopify Variant IDs -->
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
+                <input type="radio" name="id" value="53853852500152" checked style="margin-right: 6px;">
+                3 Layer — Rs. 499.00
+              </label>
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
+                <input type="radio" name="id" value="53853852532920" style="margin-right: 6px;">
+                4 Layer — Rs. 579.00
+              </label>
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
+                <input type="radio" name="id" value="53853852565688" style="margin-right: 6px;">
+                6 Layer — Rs. 749.00
+              </label>
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
+                <input type="radio" name="id" value="53853852598456" style="margin-right: 6px;">
+                8 Layer — Rs. 849.00
+              </label>
+            {% endif %}
           </div>
-        {% else %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: product.variants.first.id }}">
-        {% endif %}
+        </div>
 
         <div class="product-card__buttons">
           <button
-            type="submit"
-            name="add"
+            type="button"
             class="product-card__add-btn"
+            onclick="handleAddToCart(event)"
           >ADD TO CART</button>
           <button
-            type="submit"
-            name="checkout"
+            type="button"
             class="product-card__buy-btn"
+            onclick="handleBuyNow(event)"
           >BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
         </div>
       </form>
