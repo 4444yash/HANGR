@@ -42,14 +42,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
         7-DAY EASY REPLACEMENT GUARANTEE
       </div>
-      <!-- Duplicate for marquee loop -->
       <div class="announcement-bar__item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         FREE EXPRESS SHIPPING ACROSS INDIA
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        CASH ON DELIVERY (COD) AVAILABLE
       </div>
     </div>
   </div>
@@ -64,7 +59,7 @@
 
       <div class="nav__links" id="nav-links">
         <a href="#" class="nav__link nav__link--active">Home</a>
-        <a href="#product-section" class="nav__link">Shop Hanger</a>
+        <a href="#hero" class="nav__link">Shop Hanger</a>
         <a href="#comparison-section" class="nav__link">Why HANGR?</a>
         <a href="#reviews-section" class="nav__link">Customer Reviews</a>
         <a href="#faq-section" class="nav__link">FAQs</a>
@@ -82,67 +77,135 @@
     </div>
   </nav>
 
-  <!-- ===== 3. HERO SECTION ===== -->
+  <!-- ===== 3. HERO & PRODUCT PURCHASE SECTION (ABOVE THE FOLD) ===== -->
   <section class="hero" id="hero">
     <div class="hero__inner">
-      <div class="hero__content">
-        <div class="hero__rating-badge">
-          <span class="stars-gold">★★★★★</span>
-          <span>4.9/5 Rating (1,480+ Verified Indian Buyers)</span>
+      <!-- Left Column: Interactive Product Image Gallery -->
+      <div class="product-gallery-container">
+        <div class="product-gallery-main">
+          <img
+            id="main-product-display"
+            src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884"
+            alt="Multi Tier Steel Hanger loaded with bangles"
+            width="560"
+            height="560"
+          >
         </div>
-        <h1 class="hero__headline">
-          One Hanger.<br>
-          Endless Ways<br>
-          <em>to Organize.</em>
-        </h1>
-        <p class="hero__subtext">
-          The ultimate space-saving steel hanger for bangles, accessories, belts, hairbands & jewelry. Heavy duty, anti-rust, and built for Indian homes.
-        </p>
-
-        <div class="stock-scarcity">
-          <span class="pulsing-dot"></span>
-          <span>High Demand: Only 14 Racks Left in Stock for Today's Dispatch</span>
-        </div>
-
-        <div class="hero__ctas">
-          <a href="#product-section" class="btn-primary">
-            ORDER NOW (COD AVAILABLE)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="hero__features">
-          <div class="hero__feature">
-            <div class="hero__feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <span class="hero__feature-text">100% Anti-Rust<br>Stainless Steel</span>
-          </div>
-          <div class="hero__feature">
-            <div class="hero__feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            </div>
-            <span class="hero__feature-text">Pay Cash On<br>Delivery (COD)</span>
-          </div>
-          <div class="hero__feature">
-            <div class="hero__feature-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <span class="hero__feature-text">Fast 3-5 Days<br>Delivery</span>
-          </div>
+        <div class="gallery-thumbs">
+          <img class="thumb-img active" src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884" onclick="switchMainImage(this)" alt="Bangles angle">
+          <img class="thumb-img" src="./assets/bangles.png" onclick="switchMainImage(this)" alt="Close up bangles">
+          <img class="thumb-img" src="./assets/hair-accessories.png" onclick="switchMainImage(this)" alt="Hair accessories">
+          <img class="thumb-img" src="./assets/belts-watches.png" onclick="switchMainImage(this)" alt="Belts watches">
+          <img class="thumb-img" src="./assets/earrings.png" onclick="switchMainImage(this)" alt="Jhumkas">
         </div>
       </div>
 
-      <div class="hero__media">
-        <div class="hero__image-glow"></div>
-        <img
-          src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884"
-          alt="Multi Tier Steel Hanger loaded with Indian bangles"
-          class="hero__image"
-          width="500"
-          height="550"
-          loading="eager"
-        >
+      <!-- Right Column: High-Converting Shopify Buy Box -->
+      <div class="hero__product-card" id="product-card">
+        <shopify-context type="product" handle="multi-tier-cloth-bangle-steel-hanger">
+          <template>
+            <div class="product-brand-tag">
+              <shopify-data query="product.vendor"></shopify-data> • Official Store
+            </div>
+            <h1 class="product-headline-title">
+              <shopify-data query="product.title"></shopify-data>
+            </h1>
+
+            <div class="product-rating-row">
+              <span class="stars-gold">★★★★★</span>
+              <span style="font-weight: 700; color: var(--dark);">4.9 / 5.0</span>
+              <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
+            </div>
+
+            <div class="product-price-box">
+              <div class="price-main">
+                <span class="price-current">
+                  <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                </span>
+                <span class="price-mrp">M.R.P.: ₹1,499</span>
+                <span class="price-discount-badge">Save 50% OFF</span>
+              </div>
+              <div class="coupon-callout">
+                🔥 Extra 10% OFF with Code: <strong>HANGR10</strong> (Applied at checkout)
+              </div>
+            </div>
+
+            <!-- Amazon-style Spec Highlights -->
+            <div class="product-specs-list">
+              <div class="spec-item">
+                <span class="spec-icon">✓</span>
+                <span><strong>100% Stainless Steel</strong>: Anti-rust electroplated chrome finish</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-icon">✓</span>
+                <span><strong>Holds Up To 100+ Bangles / 15kg</strong>: Heavy duty, won't bend</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-icon">✓</span>
+                <span><strong>Compact 80% Space Saver</strong>: Organizes bangles, scrunchies, belts & jhumkas</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-icon">✓</span>
+                <span><strong>Smooth Anti-Scratch Edges</strong>: Safe for delicate glass & silk bangles</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-icon">✓</span>
+                <span><strong>Fast 3-5 Days Express Shipping</strong> across 19,000+ Pincodes in India</span>
+              </div>
+            </div>
+
+            <shopify-variant-selector></shopify-variant-selector>
+
+            <div class="product-card__buttons">
+              <button
+                type="button"
+                class="product-card__add-btn"
+                onclick="document.getElementById('main-cart').addLine(event).showModal();"
+              >ADD TO CART</button>
+              <button
+                type="button"
+                class="product-card__buy-btn"
+                onclick="document.querySelector('shopify-store').buyNow(event);"
+              >BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
+            </div>
+
+            <div style="font-size: 0.78rem; color: var(--gray-600); text-align: center; display: flex; justify-content: center; gap: 16px; margin-top: 4px;">
+              <span>📦 Cash On Delivery Available</span>
+              <span>🚚 Free Shipping ₹999+</span>
+              <span>🛡️ 7-Day Replacement</span>
+            </div>
+          </template>
+
+          <!-- Instant Pre-rendered Fallback (Fixes Reload Blank Space) -->
+          <div shopify-loading-placeholder>
+            <div class="product-brand-tag">HANGR • Official Store</div>
+            <h1 class="product-headline-title">Multi-Tier Heavy Duty Stainless Steel Hanger Pack of 2</h1>
+            <div class="product-rating-row">
+              <span class="stars-gold">★★★★★</span>
+              <span style="font-weight: 700;">4.9 / 5.0</span>
+              <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
+            </div>
+            <div class="product-price-box">
+              <div class="price-main">
+                <span class="price-current">₹499.00 - ₹849.00</span>
+                <span class="price-mrp">M.R.P.: ₹1,499</span>
+                <span class="price-discount-badge">Save 50% OFF</span>
+              </div>
+              <div class="coupon-callout">
+                🔥 Extra 10% OFF with Code: <strong>HANGR10</strong>
+              </div>
+            </div>
+            <div class="product-specs-list">
+              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>100% Stainless Steel</strong>: Anti-rust electroplated chrome finish</span></div>
+              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Holds Up To 100+ Bangles / 15kg</strong>: Heavy duty, won't bend</span></div>
+              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Compact 80% Space Saver</strong>: Organizes bangles, scrunchies & belts</span></div>
+            </div>
+            <div class="product-card__buttons">
+              <button type="button" class="product-card__add-btn">ADD TO CART</button>
+              <button type="button" class="product-card__buy-btn">BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
+            </div>
+          </div>
+        </shopify-context>
       </div>
     </div>
   </section>
@@ -473,54 +536,6 @@
     </div>
   </section>
 
-  <!-- ===== 9. PRODUCT PURCHASE SECTION ===== -->
-  <section class="product-section" id="product-section">
-    <div class="product-card-wrapper" id="product-card">
-      <shopify-context type="product" handle="multi-tier-cloth-bangle-steel-hanger">
-        <template>
-          <div class="product-card-grid">
-            <div class="product-card__media-area">
-              <shopify-media width="560" height="560" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-            </div>
-            <div class="product-card__details-area">
-              <div class="product-card__vendor">
-                <shopify-data query="product.vendor"></shopify-data>
-              </div>
-              <h2 class="product-card__title">
-                <shopify-data query="product.title"></shopify-data>
-              </h2>
-              <div class="product-card__price">
-                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-              </div>
-              <div class="product-card__description">
-                <shopify-data query="product.descriptionHtml"></shopify-data>
-              </div>
-
-              <shopify-variant-selector></shopify-variant-selector>
-
-              <div class="product-card__buttons">
-                <button
-                  type="button"
-                  class="product-card__add-btn"
-                  onclick="document.getElementById('main-cart').addLine(event).showModal();"
-                >ADD TO CART</button>
-                <button
-                  type="button"
-                  class="product-card__buy-btn"
-                  onclick="document.querySelector('shopify-store').buyNow(event);"
-                >BUY NOW</button>
-              </div>
-            </div>
-          </div>
-        </template>
-        <div shopify-loading-placeholder class="loading-placeholder">
-          <div class="loading-spinner"></div>
-          Loading product...
-        </div>
-      </shopify-context>
-    </div>
-  </section>
-
   <!-- ===== 10. TRUST BAR ===== -->
   <section class="trust">
     <div class="trust__grid">
@@ -564,7 +579,7 @@
       <div class="footer__col">
         <div class="footer__col-title">Quick Links</div>
         <a href="#" class="footer__col-link">Home</a>
-        <a href="#product-section" class="footer__col-link">Shop</a>
+        <a href="#hero" class="footer__col-link">Shop</a>
         <a href="#reviews-section" class="footer__col-link">Reviews</a>
       </div>
       <div class="footer__col">
@@ -602,6 +617,13 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
+    // Image Thumbnail Switcher
+    function switchMainImage(thumb) {
+      document.getElementById('main-product-display').src = thumb.src;
+      document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
     // Countdown Timer
     let duration = 14 * 60 + 59;
     const timerDisplay = document.getElementById('timer');
@@ -609,7 +631,7 @@
       let minutes = Math.floor(duration / 60);
       let seconds = duration % 60;
       seconds = seconds < 10 ? '0' + seconds : seconds;
-      timerDisplay.textContent = `${minutes}:${seconds}`;
+      if (timerDisplay) timerDisplay.textContent = `${minutes}:${seconds}`;
       if (duration > 0) duration--;
     }, 1000);
 
@@ -631,17 +653,16 @@
     // Sticky Buy Bar on Scroll
     window.addEventListener('scroll', () => {
       const stickyBar = document.getElementById('sticky-bar');
-      if (window.scrollY > 400) {
-        stickyBar.classList.add('active');
-      } else {
-        stickyBar.classList.remove('active');
+      if (stickyBar) {
+        if (window.scrollY > 400) stickyBar.classList.add('active');
+        else stickyBar.classList.remove('active');
       }
     });
 
     // FAQ Toggle Handler
     function initFaqs() {
       document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function() {
           this.classList.toggle('active');
         });
       });
@@ -653,12 +674,8 @@
     }
 
     // Modal Control
-    function openReviewModal() {
-      document.getElementById('review-modal').classList.add('active');
-    }
-    function closeReviewModal() {
-      document.getElementById('review-modal').classList.remove('active');
-    }
+    function openReviewModal() { document.getElementById('review-modal').classList.add('active'); }
+    function closeReviewModal() { document.getElementById('review-modal').classList.remove('active'); }
 
     // Star Rating Selection
     let selectedRating = 5;
@@ -668,11 +685,8 @@
         selectedRating = parseInt(this.getAttribute('data-value'));
         document.getElementById('review-rating-val').value = selectedRating;
         stars.forEach((s, idx) => {
-          if (idx < selectedRating) {
-            s.classList.add('selected');
-          } else {
-            s.classList.remove('selected');
-          }
+          if (idx < selectedRating) s.classList.add('selected');
+          else s.classList.remove('selected');
         });
       });
     });
