@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }} — {{ shop.name }}</title>
+  <meta name="description" content="{{ page_description | default: 'HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.' }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+  {{ content_for_header }}
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+</head>
+<body>
+
+  <!-- Shopify Store Config -->
+  <shopify-store
+    store-domain="https://nrqbvn-sy.myshopify.com"
+    public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
+    country="IN"
+    language="en"
+  ></shopify-store>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        FREE SHIPPING ON ORDERS OVER ₹999
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        CASH ON DELIVERY AVAILABLE
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        7-DAY EASY RETURNS
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        FREE SHIPPING ON ORDERS OVER ₹999
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        CASH ON DELIVERY AVAILABLE
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        7-DAY EASY RETURNS
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="main-nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-name">HANGR</span>
+        <span class="nav__logo-tagline">Organize. Display. Simplify.</span>
+      </a>
+      <div class="nav__links" id="nav-links">
+        <a href="/" class="nav__link nav__link--active">Home</a>
+        <a href="#product-section" class="nav__link nav__link--dropdown">
+          Shop
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <a href="#features-section" class="nav__link">About Us</a>
+        <a href="#features-section" class="nav__link">Why HANGR?</a>
+        <a href="#stats-section" class="nav__link">Reviews</a>
+        <a href="#footer" class="nav__link">Contact Us</a>
+      </div>
+      <div class="nav__actions">
+        <button class="nav__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button class="nav__action-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="nav__action-btn" aria-label="Cart" onclick="document.getElementById('main-cart').showModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="nav__cart-badge">0</span>
+        </button>
+        <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('mobile-open')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    {{ content_for_layout }}
+  </main>
+
+  <!-- ===== TRUST BAR ===== -->
+  <section class="trust" id="trust-bar">
+    <div class="trust__grid">
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Free Shipping</span>
+          <span class="trust__item-desc">On orders over ₹999</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Secure Payment</span>
+          <span class="trust__item-desc">100% Safe & Secure</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Easy Returns</span>
+          <span class="trust__item-desc">Hassle-free returns</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Support</span>
+          <span class="trust__item-desc">We're here to help</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">HANGR</div>
+        <p class="footer__brand-desc">The smarter way to organize your accessories. Premium quality steel hangers designed for Indian households.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.35z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Quick Links</div>
+        <a href="/" class="footer__col-link">Home</a>
+        <a href="#product-section" class="footer__col-link">Shop</a>
+        <a href="#features-section" class="footer__col-link">About Us</a>
+        <a href="#stats-section" class="footer__col-link">Reviews</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Support</div>
+        <a href="#" class="footer__col-link">Contact Us</a>
+        <a href="#" class="footer__col-link">Shipping Policy</a>
+        <a href="#" class="footer__col-link">Returns & Refunds</a>
+        <a href="#" class="footer__col-link">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Legal</div>
+        <a href="#" class="footer__col-link">Privacy Policy</a>
+        <a href="#" class="footer__col-link">Terms of Service</a>
+        <a href="#" class="footer__col-link">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} HANGR. All rights reserved. Made with ♥ in India.</p>
+    </div>
+  </footer>
+
+  <!-- Shopify Cart -->
+  <shopify-cart id="main-cart">
+    <div slot="checkout-button">Proceed to Checkout</div>
+    <div slot="empty">Your cart is empty. Start shopping!</div>
+  </shopify-cart>
+
+  <script>
+    // Sticky nav shadow
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // Mobile nav
+    const mobileStyle = document.createElement('style');
+    mobileStyle.textContent = `.nav__links.mobile-open { display:flex!important; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--white); padding:24px; gap:16px; box-shadow:0 8px 30px rgba(0,0,0,0.1); border-top:1px solid var(--gray-200); z-index:100; }`;
+    document.head.appendChild(mobileStyle);
+  </script>
+</body>
+</html>

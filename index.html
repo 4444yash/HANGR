@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANGR — One Hanger. Endless Ways to Organize.</title>
+  <meta name="description" content="HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+
+  <style>
+    /* ========== CSS RESET & VARIABLES ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #FFFFFF;
+      --off-white: #F9F6F0;
+      --cream: #F5F0E8;
+      --black: #000000;
+      --dark: #1A1A1A;
+      --tan: #C5A47E;
+      --tan-light: #D4B896;
+      --gray-100: #F7F7F7;
+      --gray-200: #EBEBEB;
+      --gray-400: #999999;
+      --gray-600: #666666;
+      --gray-800: #333333;
+      --olive: #3D4A3A;
+      --gold: #B8860B;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --max-width: 1280px;
+      --section-padding: 80px 24px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font-body); border: none; background: none; }
+    ul, ol { list-style: none; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== 1. ANNOUNCEMENT BAR ========== */
+    .announcement-bar {
+      background: var(--black);
+      color: var(--white);
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 100;
+    }
+
+    .announcement-bar__track {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+
+    .announcement-bar__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 48px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .announcement-bar__item svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ========== 2. NAVIGATION ========== */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      transition: box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .nav__logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav__logo-name {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--black);
+    }
+
+    .nav__logo-tagline {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin-top: 2px;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav__link {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-800);
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--black);
+      transition: width var(--transition);
+    }
+
+    .nav__link:hover { color: var(--black); }
+    .nav__link:hover::after { width: 100%; }
+    .nav__link--active { color: var(--black); font-weight: 600; }
+    .nav__link--active::after { width: 100%; }
+
+    .nav__link--dropdown {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav__action-btn {
+      color: var(--dark);
+      transition: color var(--transition), transform var(--transition);
+      position: relative;
+    }
+
+    .nav__action-btn:hover {
+      color: var(--black);
+      transform: scale(1.1);
+    }
+
+    .nav__action-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav__cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav__mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav__mobile-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: all var(--transition);
+    }
+
+    /* ========== 3. HERO SECTION ========== */
+    .hero {
+      background: linear-gradient(135deg, var(--off-white) 0%, var(--cream) 50%, #f0e8d8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 64px 24px 48px;
+      min-height: 560px;
+    }
+
+    .hero__content { z-index: 2; }
+
+    .hero__headline {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      color: var(--tan);
+    }
+
+    .hero__subtext {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 420px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--black);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      border: 2px solid var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark);
+      transition: color var(--transition);
+    }
+
+    .btn-secondary:hover { color: var(--tan); }
+
+    .btn-secondary__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover .btn-secondary__icon {
+      border-color: var(--tan);
+      background: var(--tan);
+      color: var(--white);
+    }
+
+    .btn-secondary__icon svg { width: 16px; height: 16px; }
+
+    .hero__features {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero__feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .hero__feature-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero__feature-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--dark);
+    }
+
+    .hero__feature-text {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      line-height: 1.3;
+    }
+
+    .hero__media {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .hero__image {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .hero__image-glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(197,164,126,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    /* ========== 4. PERFECT FOR ORGANIZING ========== */
+    .organizing {
+      background: var(--cream);
+      padding: 40px 24px;
+    }
+
+    .organizing__inner {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    .organizing__title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 600;
+      font-style: italic;
+      white-space: nowrap;
+      color: var(--dark);
+      min-width: fit-content;
+      padding-right: 24px;
+      border-right: 2px solid var(--tan-light);
+    }
+
+    .organizing__items {
+      display: flex;
+      gap: 40px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .organizing__items::-webkit-scrollbar { display: none; }
+
+    .organizing__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 100px;
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+
+    .organizing__item:hover { transform: translateY(-4px); }
+
+    .organizing__item-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .organizing__item-icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--dark);
+    }
+
+    .organizing__item-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-align: center;
+      color: var(--gray-800);
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    /* ========== 5. DECLUTTER. DISPLAY. DELIGHT. ========== */
+    .gallery {
+      padding: var(--section-padding);
+      text-align: center;
+    }
+
+    .gallery__headline {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .gallery__subtext {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: 48px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .gallery__card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      group: true;
+    }
+
+    .gallery__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery__card:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery__card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+
+    .gallery__card-title {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .gallery__card-desc {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ========== 6. DESIGNED TO LAST ========== */
+    .features {
+      background: var(--olive);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .features__content { z-index: 2; }
+
+    .features__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .features__headline {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .features__headline::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--tan);
+      margin-top: 16px;
+    }
+
+    .features__list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .features__list-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .features__list-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--tan);
+      flex-shrink: 0;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border: 2px solid var(--white);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--olive);
+      transform: translateY(-2px);
+    }
+
+    .features__media {
+      position: relative;
+    }
+
+    .features__image {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* ========== 7. SOCIAL PROOF STATS ========== */
+    .stats {
+      padding: 64px 24px;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .stats__headline {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 48px;
+    }
+
+    .stats__grid {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .stats__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 140px;
+    }
+
+    .stats__item-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .stats__item-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .stats__item-label {
+      font-size: 0.75rem;
+      color: var(--gray-600);
+    }
+
+    /* ========== 8. PRODUCT PURCHASE SECTION ========== */
+    .product-section {
+      background: var(--off-white);
+      padding: var(--section-padding);
+    }
+
+    .product-section__banner {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 48px;
+      max-width: var(--max-width);
+      margin: 0 auto 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .product-section__banner-content {
+      padding: 24px 0;
+    }
+
+    .product-section__banner-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 8px;
+    }
+
+    .product-section__banner-headline {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .product-section__banner-subtitle {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+    }
+
+    .product-section__banner-media {
+      display: flex;
+      justify-content: center;
+    }
+
+    .product-section__banner-media img {
+      border-radius: 12px;
+      max-height: 360px;
+      object-fit: cover;
+    }
+
+    /* Shopify product card */
+    .product-card-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .product-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+
+    .product-card__media-area {
+      position: relative;
+    }
+
+    .product-card__media-area shopify-media {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .product-card__media-area shopify-media img {
+      border-radius: 16px;
+      width: 100%;
+    }
+
+    .product-card__details-area {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    .product-card__vendor {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+
+    .product-card__title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .product-card__price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .product-card__description {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    /* Variant selector styling */
+    shopify-variant-selector::part(form) {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    shopify-variant-selector::part(label) {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    shopify-variant-selector::part(radio) {
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: all 0.2s ease;
+      background: var(--white);
+    }
+
+    shopify-variant-selector::part(radio):hover {
+      border-color: var(--dark);
+    }
+
+    shopify-variant-selector::part(radio-selected) {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    shopify-variant-selector::part(radio-disabled) {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .product-card__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .product-card__add-btn {
+      width: 100%;
+      padding: 16px 32px;
+      background: var(--black);
+      color: var(--white);
+      border: 2px solid var(--black);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all var(--transition);
+    }
+
+    .product-card__add-btn:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .product-card__add-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .product-card__buy-btn {
+      width: 100%;
+      padding: 16px 32px;
+      background: var(--white);
+      color: var(--black);
+      border: 2px solid var(--black);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all var(--transition);
+    }
+
+    .product-card__buy-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .product-card__buy-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ========== 9. TRUST BAR ========== */
+    .trust {
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 40px 24px;
+    }
+
+    .trust__grid {
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      flex-wrap: wrap;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .trust__item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .trust__item-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--dark);
+    }
+
+    .trust__item-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trust__item-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .trust__item-desc {
+      font-size: 0.7rem;
+      color: var(--gray-600);
+    }
+
+    /* ========== 10. FOOTER ========== */
+    .footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 64px 24px 32px;
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .footer__brand-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 320px;
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer__social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .footer__social-link:hover {
+      background: var(--white);
+      border-color: var(--white);
+    }
+
+    .footer__social-link:hover svg { color: var(--dark); }
+
+    .footer__social-link svg {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+    }
+
+    .footer__col-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .footer__col-link {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      padding: 6px 0;
+      transition: color var(--transition);
+    }
+
+    .footer__col-link:hover { color: var(--white); }
+
+    .footer__bottom {
+      text-align: center;
+      padding-top: 32px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer__copyright {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ========== CART STYLES ========== */
+    shopify-cart::part(dialog) {
+      border-radius: 16px;
+      border: 0;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    }
+
+    shopify-cart::part(primary-button) {
+      background-color: var(--black);
+      border: 0;
+      border-radius: 50px;
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+    }
+
+    shopify-cart::part(secondary-button) {
+      background-color: var(--white);
+      color: var(--black);
+      fill: var(--black);
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+    }
+
+    shopify-cart::part(line-heading) {
+      font-family: var(--font-body);
+      font-weight: 600;
+    }
+
+    /* ========== LOADING PLACEHOLDER ========== */
+    .loading-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      font-size: 0.9rem;
+      color: var(--gray-400);
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--gray-200);
+      border-top-color: var(--black);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero__headline { font-size: 2.75rem; }
+      .hero__inner { gap: 32px; }
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+      .features__inner { gap: 40px; }
+      .features__headline { font-size: 2.25rem; }
+      .footer__inner { grid-template-columns: 1fr 1fr; }
+      .product-section__banner { grid-template-columns: 1fr; padding: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-padding: 56px 16px; }
+
+      .nav__links { display: none; }
+      .nav__mobile-toggle { display: flex; }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 40px 16px 32px;
+        min-height: auto;
+      }
+
+      .hero__headline { font-size: 2.25rem; }
+      .hero__subtext { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .hero__ctas { justify-content: center; flex-wrap: wrap; }
+      .hero__features { justify-content: center; }
+      .hero__media { order: -1; }
+      .hero__image { max-width: 360px; }
+
+      .organizing__inner { flex-direction: column; gap: 20px; }
+      .organizing__title { border-right: none; border-bottom: 2px solid var(--tan-light); padding-right: 0; padding-bottom: 12px; }
+
+      .gallery__headline { font-size: 1.75rem; }
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+      .features__inner {
+        grid-template-columns: 1fr;
+        padding: 56px 16px;
+        text-align: center;
+      }
+      .features__headline { font-size: 2rem; }
+      .features__headline::after { margin: 16px auto 0; }
+      .features__list-item { justify-content: center; }
+      .features__media { order: -1; }
+
+      .stats__grid { gap: 32px; }
+      .stats__headline { font-size: 1.5rem; }
+
+      .product-card-grid {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .trust__grid { gap: 32px; }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__headline { font-size: 1.85rem; }
+      .hero__features { gap: 20px; }
+      .gallery__grid { grid-template-columns: 1fr; }
+      .stats__grid { gap: 24px; }
+      .trust__grid { flex-direction: column; align-items: center; text-align: center; }
+      .product-section__banner { padding: 24px; }
+      .product-section__banner-headline { font-size: 1.5rem; }
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SHOPIFY STORE CONFIG ===== -->
+  <shopify-store
+    store-domain="https://nrqbvn-sy.myshopify.com"
+    public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
+    country="IN"
+    language="en"
+  ></shopify-store>
+
+  <!-- ===== 1. ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="announcement-bar__track">
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        FREE SHIPPING ON ORDERS OVER ₹999
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        CASH ON DELIVERY AVAILABLE
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        7-DAY EASY RETURNS
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        FREE SHIPPING ON ORDERS OVER ₹999
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        CASH ON DELIVERY AVAILABLE
+      </div>
+      <div class="announcement-bar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        7-DAY EASY RETURNS
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2. NAVIGATION ===== -->
+  <nav class="nav" id="main-nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-name">HANGR</span>
+        <span class="nav__logo-tagline">Organize. Display. Simplify.</span>
+      </a>
+
+      <div class="nav__links" id="nav-links">
+        <a href="#" class="nav__link nav__link--active">Home</a>
+        <a href="#product-section" class="nav__link nav__link--dropdown">
+          Shop
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <a href="#features-section" class="nav__link">About Us</a>
+        <a href="#features-section" class="nav__link">Why HANGR?</a>
+        <a href="#stats-section" class="nav__link">Reviews</a>
+        <a href="#footer" class="nav__link">Contact Us</a>
+      </div>
+
+      <div class="nav__actions">
+        <button class="nav__action-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button class="nav__action-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="nav__action-btn" aria-label="Cart" onclick="document.getElementById('main-cart').showModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="nav__cart-badge">0</span>
+        </button>
+        <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('mobile-open')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== 3. HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__headline">
+          One Hanger.<br>
+          Endless Ways<br>
+          <em>to Organize.</em>
+        </h1>
+        <p class="hero__subtext">
+          The perfect storage solution for your bangles,<br>
+          accessories, belts, hairbands & more.<br>
+          Smart. Stylish. Space-saving.
+        </p>
+        <div class="hero__ctas">
+          <a href="#product-section" class="btn-primary">
+            SHOP NOW
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#features-section" class="btn-secondary">
+            <span class="btn-secondary__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="10,8 16,12 10,16"/></svg>
+            </span>
+            SEE HOW IT WORKS
+          </a>
+        </div>
+        <div class="hero__features">
+          <div class="hero__feature">
+            <div class="hero__feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </div>
+            <span class="hero__feature-text">Space Saving<br>Design</span>
+          </div>
+          <div class="hero__feature">
+            <div class="hero__feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="hero__feature-text">Durable &<br>Rust Proof</span>
+          </div>
+          <div class="hero__feature">
+            <div class="hero__feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </div>
+            <span class="hero__feature-text">Multi Purpose<br>Use</span>
+          </div>
+          <div class="hero__feature">
+            <div class="hero__feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="hero__feature-text">Easy to Hang<br>Anywhere</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="hero__image-glow"></div>
+        <img
+          src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884"
+          alt="Multi Tier Cloth and Bangle Steel Hanger loaded with colorful bangles"
+          class="hero__image"
+          width="520"
+          height="580"
+          loading="eager"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. PERFECT FOR ORGANIZING ===== -->
+  <section class="organizing" id="organizing">
+    <div class="organizing__inner">
+      <h2 class="organizing__title">Perfect For<br>Organizing</h2>
+      <div class="organizing__items">
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          </div>
+          <span class="organizing__item-label">Bangles &<br>Bracelets</span>
+        </div>
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L8 8l-6 1 4.5 4L5 19l7-3.5L19 19l-1.5-6L22 9l-6-1z"/></svg>
+          </div>
+          <span class="organizing__item-label">Earrings &<br>Jhumkas</span>
+        </div>
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path d="M8 10h8"/><path d="M6 14h12"/><path d="M8 18h8"/></svg>
+          </div>
+          <span class="organizing__item-label">Hairbands &<br>Scrunchies</span>
+        </div>
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+          </div>
+          <span class="organizing__item-label">Belts &<br>Watches</span>
+        </div>
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/><path d="M2 12h20"/><path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10"/><path d="M12 2c-2.5 2.5-4 6-4 10s1.5 7.5 4 10"/></svg>
+          </div>
+          <span class="organizing__item-label">Necklaces &<br>Chains</span>
+        </div>
+        <div class="organizing__item">
+          <div class="organizing__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+          </div>
+          <span class="organizing__item-label">Accessories<br>& More</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. DECLUTTER. DISPLAY. DELIGHT. ===== -->
+  <section class="gallery" id="gallery">
+    <h2 class="gallery__headline fade-in">Declutter. Display. Delight.</h2>
+    <p class="gallery__subtext fade-in">One hanger for all your essentials. Because everything you love deserves its place.</p>
+    <div class="gallery__grid">
+      <div class="gallery__card fade-in fade-in-delay-1">
+        <img src="./images/bangles.png" alt="Colorful bangles organized on a multi-tier hanger" loading="lazy" width="320" height="427">
+        <div class="gallery__card-overlay">
+          <div class="gallery__card-title">BANGLES</div>
+          <div class="gallery__card-desc">Keep your collection tangle-free</div>
+        </div>
+      </div>
+      <div class="gallery__card fade-in fade-in-delay-2">
+        <img src="./images/hair-accessories.png" alt="Hairbands and scrunchies organized on a multi-tier hanger" loading="lazy" width="320" height="427">
+        <div class="gallery__card-overlay">
+          <div class="gallery__card-title">HAIR ACCESSORIES</div>
+          <div class="gallery__card-desc">Organize your everyday essentials</div>
+        </div>
+      </div>
+      <div class="gallery__card fade-in fade-in-delay-3">
+        <img src="./images/belts-watches.png" alt="Belts and watches organized on a multi-tier hanger" loading="lazy" width="320" height="427">
+        <div class="gallery__card-overlay">
+          <div class="gallery__card-title">BELTS & WATCHES</div>
+          <div class="gallery__card-desc">Everything in one easy-to-find place</div>
+        </div>
+      </div>
+      <div class="gallery__card fade-in fade-in-delay-4">
+        <img src="./images/earrings.png" alt="Earrings and jewelry organized on a multi-tier hanger" loading="lazy" width="320" height="427">
+        <div class="gallery__card-overlay">
+          <div class="gallery__card-title">EARRINGS & MORE</div>
+          <div class="gallery__card-desc">Neatly store and access your favorites</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. DESIGNED TO LAST ===== -->
+  <section class="features" id="features-section">
+    <div class="features__inner">
+      <div class="features__content fade-in">
+        <div class="features__label">Sturdy. Stylish. Smart.</div>
+        <h2 class="features__headline">Designed to Last.</h2>
+        <ul class="features__list">
+          <li class="features__list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Premium quality metal
+          </li>
+          <li class="features__list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Rust-proof & durable
+          </li>
+          <li class="features__list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Holds up to 100+ items
+          </li>
+          <li class="features__list-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Easy to hang — anywhere!
+          </li>
+        </ul>
+        <a href="#product-section" class="btn-outline">
+          EXPLORE NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="features__media fade-in">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_qgfuhpqgfuhpqgfu.png?v=1785853885"
+          alt="Close up of multi tier steel hanger with bangles"
+          class="features__image"
+          loading="lazy"
+          width="480"
+          height="480"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. SOCIAL PROOF / STATS ===== -->
+  <section class="stats" id="stats-section">
+    <h2 class="stats__headline fade-in">Why Customers Love It</h2>
+    <div class="stats__grid">
+      <div class="stats__item fade-in fade-in-delay-1">
+        <div class="stats__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stats__item-value">10,000+</div>
+        <div class="stats__item-label">Happy Customers</div>
+      </div>
+      <div class="stats__item fade-in fade-in-delay-2">
+        <div class="stats__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="stats__item-value">4.8/5</div>
+        <div class="stats__item-label">Average Rating</div>
+      </div>
+      <div class="stats__item fade-in fade-in-delay-3">
+        <div class="stats__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="stats__item-value">100%</div>
+        <div class="stats__item-label">Satisfaction Guaranteed</div>
+      </div>
+      <div class="stats__item fade-in fade-in-delay-4">
+        <div class="stats__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </div>
+        <div class="stats__item-value">7 Days</div>
+        <div class="stats__item-label">Easy Returns</div>
+      </div>
+      <div class="stats__item fade-in fade-in-delay-4">
+        <div class="stats__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="stats__item-value">COD</div>
+        <div class="stats__item-label">Available</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. PRODUCT PURCHASE SECTION ===== -->
+  <section class="product-section" id="product-section">
+
+    <!-- Banner -->
+    <div class="product-section__banner fade-in">
+      <div class="product-section__banner-content">
+        <div class="product-section__banner-label">Loved by Thousands</div>
+        <h2 class="product-section__banner-headline">Join the Organizing Revolution!</h2>
+        <p class="product-section__banner-subtitle">Choose your perfect hanger size and transform your space today.</p>
+        <a href="#product-card" class="btn-primary" style="display: inline-flex;">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="product-section__banner-media">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/ChatGPTImageAug4_2026_07_34_43PM.png?v=1785853884"
+          alt="Multi Tier Hanger organizing accessories"
+          loading="lazy"
+          width="400"
+          height="360"
+        >
+      </div>
+    </div>
+
+    <!-- Live Shopify Product Card -->
+    <div class="product-card-wrapper" id="product-card">
+      <shopify-context type="product" handle="multi-tier-cloth-bangle-steel-hanger">
+        <template>
+          <div class="product-card-grid">
+            <div class="product-card__media-area">
+              <shopify-media
+                width="560"
+                height="560"
+                query="product.selectedOrFirstAvailableVariant.image"
+              ></shopify-media>
+            </div>
+            <div class="product-card__details-area">
+              <div class="product-card__vendor">
+                <shopify-data query="product.vendor"></shopify-data>
+              </div>
+              <h2 class="product-card__title">
+                <shopify-data query="product.title"></shopify-data>
+              </h2>
+              <div class="product-card__price">
+                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+              </div>
+              <div class="product-card__description">
+                <shopify-data query="product.descriptionHtml"></shopify-data>
+              </div>
+
+              <shopify-variant-selector></shopify-variant-selector>
+
+              <div class="product-card__buttons">
+                <button
+                  class="product-card__add-btn"
+                  onclick="getElementById('main-cart').addLine(event).showModal();"
+                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                >
+                  ADD TO CART
+                </button>
+                <button
+                  class="product-card__buy-btn"
+                  onclick="document.querySelector('shopify-store').buyNow(event)"
+                  shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
+                >
+                  BUY NOW
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div shopify-loading-placeholder class="loading-placeholder">
+          <div class="loading-spinner"></div>
+          Loading product...
+        </div>
+      </shopify-context>
+    </div>
+  </section>
+
+  <!-- ===== 9. TRUST BAR ===== -->
+  <section class="trust" id="trust-bar">
+    <div class="trust__grid">
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Free Shipping</span>
+          <span class="trust__item-desc">On orders over ₹999</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Secure Payment</span>
+          <span class="trust__item-desc">100% Safe & Secure</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Easy Returns</span>
+          <span class="trust__item-desc">Hassle-free returns</span>
+        </div>
+      </div>
+      <div class="trust__item">
+        <div class="trust__item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="trust__item-text">
+          <span class="trust__item-title">Support</span>
+          <span class="trust__item-desc">We're here to help</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">HANGR</div>
+        <p class="footer__brand-desc">
+          The smarter way to organize your accessories. Premium quality steel hangers designed for Indian households.
+        </p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.35z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Quick Links</div>
+        <a href="#" class="footer__col-link">Home</a>
+        <a href="#product-section" class="footer__col-link">Shop</a>
+        <a href="#features-section" class="footer__col-link">About Us</a>
+        <a href="#stats-section" class="footer__col-link">Reviews</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Support</div>
+        <a href="#" class="footer__col-link">Contact Us</a>
+        <a href="#" class="footer__col-link">Shipping Policy</a>
+        <a href="#" class="footer__col-link">Returns & Refunds</a>
+        <a href="#" class="footer__col-link">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Legal</div>
+        <a href="#" class="footer__col-link">Privacy Policy</a>
+        <a href="#" class="footer__col-link">Terms of Service</a>
+        <a href="#" class="footer__col-link">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 HANGR. All rights reserved. Made with ♥ in India.</p>
+    </div>
+  </footer>
+
+  <!-- ===== SHOPIFY CART ===== -->
+  <shopify-cart id="main-cart">
+    <div slot="checkout-button">Proceed to Checkout</div>
+    <div slot="empty">Your cart is empty. Start shopping!</div>
+  </shopify-cart>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile nav styling (inline for simplicity)
+    const style = document.createElement('style');
+    style.textContent = `
+      .nav__links.mobile-open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 24px;
+        gap: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--gray-200);
+        z-index: 100;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+</body>
+</html>
