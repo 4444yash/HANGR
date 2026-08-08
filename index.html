@@ -431,8 +431,8 @@
     </div>
 
     <div class="faq-container">
-      <div class="faq-item active" onclick="toggleFaq(this)">
-        <button class="faq-question">
+      <div class="faq-item active">
+        <button class="faq-question" type="button">
           <span>Is Cash on Delivery (COD) available for my pincode?</span>
           <span class="faq-icon">▼</span>
         </button>
@@ -441,8 +441,8 @@
         </div>
       </div>
 
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <button class="faq-question">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
           <span>How many bangles or items can one hanger hold?</span>
           <span class="faq-icon">▼</span>
         </button>
@@ -451,8 +451,8 @@
         </div>
       </div>
 
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <button class="faq-question">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
           <span>Will it rust or lose shine in humid weather?</span>
           <span class="faq-icon">▼</span>
         </button>
@@ -461,8 +461,8 @@
         </div>
       </div>
 
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <button class="faq-question">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
           <span>What is the estimated delivery time?</span>
           <span class="faq-icon">▼</span>
         </button>
@@ -619,9 +619,18 @@
       }
     });
 
-    // FAQ Toggle
-    function toggleFaq(element) {
-      element.classList.toggle('active');
+    // FAQ Toggle Handler
+    function initFaqs() {
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          this.classList.toggle('active');
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFaqs);
+    } else {
+      initFaqs();
     }
 
     // Modal Control
