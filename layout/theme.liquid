@@ -14,9 +14,9 @@
 </head>
 <body>
 
-  <!-- Shopify Store Config -->
+  <!-- Shopify Store Config (Dynamic Domain) -->
   <shopify-store
-    store-domain="https://nrqbvn-sy.myshopify.com"
+    store-domain="https://{{ shop.permanent_domain }}"
     public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
     country="IN"
     language="en"
@@ -59,7 +59,7 @@
       </a>
       <div class="nav__links" id="nav-links">
         <a href="/" class="nav__link nav__link--active">Home</a>
-        <a href="#product-section" class="nav__link">Shop Hanger</a>
+        <a href="#hero" class="nav__link">Shop Hanger</a>
         <a href="#comparison-section" class="nav__link">Why HANGR?</a>
         <a href="#reviews-section" class="nav__link">Customer Reviews</a>
         <a href="#faq-section" class="nav__link">FAQs</a>
@@ -124,7 +124,7 @@
       <div class="footer__col">
         <div class="footer__col-title">Quick Links</div>
         <a href="/" class="footer__col-link">Home</a>
-        <a href="#product-section" class="footer__col-link">Shop</a>
+        <a href="#hero" class="footer__col-link">Shop</a>
         <a href="#reviews-section" class="footer__col-link">Reviews</a>
       </div>
       <div class="footer__col">
@@ -161,6 +161,15 @@
   </shopify-cart>
 
   <script>
+    function switchMainImage(thumb) {
+      const main = document.getElementById('main-product-display');
+      if (main && thumb) {
+        main.src = thumb.src;
+        document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      }
+    }
+
     let duration = 14 * 60 + 59;
     const timerDisplay = document.getElementById('timer');
     setInterval(() => {
@@ -172,26 +181,41 @@
     }, 1000);
 
     function triggerShopifyBuyNow(event) {
-      const buyBtn = document.querySelector('.product-card__buy-btn');
-      if (buyBtn && !buyBtn.disabled) {
-        buyBtn.click();
+      if (event) event.preventDefault();
+      const form = document.getElementById('AddToCartForm');
+      if (form) {
+        const checkoutInput = document.createElement('input');
+        checkoutInput.type = 'hidden';
+        checkoutInput.name = 'checkout';
+        checkoutInput.value = 'true';
+        form.appendChild(checkoutInput);
+        form.submit();
       } else {
-        const store = document.querySelector('shopify-store');
-        if (store && store.buyNow) {
-          store.buyNow(event);
-        } else {
-          document.getElementById('product-card').scrollIntoView({ behavior: 'smooth' });
-        }
+        const buyBtn = document.querySelector('.product-card__buy-btn');
+        if (buyBtn) buyBtn.click();
       }
     }
 
     window.addEventListener('scroll', () => {
       const stickyBar = document.getElementById('sticky-bar');
       if (stickyBar) {
-        if (window.scrollY > 400) stickyBar.classList.add('active');
+        if (window.scrollY > 300) stickyBar.classList.add('active');
         else stickyBar.classList.remove('active');
       }
     });
+
+    function initFaqs() {
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFaqs);
+    } else {
+      initFaqs();
+    }
   </script>
 </body>
 </html>
