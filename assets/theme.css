@@ -1134,10 +1134,83 @@ shopify-variant-selector::part(radio-selected) {
   gap: 6px;
 }
 
-/* ========== CART STYLES ========== */
-shopify-cart::part(dialog) { border-radius: 16px; border: 0; box-shadow: var(--shadow-lg); }
-shopify-cart::part(primary-button) { background-color: var(--black); border: 0; border-radius: 50px; color: var(--white); font-size: 0.875rem; font-weight: 700; padding: 14px 24px; }
-shopify-cart::part(secondary-button) { background-color: var(--white); color: var(--black); fill: var(--black); border: 2px solid var(--gray-200); border-radius: 8px; }
+/* ========== CUSTOM D2C CART DRAWER ========== */
+.cart-drawer-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer-content {
+  background: var(--white);
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.cart-drawer-overlay.active .cart-drawer-content {
+  transform: translateX(0);
+}
+
+.cart-drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--off-white);
+}
+
+.cart-drawer-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.cart-drawer-close {
+  font-size: 1.6rem;
+  color: var(--gray-600);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cart-drawer-body {
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
+}
+
+.cart-drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--gray-200);
+  background: var(--off-white);
+}
+
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
 
 /* ========== ANIMATIONS ========== */
 .fade-in {

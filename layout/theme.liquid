@@ -8,19 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
   {{ content_for_header }}
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 </head>
 <body>
-
-  <!-- Shopify Store Config (Dynamic Domain) -->
-  <shopify-store
-    store-domain="https://{{ shop.permanent_domain }}"
-    public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
-    country="IN"
-    language="en"
-  ></shopify-store>
 
   <!-- URGENCY COUNTDOWN BAR -->
   <div class="top-urgency-bar">
@@ -65,7 +56,7 @@
         <a href="#faq-section" class="nav__link">FAQs</a>
       </div>
       <div class="nav__actions">
-        <button class="nav__action-btn" aria-label="Cart" onclick="document.getElementById('main-cart').showModal()">
+        <button class="nav__action-btn" aria-label="Cart" onclick="openCartDrawer()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span class="nav__cart-badge">0</span>
         </button>
@@ -154,11 +145,30 @@
     </button>
   </div>
 
-  <!-- SHOPIFY CART -->
-  <shopify-cart id="main-cart">
-    <div slot="checkout-button">Proceed to Checkout</div>
-    <div slot="empty">Your cart is empty. Start shopping!</div>
-  </shopify-cart>
+  <!-- ===== CUSTOM D2C CART DRAWER MODAL ===== -->
+  <div class="cart-drawer-overlay" id="cart-drawer-modal">
+    <div class="cart-drawer-content">
+      <div class="cart-drawer-header">
+        <h3>Shopping Cart (<span id="cart-drawer-count">0</span>)</h3>
+        <span class="cart-drawer-close" onclick="closeCartDrawer()">&times;</span>
+      </div>
+
+      <div class="cart-drawer-body" id="cart-drawer-items">
+        <!-- Dynamically rendered via /cart.js -->
+      </div>
+
+      <div class="cart-drawer-footer" id="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-price">Rs. 0.00</span>
+        </div>
+        <p style="font-size: 0.75rem; color: var(--gray-600); margin-bottom: 12px; text-align: center;">Taxes & Free Shipping calculated at checkout</p>
+        <a href="/checkout" class="btn-primary" style="width: 100%; justify-content: center; text-align: center; border-radius: 50px;">
+          PROCEED TO CHECKOUT (COD AVAILABLE) →
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script>
     function switchMainImage(thumb) {
@@ -180,6 +190,80 @@
       if (duration > 0) duration--;
     }, 1000);
 
+    // CART DRAWER FUNCTIONS
+    function openCartDrawer() {
+      const modal = document.getElementById('cart-drawer-modal');
+      if (modal) {
+        modal.classList.add('active');
+        renderCartDrawer();
+      }
+    }
+
+    function closeCartDrawer() {
+      const modal = document.getElementById('cart-drawer-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function renderCartDrawer() {
+      fetch('/cart.js')
+        .then(r => r.json())
+        .then(cart => {
+          document.querySelectorAll('.nav__cart-badge').forEach(b => b.textContent = cart.item_count);
+          const countEl = document.getElementById('cart-drawer-count');
+          if (countEl) countEl.textContent = cart.item_count;
+
+          const container = document.getElementById('cart-drawer-items');
+          const footer = document.getElementById('cart-drawer-footer');
+
+          if (!container) return;
+
+          if (cart.item_count === 0) {
+            container.innerHTML = `
+              <div style="text-align: center; padding: 60px 20px; color: var(--gray-600);">
+                <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">Your cart is empty.</p>
+                <a href="#hero" onclick="closeCartDrawer()" class="btn-primary" style="font-size: 0.82rem; padding: 12px 24px;">Start Shopping</a>
+              </div>
+            `;
+            if (footer) footer.style.display = 'none';
+          } else {
+            if (footer) footer.style.display = 'block';
+            const subtotalEl = document.getElementById('cart-subtotal-price');
+            if (subtotalEl) {
+              subtotalEl.textContent = 'Rs. ' + (cart.total_price / 100).toFixed(2);
+            }
+
+            let html = '';
+            cart.items.forEach((item) => {
+              html += `
+                <div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--gray-200); align-items: center;">
+                  <img src="${item.image}" alt="${item.product_title}" style="width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--gray-200);">
+                  <div style="flex: 1;">
+                    <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark);">${item.product_title}</div>
+                    <div style="font-size: 0.78rem; color: var(--gray-600); margin: 2px 0;">${item.variant_title || ''}</div>
+                    <div style="font-weight: 800; font-size: 0.9rem; color: var(--dark);">Rs. ${(item.price / 100).toFixed(2)} × ${item.quantity}</div>
+                  </div>
+                  <button onclick="changeCartQuantity(${item.variant_id}, 0)" style="color: var(--red-accent); font-size: 1.3rem; cursor: pointer; padding: 4px; border:none; background:none;">&times;</button>
+                </div>
+              `;
+            });
+            container.innerHTML = html;
+          }
+        })
+        .catch(err => {
+          console.error("Cart fetch error:", err);
+        });
+    }
+
+    function changeCartQuantity(variantId, quantity) {
+      fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: quantity })
+      })
+      .then(r => r.json())
+      .then(() => renderCartDrawer());
+    }
+
     function handleBuyNow(e) {
       if (e) e.preventDefault();
       let selectedVariantId = '53853852500152';
@@ -192,7 +276,6 @@
 
     function handleAddToCart(e) {
       if (e) e.preventDefault();
-      const form = document.getElementById('AddToCartForm');
       let selectedVariantId = '53853852500152';
       const checkedRadio = document.querySelector('input[name="id"]:checked');
       if (checkedRadio && checkedRadio.value) {
@@ -206,13 +289,10 @@
       })
       .then(res => res.json())
       .then(data => {
-        const cartModal = document.getElementById('main-cart');
-        if (cartModal && cartModal.showModal) cartModal.showModal();
-        fetch('/cart.js').then(r => r.json()).then(cart => {
-          document.querySelectorAll('.nav__cart-badge').forEach(b => b.textContent = cart.item_count);
-        });
+        openCartDrawer();
       })
       .catch(err => {
+        const form = document.getElementById('AddToCartForm');
         if (form) form.submit();
       });
     }
@@ -220,6 +300,15 @@
     function triggerShopifyBuyNow(event) {
       handleBuyNow(event);
     }
+
+    // Auto sync cart on initial page load
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('/cart.js')
+        .then(r => r.json())
+        .then(cart => {
+          document.querySelectorAll('.nav__cart-badge').forEach(b => b.textContent = cart.item_count);
+        });
+    });
 
     window.addEventListener('scroll', () => {
       const stickyBar = document.getElementById('sticky-bar');
