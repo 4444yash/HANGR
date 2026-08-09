@@ -20,8 +20,8 @@
         {% else %}
           <img
             id="main-product-display"
-            src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884"
-            alt="Multi Tier Steel Hanger"
+            src="{{ 'hanger-hero.png' | asset_url }}"
+            alt="Multi Tier Heavy Duty Steel Hanger"
             width="560"
             height="560"
           >
@@ -29,15 +29,17 @@
       </div>
       <div class="gallery-thumbs">
         {% if main_product.images.size > 0 %}
-          {% for img in main_product.images limit: 5 %}
+          {% for img in main_product.images limit: 7 %}
             <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 150 }}" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
           {% endfor %}
         {% else %}
-          <img class="thumb-img active" src="https://cdn.shopify.com/s/files/1/0973/8836/3960/files/Gemini_Generated_Image_yu69ilyu69ilyu69.png?v=1785853884" onclick="switchMainImage(this)" alt="Bangles angle">
-          <img class="thumb-img" src="{{ 'bangles.png' | asset_url }}" onclick="switchMainImage(this)" alt="Close up bangles">
-          <img class="thumb-img" src="{{ 'hair-accessories.png' | asset_url }}" onclick="switchMainImage(this)" alt="Hair accessories">
-          <img class="thumb-img" src="{{ 'belts-watches.png' | asset_url }}" onclick="switchMainImage(this)" alt="Belts watches">
-          <img class="thumb-img" src="{{ 'earrings.png' | asset_url }}" onclick="switchMainImage(this)" alt="Jhumkas">
+          <img class="thumb-img active" src="{{ 'hanger-hero.png' | asset_url }}" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
+          <img class="thumb-img" src="{{ 'hanger-swing-arms.png' | asset_url }}" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
+          <img class="thumb-img" src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
+          <img class="thumb-img" src="{{ 'hanger-hook-detail.png' | asset_url }}" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
+          <img class="thumb-img" src="{{ 'hanger-dimensions-spec.png' | asset_url }}" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
+          <img class="thumb-img" src="{{ '8layer-hanger.jpeg' | asset_url }}" onclick="switchMainImage(this)" alt="Real Product Photo">
+          <img class="thumb-img" src="{{ 'IMG_1216.jpeg' | asset_url }}" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
         {% endif %}
       </div>
     </div>
