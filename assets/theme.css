@@ -347,9 +347,12 @@ ul, ol { list-style: none; }
 
 .product-gallery-main img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  object-position: center;
+  border-radius: 16px;
 }
 
 .gallery-thumbs {
@@ -1282,8 +1285,11 @@ shopify-variant-selector::part(radio-selected) {
     width: 100%;
     max-width: 100%;
     aspect-ratio: 1 / 1;
-    max-height: 380px;
+    height: auto;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .gallery-thumbs {
@@ -1771,6 +1777,8 @@ shopify-variant-selector::part(radio-selected) {
 .product-gallery-main {
   width: 100%;
   max-width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid var(--gray-200, #e5e7eb);
@@ -1780,8 +1788,6 @@ shopify-variant-selector::part(radio-selected) {
   justify-content: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   position: relative;
-  aspect-ratio: 1 / 1;
-  max-height: 520px;
   padding: 0;
   box-sizing: border-box;
 }
@@ -1791,7 +1797,7 @@ shopify-variant-selector::part(radio-selected) {
   height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
   display: block !important;
   transition: opacity 0.2s ease-in-out;
