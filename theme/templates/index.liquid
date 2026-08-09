@@ -8,7 +8,11 @@
   <div class="hero__inner">
     <!-- Left Column: Interactive Product Image Gallery -->
     <div class="product-gallery-container">
-      <div class="product-gallery-main">
+      <div class="product-gallery-main" id="gallery-main-wrapper">
+        <button type="button" class="gallery-nav-btn gallery-nav-prev" onclick="prevGalleryImage(event)" aria-label="Previous Image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
         {% if main_product != blank and main_product.featured_image != blank %}
           <img
             id="main-product-display"
@@ -26,10 +30,14 @@
             loading="eager"
           >
         {% endif %}
+
+        <button type="button" class="gallery-nav-btn gallery-nav-next" onclick="nextGalleryImage(event)" aria-label="Next Image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
-      <div class="gallery-thumbs">
+      <div class="gallery-thumbs" id="gallery-thumbs-list">
         {% if main_product.images.size > 0 %}
-          {% for img in main_product.images limit: 7 %}
+          {% for img in main_product.images %}
             <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 300 }}" data-full-src="{{ img | image_url: width: 1600 }}" onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
           {% endfor %}
         {% else %}

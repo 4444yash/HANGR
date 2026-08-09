@@ -268,7 +268,32 @@
         imgPreloader.src = targetSrc;
         document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
+        if (typeof thumb.scrollIntoView === 'function') {
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
       }
+    }
+
+    function prevGalleryImage(e) {
+      if (e) e.stopPropagation();
+      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+      if (!thumbs.length) return;
+      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+      if (currentIndex === -1) currentIndex = 0;
+      let prevIndex = currentIndex - 1;
+      if (prevIndex < 0) prevIndex = thumbs.length - 1;
+      switchMainImage(thumbs[prevIndex]);
+    }
+
+    function nextGalleryImage(e) {
+      if (e) e.stopPropagation();
+      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+      if (!thumbs.length) return;
+      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+      if (currentIndex === -1) currentIndex = 0;
+      let nextIndex = currentIndex + 1;
+      if (nextIndex >= thumbs.length) nextIndex = 0;
+      switchMainImage(thumbs[nextIndex]);
     }
 
     let duration = 14 * 60 + 59;
@@ -628,6 +653,35 @@
       }
 
       initStarRating();
+
+      // Mobile Touch Swipe Gesture Support for Product Gallery
+      const galleryWrapper = document.getElementById('gallery-main-wrapper');
+      if (galleryWrapper) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        galleryWrapper.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        galleryWrapper.addEventListener('touchend', function(e) {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 35) {
+            if (diff > 0) {
+              nextGalleryImage();
+            } else {
+              prevGalleryImage();
+            }
+          }
+        }, { passive: true });
+      }
+
+      // Explicit Mobile Tap Handlers for Thumbnails
+      document.querySelectorAll('.thumb-img').forEach(thumb => {
+        thumb.addEventListener('touchend', function(e) {
+          switchMainImage(this);
+        }, { passive: true });
+      });
     });
 
     window.addEventListener('scroll', () => {

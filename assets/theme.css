@@ -1868,6 +1868,49 @@ shopify-variant-selector::part(radio-selected) {
   margin-bottom: 10px;
 }
 
+/* ===== GALLERY NAVIGATION ARROWS & MOBILE TOUCH ===== */
+.gallery-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  color: var(--dark, #1f2937);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.gallery-nav-btn:hover, .gallery-nav-btn:active {
+  background: var(--white, #ffffff);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  color: var(--dark, #1f2937);
+}
+
+.gallery-nav-prev {
+  left: 12px;
+}
+
+.gallery-nav-next {
+  right: 12px;
+}
+
+.thumb-img {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 
 
 

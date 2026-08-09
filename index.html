@@ -82,7 +82,10 @@
     <div class="hero__inner">
       <!-- Left Column: Interactive Product Image Gallery -->
       <div class="product-gallery-container">
-        <div class="product-gallery-main">
+        <div class="product-gallery-main" id="gallery-main-wrapper">
+          <button type="button" class="gallery-nav-btn gallery-nav-prev" onclick="prevGalleryImage(event)" aria-label="Previous Image">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
           <img
             id="main-product-display"
             src="assets/hanger-hero.png"
@@ -91,6 +94,9 @@
             width="560"
             height="560"
           >
+          <button type="button" class="gallery-nav-btn gallery-nav-next" onclick="nextGalleryImage(event)" aria-label="Next Image">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
         <div class="gallery-thumbs">
           <img class="thumb-img active" src="assets/hanger-hero.png" data-full-src="assets/hanger-hero.png" onerror="this.onerror=null; this.src='images/hanger-hero.png';" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
@@ -647,7 +653,32 @@
         imgPreloader.src = targetSrc;
         document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
+        if (typeof thumb.scrollIntoView === 'function') {
+          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
       }
+    }
+
+    function prevGalleryImage(e) {
+      if (e) e.stopPropagation();
+      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+      if (!thumbs.length) return;
+      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+      if (currentIndex === -1) currentIndex = 0;
+      let prevIndex = currentIndex - 1;
+      if (prevIndex < 0) prevIndex = thumbs.length - 1;
+      switchMainImage(thumbs[prevIndex]);
+    }
+
+    function nextGalleryImage(e) {
+      if (e) e.stopPropagation();
+      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+      if (!thumbs.length) return;
+      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+      if (currentIndex === -1) currentIndex = 0;
+      let nextIndex = currentIndex + 1;
+      if (nextIndex >= thumbs.length) nextIndex = 0;
+      switchMainImage(thumbs[nextIndex]);
     }
 
     // Countdown Timer
