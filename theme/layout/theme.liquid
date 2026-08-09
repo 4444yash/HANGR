@@ -492,6 +492,8 @@
       `;
 
       const grid = document.getElementById('reviews-grid');
+      const emptyNotice = document.getElementById('empty-reviews-notice');
+      if (emptyNotice) emptyNotice.remove();
       if (grid) {
         grid.insertBefore(reviewCard, grid.firstChild);
       }
