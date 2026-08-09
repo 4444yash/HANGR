@@ -610,6 +610,58 @@
       BUY NOW
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
+  <!-- ===== WRITE A REVIEW MODAL ===== -->
+  <div class="review-modal-overlay" id="review-modal">
+    <div class="review-modal-content">
+      <div class="review-modal-header">
+        <h3>Write a Customer Review</h3>
+        <span class="review-modal-close" onclick="closeReviewModal()">&times;</span>
+      </div>
+      <form id="review-form" onsubmit="submitReview(event)">
+        <div class="review-form-group">
+          <label>Your Overall Rating</label>
+          <div class="star-rating-picker" id="star-picker">
+            <span class="star selected" data-value="1">★</span>
+            <span class="star selected" data-value="2">★</span>
+            <span class="star selected" data-value="3">★</span>
+            <span class="star selected" data-value="4">★</span>
+            <span class="star selected" data-value="5">★</span>
+          </div>
+          <input type="hidden" id="review-rating-val" value="5">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="review-form-group">
+            <label for="review-name">Your Name</label>
+            <input type="text" id="review-name" required placeholder="e.g. Sunita Agarwal">
+          </div>
+          <div class="review-form-group">
+            <label for="review-city">City & State</label>
+            <input type="text" id="review-city" required placeholder="e.g. Jaipur, Rajasthan">
+          </div>
+        </div>
+
+        <div class="review-form-group">
+          <label for="review-headline">Review Headline</label>
+          <input type="text" id="review-headline" required placeholder="e.g. Absolutely loved this organizer!">
+        </div>
+
+        <div class="review-form-group">
+          <label for="review-body">Review Description</label>
+          <textarea id="review-body" rows="4" required placeholder="Share details about the quality, space saving, or durability..."></textarea>
+        </div>
+
+        <div class="review-form-group">
+          <label for="review-photo">Add Product Photo (Optional)</label>
+          <input type="file" id="review-photo" accept="image/*" onchange="previewReviewPhoto(event)">
+          <img id="photo-preview-img" src="" alt="Photo preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-top: 8px; border: 1px solid var(--gray-200);">
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px; border-radius: 50px;">
+          SUBMIT REVIEW NOW
+        </button>
+      </form>
+    </div>
   </div>
 
   <!-- ===== SHOPIFY CART ===== -->

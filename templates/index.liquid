@@ -119,11 +119,14 @@
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             {% if main_product.variants.size > 0 %}
               {% for variant in main_product.variants %}
-                <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
+                <label style="border: 2px solid {% if forloop.first %}var(--dark){% else %}var(--gray-200){% endif %}; border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: {% if forloop.first %}#FDFBF7{% else %}var(--white){% endif %}; transition: all 0.2s ease;" class="variant-option-label {% if forloop.first %}active{% endif %}">
                   <input
                     type="radio"
                     name="id"
                     value="{{ variant.id }}"
+                    data-price="{{ variant.price | money }}"
+                    data-mrp="{{ variant.compare_at_price | default: variant.price | times: 2 | money }}"
+                    onchange="updateVariantSelection(this)"
                     {% if forloop.first %}checked{% endif %}
                     style="margin-right: 6px;"
                   >
@@ -132,20 +135,20 @@
               {% endfor %}
             {% else %}
               <!-- Fallback Shopify Variant IDs -->
-              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
-                <input type="radio" name="id" value="53853852500152" checked style="margin-right: 6px;">
+              <label style="border: 2px solid var(--dark); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: #FDFBF7; transition: all 0.2s ease;" class="variant-option-label active">
+                <input type="radio" name="id" value="53853852500152" data-price="Rs. 499.00" data-mrp="M.R.P.: Rs. 999" onchange="updateVariantSelection(this)" checked style="margin-right: 6px;">
                 3 Layer — Rs. 499.00
               </label>
-              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
-                <input type="radio" name="id" value="53853852532920" style="margin-right: 6px;">
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
+                <input type="radio" name="id" value="53853852532920" data-price="Rs. 579.00" data-mrp="M.R.P.: Rs. 1,199" onchange="updateVariantSelection(this)" style="margin-right: 6px;">
                 4 Layer — Rs. 579.00
               </label>
-              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
-                <input type="radio" name="id" value="53853852565688" style="margin-right: 6px;">
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
+                <input type="radio" name="id" value="53853852565688" data-price="Rs. 749.00" data-mrp="M.R.P.: Rs. 1,499" onchange="updateVariantSelection(this)" style="margin-right: 6px;">
                 6 Layer — Rs. 749.00
               </label>
-              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white);" class="variant-option-label">
-                <input type="radio" name="id" value="53853852598456" style="margin-right: 6px;">
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label">
+                <input type="radio" name="id" value="53853852598456" data-price="Rs. 849.00" data-mrp="M.R.P.: Rs. 1,699" onchange="updateVariantSelection(this)" style="margin-right: 6px;">
                 8 Layer — Rs. 849.00
               </label>
             {% endif %}
