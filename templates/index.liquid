@@ -12,36 +12,34 @@
         {% if main_product != blank and main_product.featured_image != blank %}
           <img
             id="main-product-display"
-            src="{{ main_product.featured_image | image_url: width: 600 }}"
+            src="{{ main_product.featured_image | image_url: width: 1600 }}"
             onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';"
             alt="{{ main_product.title }}"
-            width="560"
-            height="560"
+            loading="eager"
           >
         {% else %}
           <img
             id="main-product-display"
             src="{{ 'hanger-hero.png' | asset_url }}"
-            onerror="this.onerror=null; this.src='assets/hanger-hero.png';"
+            onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';"
             alt="Multi Tier Heavy Duty Steel Hanger"
-            width="560"
-            height="560"
+            loading="eager"
           >
         {% endif %}
       </div>
       <div class="gallery-thumbs">
         {% if main_product.images.size > 0 %}
           {% for img in main_product.images limit: 7 %}
-            <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 150 }}" data-full-src="{{ img | image_url: width: 800 }}" onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
+            <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 300 }}" data-full-src="{{ img | image_url: width: 1600 }}" onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
           {% endfor %}
         {% else %}
-          <img class="thumb-img active" src="{{ 'hanger-hero.png' | asset_url }}" data-full-src="{{ 'hanger-hero.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hero.png';" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
-          <img class="thumb-img" src="{{ 'hanger-swing-arms.png' | asset_url }}" data-full-src="{{ 'hanger-swing-arms.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-swing-arms.png';" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
-          <img class="thumb-img" src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" data-full-src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-closet-lifestyle.png';" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
-          <img class="thumb-img" src="{{ 'hanger-hook-detail.png' | asset_url }}" data-full-src="{{ 'hanger-hook-detail.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hook-detail.png';" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
-          <img class="thumb-img" src="{{ 'hanger-dimensions-spec.png' | asset_url }}" data-full-src="{{ 'hanger-dimensions-spec.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-dimensions-spec.png';" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
-          <img class="thumb-img" src="{{ '8layer-hanger.jpeg' | asset_url }}" data-full-src="{{ '8layer-hanger.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/8layer-hanger.jpeg';" onclick="switchMainImage(this)" alt="Real Product Photo">
-          <img class="thumb-img" src="{{ 'IMG_1216.jpeg' | asset_url }}" data-full-src="{{ 'IMG_1216.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/IMG_1216.jpeg';" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
+          <img class="thumb-img active" src="{{ 'hanger-hero.png' | asset_url }}" data-full-src="{{ 'hanger-hero.png' | asset_url }}" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
+          <img class="thumb-img" src="{{ 'hanger-swing-arms.png' | asset_url }}" data-full-src="{{ 'hanger-swing-arms.png' | asset_url }}" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
+          <img class="thumb-img" src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" data-full-src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
+          <img class="thumb-img" src="{{ 'hanger-hook-detail.png' | asset_url }}" data-full-src="{{ 'hanger-hook-detail.png' | asset_url }}" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
+          <img class="thumb-img" src="{{ 'hanger-dimensions-spec.png' | asset_url }}" data-full-src="{{ 'hanger-dimensions-spec.png' | asset_url }}" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
+          <img class="thumb-img" src="{{ '8layer-hanger.jpeg' | asset_url }}" data-full-src="{{ '8layer-hanger.jpeg' | asset_url }}" onclick="switchMainImage(this)" alt="Real Product Photo">
+          <img class="thumb-img" src="{{ 'IMG_1216.jpeg' | asset_url }}" data-full-src="{{ 'IMG_1216.jpeg' | asset_url }}" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
         {% endif %}
       </div>
     </div>

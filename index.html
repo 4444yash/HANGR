@@ -678,9 +678,19 @@
       if (main && thumb) {
         let targetSrc = thumb.getAttribute('data-full-src');
         if (!targetSrc || targetSrc === '') {
-          targetSrc = thumb.src.replace('_150x', '_800x').replace(/width=\d+/, 'width=800');
+          targetSrc = thumb.src.replace('_150x', '_1600x').replace('_300x', '_1600x').replace(/width=\d+/, 'width=1600');
         }
-        main.src = targetSrc;
+        main.style.opacity = '0.7';
+        const imgPreloader = new Image();
+        imgPreloader.onload = function() {
+          main.src = targetSrc;
+          main.style.opacity = '1';
+        };
+        imgPreloader.onerror = function() {
+          main.src = targetSrc;
+          main.style.opacity = '1';
+        };
+        imgPreloader.src = targetSrc;
         document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
       }
