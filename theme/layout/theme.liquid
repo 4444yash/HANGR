@@ -248,53 +248,57 @@
   </div>
 
   <script>
-    function switchMainImage(thumb) {
+    window.switchMainImage = function(thumb) {
       const main = document.getElementById('main-product-display');
-      if (main && thumb) {
-        let targetSrc = thumb.getAttribute('data-full-src');
-        if (!targetSrc || targetSrc === '') {
-          targetSrc = thumb.src.replace('_150x', '_1600x').replace('_300x', '_1600x').replace(/width=\d+/, 'width=1600');
-        }
-        main.style.opacity = '0.7';
-        const imgPreloader = new Image();
-        imgPreloader.onload = function() {
-          main.src = targetSrc;
-          main.style.opacity = '1';
-        };
-        imgPreloader.onerror = function() {
-          main.src = targetSrc;
-          main.style.opacity = '1';
-        };
-        imgPreloader.src = targetSrc;
-        document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        if (typeof thumb.scrollIntoView === 'function') {
-          thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
+      if (!main || !thumb) return;
+
+      let targetSrc = thumb.getAttribute('data-full-src');
+      if (!targetSrc || targetSrc === '') {
+        targetSrc = thumb.src.replace('_150x', '_1600x').replace('_300x', '_1600x').replace(/width=\d+/, 'width=1600');
       }
-    }
 
-    function prevGalleryImage(e) {
-      if (e) e.stopPropagation();
+      main.style.opacity = '0.5';
+      const imgPreloader = new Image();
+      imgPreloader.onload = function() {
+        main.src = targetSrc;
+        main.style.opacity = '1';
+      };
+      imgPreloader.onerror = function() {
+        main.src = targetSrc;
+        main.style.opacity = '1';
+      };
+      imgPreloader.src = targetSrc;
+
+      document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+
+      if (typeof thumb.scrollIntoView === 'function') {
+        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    };
+
+    window.prevGalleryImage = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
       const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
       if (!thumbs.length) return;
       let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
-      if (currentIndex === -1) currentIndex = 0;
-      let prevIndex = currentIndex - 1;
-      if (prevIndex < 0) prevIndex = thumbs.length - 1;
-      switchMainImage(thumbs[prevIndex]);
-    }
+      if (currentIndex <= 0) currentIndex = thumbs.length;
+      window.switchMainImage(thumbs[currentIndex - 1]);
+    };
 
-    function nextGalleryImage(e) {
-      if (e) e.stopPropagation();
+    window.nextGalleryImage = function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
       const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
       if (!thumbs.length) return;
       let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
-      if (currentIndex === -1) currentIndex = 0;
-      let nextIndex = currentIndex + 1;
-      if (nextIndex >= thumbs.length) nextIndex = 0;
-      switchMainImage(thumbs[nextIndex]);
-    }
+      if (currentIndex === -1 || currentIndex >= thumbs.length - 1) {
+        window.switchMainImage(thumbs[0]);
+      } else {
+        window.switchMainImage(thumbs[currentIndex + 1]);
+      }
+    };
 
     let duration = 14 * 60 + 59;
     const timerDisplay = document.getElementById('timer');
@@ -668,18 +672,40 @@
           const diff = touchStartX - touchEndX;
           if (Math.abs(diff) > 35) {
             if (diff > 0) {
-              nextGalleryImage();
+              window.nextGalleryImage(e);
             } else {
-              prevGalleryImage();
+              window.prevGalleryImage(e);
             }
           }
         }, { passive: true });
       }
 
-      // Explicit Mobile Tap Handlers for Thumbnails
+      // Attach Explicit Handlers for Prev/Next Arrows and Thumbnails
+      const prevBtn = document.querySelector('.gallery-nav-prev');
+      const nextBtn = document.querySelector('.gallery-nav-next');
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', window.prevGalleryImage);
+        prevBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          window.prevGalleryImage(e);
+        }, { passive: false });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', window.nextGalleryImage);
+        nextBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          window.nextGalleryImage(e);
+        }, { passive: false });
+      }
+
       document.querySelectorAll('.thumb-img').forEach(thumb => {
+        thumb.addEventListener('click', function(e) {
+          window.switchMainImage(this);
+        });
         thumb.addEventListener('touchend', function(e) {
-          switchMainImage(this);
+          window.switchMainImage(this);
         }, { passive: true });
       });
     });
