@@ -100,7 +100,15 @@
 
       <!-- Native Shopify Product Form -->
       <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-        <input type="hidden" name="quantity" value="1">
+        <div class="product-qty-selector">
+          <label class="product-qty-label">Quantity</label>
+          <div class="product-qty-controls">
+            <button type="button" class="product-qty-btn" onclick="adjustProductQty(-1)">−</button>
+            <input type="number" id="product-qty-input" name="quantity" value="1" min="1" class="product-qty-input" onchange="validateProductQty(this)">
+            <button type="button" class="product-qty-btn" onclick="adjustProductQty(1)">+</button>
+          </div>
+        </div>
+
 
         <div style="margin-bottom: 18px;">
           <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 10px;">Select Size / Layers</label>

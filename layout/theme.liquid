@@ -234,15 +234,21 @@
 
             let html = '';
             cart.items.forEach((item) => {
+              const itemKey = item.key || item.variant_id;
               html += `
                 <div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--gray-200); align-items: center;">
                   <img src="${item.image}" alt="${item.product_title}" style="width: 72px; height: 72px; object-fit: cover; border-radius: 10px; border: 1px solid var(--gray-200);">
                   <div style="flex: 1;">
                     <div style="font-weight: 700; font-size: 0.9rem; color: var(--dark);">${item.product_title}</div>
                     <div style="font-size: 0.78rem; color: var(--gray-600); margin: 2px 0;">${item.variant_title || ''}</div>
-                    <div style="font-weight: 800; font-size: 0.9rem; color: var(--dark);">Rs. ${(item.price / 100).toFixed(2)} × ${item.quantity}</div>
+                    <div style="font-weight: 800; font-size: 0.9rem; color: var(--dark); margin-bottom: 6px;">Rs. ${(item.price / 100).toFixed(2)}</div>
+                    <div class="cart-item-qty-picker">
+                      <button type="button" class="cart-qty-btn" onclick="changeCartQuantity('${itemKey}', ${item.quantity - 1})">−</button>
+                      <input type="number" class="cart-qty-input" value="${item.quantity}" min="1" onchange="changeCartQuantity('${itemKey}', this.value)">
+                      <button type="button" class="cart-qty-btn" onclick="changeCartQuantity('${itemKey}', ${item.quantity + 1})">+</button>
+                    </div>
                   </div>
-                  <button onclick="changeCartQuantity(${item.variant_id}, 0)" style="color: var(--red-accent); font-size: 1.3rem; cursor: pointer; padding: 4px; border:none; background:none;">&times;</button>
+                  <button onclick="changeCartQuantity('${itemKey}', 0)" title="Remove item" style="color: var(--red-accent); font-size: 1.3rem; cursor: pointer; padding: 4px; border:none; background:none;">&times;</button>
                 </div>
               `;
             });
@@ -254,14 +260,35 @@
         });
     }
 
-    function changeCartQuantity(variantId, quantity) {
+    function changeCartQuantity(id, quantity) {
+      let qty = parseInt(quantity);
+      if (isNaN(qty) || qty < 0) qty = 0;
+
       fetch('/cart/change.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: variantId, quantity: quantity })
+        body: JSON.stringify({ id: id, quantity: qty })
       })
       .then(r => r.json())
-      .then(() => renderCartDrawer());
+      .then(() => renderCartDrawer())
+      .catch(err => console.error("Error updating cart quantity:", err));
+    }
+
+    function adjustProductQty(delta) {
+      const input = document.getElementById('product-qty-input') || document.querySelector('input[name="quantity"]');
+      if (input) {
+        let current = parseInt(input.value) || 1;
+        let next = current + delta;
+        if (next < 1) next = 1;
+        input.value = next;
+      }
+    }
+
+    function validateProductQty(input) {
+      let val = parseInt(input.value);
+      if (isNaN(val) || val < 1) {
+        input.value = 1;
+      }
     }
 
     function handleBuyNow(e) {
@@ -271,7 +298,9 @@
       if (checkedRadio && checkedRadio.value) {
         selectedVariantId = checkedRadio.value;
       }
-      window.location.href = '/cart/' + selectedVariantId + ':1';
+      const qtyInput = document.querySelector('#AddToCartForm input[name="quantity"]');
+      const quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+      window.location.href = '/cart/' + selectedVariantId + ':' + quantity;
     }
 
     function handleAddToCart(e) {
@@ -282,10 +311,13 @@
         selectedVariantId = checkedRadio.value;
       }
 
+      const qtyInput = document.querySelector('#AddToCartForm input[name="quantity"]');
+      const quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+
       fetch('/cart/add.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: [{ id: parseInt(selectedVariantId), quantity: 1 }] })
+        body: JSON.stringify({ items: [{ id: parseInt(selectedVariantId), quantity: quantity }] })
       })
       .then(res => res.json())
       .then(data => {
