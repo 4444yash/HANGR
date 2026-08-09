@@ -32,16 +32,16 @@
       <div class="gallery-thumbs">
         {% if main_product.images.size > 0 %}
           {% for img in main_product.images limit: 7 %}
-            <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 150 }}" onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
+            <img class="thumb-img {% if forloop.first %}active{% endif %}" src="{{ img | image_url: width: 150 }}" data-full-src="{{ img | image_url: width: 800 }}" onerror="this.onerror=null; this.src='{{ 'hanger-hero.png' | asset_url }}';" onclick="switchMainImage(this)" alt="Hanger view {{ forloop.index }}">
           {% endfor %}
         {% else %}
-          <img class="thumb-img active" src="{{ 'hanger-hero.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hero.png';" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
-          <img class="thumb-img" src="{{ 'hanger-swing-arms.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-swing-arms.png';" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
-          <img class="thumb-img" src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-closet-lifestyle.png';" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
-          <img class="thumb-img" src="{{ 'hanger-hook-detail.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hook-detail.png';" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
-          <img class="thumb-img" src="{{ 'hanger-dimensions-spec.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-dimensions-spec.png';" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
-          <img class="thumb-img" src="{{ '8layer-hanger.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/8layer-hanger.jpeg';" onclick="switchMainImage(this)" alt="Real Product Photo">
-          <img class="thumb-img" src="{{ 'IMG_1216.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/IMG_1216.jpeg';" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
+          <img class="thumb-img active" src="{{ 'hanger-hero.png' | asset_url }}" data-full-src="{{ 'hanger-hero.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hero.png';" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
+          <img class="thumb-img" src="{{ 'hanger-swing-arms.png' | asset_url }}" data-full-src="{{ 'hanger-swing-arms.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-swing-arms.png';" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
+          <img class="thumb-img" src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" data-full-src="{{ 'hanger-closet-lifestyle.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-closet-lifestyle.png';" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
+          <img class="thumb-img" src="{{ 'hanger-hook-detail.png' | asset_url }}" data-full-src="{{ 'hanger-hook-detail.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-hook-detail.png';" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
+          <img class="thumb-img" src="{{ 'hanger-dimensions-spec.png' | asset_url }}" data-full-src="{{ 'hanger-dimensions-spec.png' | asset_url }}" onerror="this.onerror=null; this.src='assets/hanger-dimensions-spec.png';" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
+          <img class="thumb-img" src="{{ '8layer-hanger.jpeg' | asset_url }}" data-full-src="{{ '8layer-hanger.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/8layer-hanger.jpeg';" onclick="switchMainImage(this)" alt="Real Product Photo">
+          <img class="thumb-img" src="{{ 'IMG_1216.jpeg' | asset_url }}" data-full-src="{{ 'IMG_1216.jpeg' | asset_url }}" onerror="this.onerror=null; this.src='assets/IMG_1216.jpeg';" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
         {% endif %}
       </div>
     </div>
@@ -172,7 +172,7 @@
       <div style="font-size: 0.78rem; color: var(--gray-600); text-align: center; display: flex; justify-content: center; gap: 16px; margin-top: 4px;">
         <span>📦 Cash On Delivery Available</span>
         <span>🚚 Free Shipping ₹999+</span>
-        <span>🛡️ 7-Day Replacement</span>
+        <span>🛡️ 100% Quality Assured</span>
       </div>
     </div>
   </div>
@@ -288,7 +288,7 @@
       <div><span class="badge-cross">✕</span></div>
     </div>
     <div class="comparison-row">
-      <div>Lifetime Replacement Guarantee</div>
+      <div>100% Rust-Free Guarantee</div>
       <div><span class="badge-check">✓</span></div>
       <div><span class="badge-cross">✕</span></div>
     </div>

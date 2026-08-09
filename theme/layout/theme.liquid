@@ -32,7 +32,7 @@
       </div>
       <div class="announcement-bar__item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        7-DAY EASY REPLACEMENT GUARANTEE
+        100% QUALITY ASSURED GUARANTEE
       </div>
       <div class="announcement-bar__item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -98,8 +98,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
         </div>
         <div class="trust__item-text">
-          <span class="trust__item-title">Easy Replacement</span>
-          <span class="trust__item-desc">7-Day Guarantee</span>
+          <span class="trust__item-title">Quality Assured</span>
+          <span class="trust__item-desc">Rust-Free Steel</span>
         </div>
       </div>
     </div>
@@ -228,7 +228,11 @@
     function switchMainImage(thumb) {
       const main = document.getElementById('main-product-display');
       if (main && thumb) {
-        main.src = thumb.src;
+        let targetSrc = thumb.getAttribute('data-full-src');
+        if (!targetSrc || targetSrc === '') {
+          targetSrc = thumb.src.replace('_150x', '_800x').replace(/width=\d+/, 'width=800');
+        }
+        main.src = targetSrc;
         document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
       }
