@@ -511,17 +511,29 @@
       <div class="footer__col">
         <div class="footer__col-title">Quick Links</div>
         <a href="#" class="footer__col-link">Home</a>
-        <a href="#hero" class="footer__col-link">Shop</a>
-        <a href="#reviews-section" class="footer__col-link">Reviews</a>
+        <a href="#hero" class="footer__col-link">Shop Hanger</a>
+        <a href="#reviews-section" class="footer__col-link">Customer Reviews</a>
+        <a href="#faq-section" class="footer__col-link">FAQs</a>
       </div>
       <div class="footer__col">
-        <div class="footer__col-title">Support</div>
-        <a href="#faq-section" class="footer__col-link">FAQs</a>
-        <a href="#" class="footer__col-link">Shipping & COD</a>
+        <div class="footer__col-title">Policies & Legal</div>
+        <a href="javascript:void(0)" onclick="openPolicyModal('terms')" class="footer__col-link">Terms & Conditions</a>
+        <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" class="footer__col-link">Shipping Policy</a>
+        <a href="javascript:void(0)" onclick="openPolicyModal('return')" class="footer__col-link">Return & Replacement Policy</a>
+        <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" class="footer__col-link">Privacy Policy</a>
       </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__copyright">&copy; 2026 HANGR. All rights reserved. Made with ♥ in India.</p>
+      <div class="footer__policy-bar" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; font-size: 0.78rem; opacity: 0.85;">
+        <a href="javascript:void(0)" onclick="openPolicyModal('terms')" style="color: inherit; text-decoration: underline;">Terms & Conditions</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" style="color: inherit; text-decoration: underline;">Shipping Policy</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="openPolicyModal('return')" style="color: inherit; text-decoration: underline;">Return Policy</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+      </div>
     </div>
   </footer>
 
@@ -590,6 +602,19 @@
           SUBMIT REVIEW NOW
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ===== STORE POLICIES MODAL ===== -->
+  <div class="policy-modal-overlay" id="policy-modal">
+    <div class="policy-modal-content">
+      <div class="policy-modal-header">
+        <h3 id="policy-modal-title">Store Policy</h3>
+        <span class="policy-modal-close" onclick="closePolicyModal()">&times;</span>
+      </div>
+      <div class="policy-modal-body" id="policy-modal-body">
+        <!-- Dynamically injected policy content -->
+      </div>
     </div>
   </div>
 
@@ -756,6 +781,69 @@
       reviewPhotoData = null;
 
       alert('Thank you! Your review has been submitted successfully.');
+    }
+
+    function openPolicyModal(type) {
+      const modal = document.getElementById('policy-modal');
+      const title = document.getElementById('policy-modal-title');
+      const body = document.getElementById('policy-modal-body');
+      if (!modal || !title || !body) return;
+
+      if (type === 'return') {
+        title.textContent = 'Return & Replacement Policy';
+        body.innerHTML = `
+          <div style="background: #FEF2F2; border-left: 4px solid #EF4444; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; color: #991B1B; font-weight: 600; font-size: 0.88rem;">
+            ⚠️ IMPORTANT: Returns are allowed ONLY on damaged/defective goods and require a continuous unboxing video proof submitted within 3 days of delivery.
+          </div>
+          <h4>1. Damage-Only Return & Replacement Policy</h4>
+          <p>Every HANGR steel organizer undergoes strict quality control. Returns or replacements are accepted <strong>ONLY if you receive a damaged, defective, or incorrect item</strong> during delivery.</p>
+          <h4>2. Mandatory Unboxing Video Proof</h4>
+          <p>To qualify for a replacement, customers <strong>MUST provide an unedited, continuous unboxing video</strong> showing the parcel package, shipping label, and the defect/damage clearly.</p>
+          <h4>3. 3-Day Reporting Deadline</h4>
+          <p>All claims along with the unboxing video proof <strong>MUST be submitted within 3 days (72 hours)</strong> from the time of delivery date to support@hangr.in or our WhatsApp support.</p>
+          <h4>4. Free Replacement Dispatch</h4>
+          <p>Upon verification of your unboxing video proof, a brand new replacement pack of hangers will be dispatched to your doorstep completely free of charge.</p>
+          <h4>5. Non-Returnable Conditions</h4>
+          <p>Claims raised after 3 days, claims submitted without unboxing video proof, or return requests due to personal preference/change of mind are strictly non-eligible.</p>
+        `;
+      } else if (type === 'shipping') {
+        title.textContent = 'Shipping & Delivery Policy';
+        body.innerHTML = `
+          <h4>1. Free Express Shipping</h4>
+          <p>We provide Free Express Shipping across India on all orders over ₹999.</p>
+          <h4>2. Order Processing & Dispatch</h4>
+          <p>Orders are processed and dispatched within 24 to 48 business hours after order placement.</p>
+          <h4>3. Estimated Delivery Timeline</h4>
+          <p>Metro Cities: 2 to 4 business days. Rest of India: 4 to 6 business days across 19,000+ pincodes.</p>
+          <h4>4. Cash on Delivery (COD)</h4>
+          <p>100% verified Cash on Delivery is available nationwide.</p>
+        `;
+      } else if (type === 'terms') {
+        title.textContent = 'Terms & Conditions';
+        body.innerHTML = `
+          <h4>1. Acceptance of Terms</h4>
+          <p>By accessing or placing an order on HANGR, you agree to these Terms & Conditions.</p>
+          <h4>2. Pack of 2 Product Guarantee</h4>
+          <p>Product specifications are accurate as shown. Every hanger variant option on HANGR is delivered as a <strong>Pack of 2</strong> units.</p>
+          <h4>3. Pricing & Payments</h4>
+          <p>All prices are in Indian Rupees (INR) inclusive of GST. Payments can be made via COD, UPI, or Cards.</p>
+        `;
+      } else if (type === 'privacy') {
+        title.textContent = 'Privacy Policy';
+        body.innerHTML = `
+          <h4>1. Information Collection & Use</h4>
+          <p>We collect your name, shipping address, email, and mobile number solely to fulfill orders and send tracking updates.</p>
+          <h4>2. Data Security</h4>
+          <p>Your details are protected using 256-bit SSL encryption. We do NOT sell or share customer data with third-party marketing companies.</p>
+        `;
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closePolicyModal() {
+      const modal = document.getElementById('policy-modal');
+      if (modal) modal.classList.remove('active');
     }
   </script>
 </body>
