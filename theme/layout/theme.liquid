@@ -168,6 +168,8 @@
         </a>
       </div>
     </div>
+  </div>
+
   <!-- ===== WRITE A REVIEW MODAL ===== -->
   <div class="review-modal-overlay" id="review-modal">
     <div class="review-modal-content">
@@ -223,165 +225,6 @@
   </div>
 
   <script>
-    function updateVariantSelection(radio) {
-      if (!radio) return;
-      const priceDisplay = document.getElementById('product-price-display');
-      const mrpDisplay = document.querySelector('.price-mrp');
-      const priceAttr = radio.getAttribute('data-price');
-      const mrpAttr = radio.getAttribute('data-mrp');
-
-      if (priceDisplay && priceAttr) {
-        priceDisplay.textContent = priceAttr;
-      }
-      if (mrpDisplay && mrpAttr) {
-        mrpDisplay.textContent = mrpAttr.startsWith('M.R.P.') ? mrpAttr : ('M.R.P.: ' + mrpAttr);
-      }
-
-      document.querySelectorAll('.variant-option-label').forEach(label => {
-        const input = label.querySelector('input[type="radio"]');
-        if (input && input.checked) {
-          label.style.borderColor = 'var(--dark, #1f2937)';
-          label.style.background = '#FDFBF7';
-          label.classList.add('active');
-        } else {
-          label.style.borderColor = 'var(--gray-200, #e5e7eb)';
-          label.style.background = 'var(--white, #ffffff)';
-          label.classList.remove('active');
-        }
-      });
-    }
-
-    function openReviewModal() {
-      const modal = document.getElementById('review-modal');
-      if (modal) modal.classList.add('active');
-    }
-
-    function closeReviewModal() {
-      const modal = document.getElementById('review-modal');
-      if (modal) modal.classList.remove('active');
-    }
-
-    let selectedRating = 5;
-    let reviewPhotoData = null;
-
-    function previewReviewPhoto(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          reviewPhotoData = e.target.result;
-          const previewImg = document.getElementById('photo-preview-img');
-          if (previewImg) {
-            previewImg.src = reviewPhotoData;
-            previewImg.style.display = 'block';
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function submitReview(e) {
-      if (e) e.preventDefault();
-      const name = document.getElementById('review-name')?.value || 'Anonymous';
-      const city = document.getElementById('review-city')?.value || 'India';
-      const headline = document.getElementById('review-headline')?.value || 'Great product!';
-      const body = document.getElementById('review-body')?.value || '';
-      const ratingStars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'RV';
-
-      const reviewCard = document.createElement('div');
-      reviewCard.className = 'review-card fade-in visible';
-      reviewCard.innerHTML = `
-        <div class="review-card__user">
-          <div class="review-card__avatar">${initials}</div>
-          <div class="review-card__meta">
-            <span class="review-card__name">${name}</span>
-            <span class="review-card__location">${city}</span>
-          </div>
-        </div>
-        <div class="verified-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Verified Buyer (India)
-        </div>
-        <div class="review-card__rating">${ratingStars}</div>
-        <div class="review-card__title">${headline}</div>
-        <div class="review-card__text">${body}</div>
-        ${reviewPhotoData ? `<div class="review-card__photo"><img src="${reviewPhotoData}" alt="User photo"></div>` : ''}
-        <div class="review-card__footer">
-          <span>Just now</span>
-          <button class="helpful-btn">👍 Helpful (1)</button>
-        </div>
-      `;
-
-      const grid = document.getElementById('reviews-grid');
-      if (grid) {
-        grid.insertBefore(reviewCard, grid.firstChild);
-      }
-
-      closeReviewModal();
-      const form = document.getElementById('review-form');
-      if (form) form.reset();
-      const previewImg = document.getElementById('photo-preview-img');
-      if (previewImg) previewImg.style.display = 'none';
-      reviewPhotoData = null;
-
-      alert('Thank you! Your review has been submitted successfully.');
-    }
-
-    function initFaqs() {
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', function() {
-          this.classList.toggle('active');
-        });
-      });
-    }
-
-    function initStarRating() {
-      const stars = document.querySelectorAll('#star-picker .star');
-      stars.forEach(star => {
-        star.addEventListener('click', function() {
-          selectedRating = parseInt(this.getAttribute('data-value')) || 5;
-          const ratingValEl = document.getElementById('review-rating-val');
-          if (ratingValEl) ratingValEl.value = selectedRating;
-          stars.forEach((s, idx) => {
-            if (idx < selectedRating) s.classList.add('selected');
-            else s.classList.remove('selected');
-          });
-        });
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('/cart.js')
-        .then(r => r.json())
-        .then(cart => {
-          document.querySelectorAll('.nav__cart-badge').forEach(b => b.textContent = cart.item_count);
-        });
-
-      const checkedRadio = document.querySelector('input[name="id"]:checked');
-      if (checkedRadio) {
-        updateVariantSelection(checkedRadio);
-      }
-
-      initStarRating();
-    });
-
-    window.addEventListener('scroll', () => {
-      const stickyBar = document.getElementById('sticky-bar');
-      if (stickyBar) {
-        if (window.scrollY > 300) stickyBar.classList.add('active');
-        else stickyBar.classList.remove('active');
-      }
-    });
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFaqs);
-    } else {
-      initFaqs();
-    }
-  </script>
-</body>
-</html>
     function switchMainImage(thumb) {
       const main = document.getElementById('main-product-display');
       if (main && thumb) {
@@ -544,13 +387,147 @@
       handleBuyNow(event);
     }
 
-    // Auto sync cart on initial page load
+    function updateVariantSelection(radio) {
+      if (!radio) return;
+      const priceDisplay = document.getElementById('product-price-display');
+      const mrpDisplay = document.querySelector('.price-mrp');
+      const priceAttr = radio.getAttribute('data-price');
+      const mrpAttr = radio.getAttribute('data-mrp');
+
+      if (priceDisplay && priceAttr) {
+        priceDisplay.textContent = priceAttr;
+      }
+      if (mrpDisplay && mrpAttr) {
+        mrpDisplay.textContent = mrpAttr.startsWith('M.R.P.') ? mrpAttr : ('M.R.P.: ' + mrpAttr);
+      }
+
+      document.querySelectorAll('.variant-option-label').forEach(label => {
+        const input = label.querySelector('input[type="radio"]');
+        if (input && input.checked) {
+          label.style.borderColor = 'var(--dark, #1f2937)';
+          label.style.background = '#FDFBF7';
+          label.classList.add('active');
+        } else {
+          label.style.borderColor = 'var(--gray-200, #e5e7eb)';
+          label.style.background = 'var(--white, #ffffff)';
+          label.classList.remove('active');
+        }
+      });
+    }
+
+    function openReviewModal() {
+      const modal = document.getElementById('review-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeReviewModal() {
+      const modal = document.getElementById('review-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    let selectedRating = 5;
+    let reviewPhotoData = null;
+
+    function previewReviewPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          reviewPhotoData = e.target.result;
+          const previewImg = document.getElementById('photo-preview-img');
+          if (previewImg) {
+            previewImg.src = reviewPhotoData;
+            previewImg.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function submitReview(e) {
+      if (e) e.preventDefault();
+      const name = document.getElementById('review-name')?.value || 'Anonymous';
+      const city = document.getElementById('review-city')?.value || 'India';
+      const headline = document.getElementById('review-headline')?.value || 'Great product!';
+      const body = document.getElementById('review-body')?.value || '';
+      const ratingStars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'RV';
+
+      const reviewCard = document.createElement('div');
+      reviewCard.className = 'review-card fade-in visible';
+      reviewCard.innerHTML = `
+        <div class="review-card__user">
+          <div class="review-card__avatar">${initials}</div>
+          <div class="review-card__meta">
+            <span class="review-card__name">${name}</span>
+            <span class="review-card__location">${city}</span>
+          </div>
+        </div>
+        <div class="verified-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Verified Buyer (India)
+        </div>
+        <div class="review-card__rating">${ratingStars}</div>
+        <div class="review-card__title">${headline}</div>
+        <div class="review-card__text">${body}</div>
+        ${reviewPhotoData ? `<div class="review-card__photo"><img src="${reviewPhotoData}" alt="User photo"></div>` : ''}
+        <div class="review-card__footer">
+          <span>Just now</span>
+          <button class="helpful-btn">👍 Helpful (1)</button>
+        </div>
+      `;
+
+      const grid = document.getElementById('reviews-grid');
+      if (grid) {
+        grid.insertBefore(reviewCard, grid.firstChild);
+      }
+
+      closeReviewModal();
+      const form = document.getElementById('review-form');
+      if (form) form.reset();
+      const previewImg = document.getElementById('photo-preview-img');
+      if (previewImg) previewImg.style.display = 'none';
+      reviewPhotoData = null;
+
+      alert('Thank you! Your review has been submitted successfully.');
+    }
+
+    function initFaqs() {
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    }
+
+    function initStarRating() {
+      const stars = document.querySelectorAll('#star-picker .star');
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          selectedRating = parseInt(this.getAttribute('data-value')) || 5;
+          const ratingValEl = document.getElementById('review-rating-val');
+          if (ratingValEl) ratingValEl.value = selectedRating;
+          stars.forEach((s, idx) => {
+            if (idx < selectedRating) s.classList.add('selected');
+            else s.classList.remove('selected');
+          });
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       fetch('/cart.js')
         .then(r => r.json())
         .then(cart => {
           document.querySelectorAll('.nav__cart-badge').forEach(b => b.textContent = cart.item_count);
         });
+
+      const checkedRadio = document.querySelector('input[name="id"]:checked');
+      if (checkedRadio) {
+        updateVariantSelection(checkedRadio);
+      }
+
+      initStarRating();
     });
 
     window.addEventListener('scroll', () => {
@@ -561,13 +538,6 @@
       }
     });
 
-    function initFaqs() {
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', function() {
-          this.classList.toggle('active');
-        });
-      });
-    }
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initFaqs);
     } else {
