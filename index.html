@@ -633,7 +633,7 @@
   <!-- ===== JAVASCRIPT ===== -->
   <script>
     // Image Thumbnail Switcher
-    window.switchMainImage = function(thumb) {
+    function switchMainImage(thumb) {
       const main = document.getElementById('main-product-display');
       if (!main || !thumb) return;
 
@@ -660,30 +660,41 @@
       if (typeof thumb.scrollIntoView === 'function') {
         thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
-    };
+    }
+    window.switchMainImage = switchMainImage;
 
-    window.prevGalleryImage = function(e) {
-      if (e && typeof e.preventDefault === 'function') e.preventDefault();
-      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+    function prevGalleryImage(e) {
+      if (e && e.cancelable && typeof e.preventDefault === 'function') {
+        try { e.preventDefault(); } catch(err) {}
+      }
+      if (e && typeof e.stopPropagation === 'function') {
+        try { e.stopPropagation(); } catch(err) {}
+      }
       const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
       if (!thumbs.length) return;
       let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
       if (currentIndex <= 0) currentIndex = thumbs.length;
-      window.switchMainImage(thumbs[currentIndex - 1]);
-    };
+      switchMainImage(thumbs[currentIndex - 1]);
+    }
+    window.prevGalleryImage = prevGalleryImage;
 
-    window.nextGalleryImage = function(e) {
-      if (e && typeof e.preventDefault === 'function') e.preventDefault();
-      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+    function nextGalleryImage(e) {
+      if (e && e.cancelable && typeof e.preventDefault === 'function') {
+        try { e.preventDefault(); } catch(err) {}
+      }
+      if (e && typeof e.stopPropagation === 'function') {
+        try { e.stopPropagation(); } catch(err) {}
+      }
       const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
       if (!thumbs.length) return;
       let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
       if (currentIndex === -1 || currentIndex >= thumbs.length - 1) {
-        window.switchMainImage(thumbs[0]);
+        switchMainImage(thumbs[0]);
       } else {
-        window.switchMainImage(thumbs[currentIndex + 1]);
+        switchMainImage(thumbs[currentIndex + 1]);
       }
-    };
+    }
+    window.nextGalleryImage = nextGalleryImage;
 
     // Countdown Timer
     let duration = 14 * 60 + 59;
