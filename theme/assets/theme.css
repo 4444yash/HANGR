@@ -1772,12 +1772,15 @@ shopify-variant-selector::part(radio-selected) {
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .product-gallery-main {
   width: 100%;
   max-width: 100%;
   aspect-ratio: 1 / 1;
+  min-height: 0;
   height: auto;
   background: #ffffff;
   border-radius: 16px;
@@ -1790,6 +1793,23 @@ shopify-variant-selector::part(radio-selected) {
   position: relative;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Fallback for older Android WebViews / browsers without native aspect-ratio */
+@supports not (aspect-ratio: 1 / 1) {
+  .product-gallery-main {
+    height: 0 !important;
+    padding-bottom: 100% !important;
+    position: relative !important;
+    display: block !important;
+  }
+  .product-gallery-main #main-product-display {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 #main-product-display {
