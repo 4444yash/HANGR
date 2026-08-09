@@ -31,7 +31,11 @@
   --shadow-lg: 0 16px 40px rgba(0,0,0,0.15);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   font-family: var(--font-body);
@@ -39,6 +43,7 @@ body {
   color: var(--dark);
   background: var(--white);
   line-height: 1.6;
+  max-width: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   padding-bottom: 70px; /* Space for mobile sticky buy bar */
@@ -1268,16 +1273,26 @@ shopify-variant-selector::part(radio-selected) {
 
   .product-gallery-container {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .product-gallery-main {
     border-radius: 16px;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 380px;
+    box-sizing: border-box;
   }
 
   .gallery-thumbs {
     gap: 8px;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 10px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   .thumb-img {
@@ -1755,6 +1770,7 @@ shopify-variant-selector::part(radio-selected) {
 
 .product-gallery-main {
   width: 100%;
+  max-width: 100%;
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid var(--gray-200, #e5e7eb);
@@ -1764,21 +1780,24 @@ shopify-variant-selector::part(radio-selected) {
   justify-content: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   position: relative;
-  min-height: 300px;
+  aspect-ratio: 1 / 1;
   max-height: 520px;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #main-product-display {
-  width: 100%;
-  height: auto;
-  max-height: 520px;
-  object-fit: contain;
-  object-position: center;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
   transition: opacity 0.2s ease-in-out;
   image-rendering: high-quality;
   image-rendering: -webkit-optimize-contrast;
+  box-sizing: border-box !important;
 }
 
 /* ===== POLICY MODAL STYLES ===== */
