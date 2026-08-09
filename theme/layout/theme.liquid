@@ -641,6 +641,8 @@
       const modal = document.getElementById('policy-modal');
       if (modal) modal.classList.remove('active');
     }
+
+    function initStarRating() {
       const stars = document.querySelectorAll('#star-picker .star');
       stars.forEach(star => {
         star.addEventListener('click', function() {
