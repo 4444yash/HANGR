@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
   <title>{{ page_title }} — {{ shop.name }}</title>
   <meta name="description" content="{{ page_description | default: 'HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.' }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,7 +202,7 @@
           <input type="hidden" id="review-rating-val" value="5">
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="review-form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div class="review-form-group">
             <label for="review-name">Your Name</label>
             <input type="text" id="review-name" required placeholder="e.g. Sunita Agarwal">
