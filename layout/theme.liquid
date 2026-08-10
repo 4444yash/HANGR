@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
   <title>{{ page_title }} — {{ shop.name }}</title>
   <meta name="description" content="{{ page_description | default: 'HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.' }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 </head>
 <body>
+  <div class="page-container">
 
   <!-- URGENCY COUNTDOWN BAR -->
   <div class="top-urgency-bar">
@@ -739,5 +740,6 @@
       initFaqs();
     }
   </script>
+  </div>
 </body>
 </html>

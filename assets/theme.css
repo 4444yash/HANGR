@@ -2328,3 +2328,139 @@ shopify-variant-selector::part(radio-selected) {
 
 
 
+
+
+
+/* ===== STRICT MOBILE OVERFLOW & VIEWPORT CONTAINER FIXES ===== */
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  touch-action: manipulation;
+}
+
+.page-container {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix flex/grid item min-width: auto overflow bug on Blink/Android Chrome */
+*, *::before, *::after {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.container,
+.hero__inner,
+.hero__product-card,
+.product-gallery-container,
+.product-gallery-main,
+.gallery-thumbs,
+.organizing__inner,
+.gallery__grid,
+.comparison-table,
+.reviews-grid,
+.reviews-header,
+.footer__inner,
+.product-section__banner,
+.product-card-grid,
+.trust__grid,
+.stats__grid {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Force marquee top bar to clip strictly without bunching text */
+.announcement-bar {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+  position: relative !important;
+  contain: layout paint;
+  white-space: nowrap !important;
+}
+
+.announcement-bar__track {
+  display: inline-flex !important;
+  white-space: nowrap !important;
+}
+
+.announcement-bar__item {
+  display: inline-flex !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.top-urgency-bar {
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Gallery thumbnails flex overflow containment */
+.gallery-thumbs {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+.thumb-img {
+  flex: 0 0 68px !important;
+  width: 68px !important;
+  height: 68px !important;
+}
+
+/* Product gallery main image aspect container */
+.product-gallery-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+#main-product-display {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 768px) {
+  .hero__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 0 12px !important;
+    gap: 16px !important;
+  }
+
+  .product-gallery-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero__product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .comparison-table {
+    width: 100% !important;
+    overflow-x: auto !important;
+    display: block !important;
+  }
+}
