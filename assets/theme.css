@@ -320,8 +320,9 @@ ul, ol { list-style: none; }
 
 .price-main {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
 }
 
 .price-current {
@@ -339,20 +340,58 @@ ul, ol { list-style: none; }
 .price-discount-badge {
   background: var(--red-accent);
   color: var(--white);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
   text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
 }
 
 .coupon-callout {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--green);
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #166534;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  line-height: 1.4;
+}
+
+.coupon-main {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
+  font-weight: 600;
+  color: #15803D;
+  flex-wrap: wrap;
+}
+
+.coupon-code-badge {
+  display: inline-block;
+  white-space: nowrap;
+  background: #DCFCE7;
+  border: 1.5px dashed #16A34A;
+  color: #15803D;
+  font-weight: 800;
+  font-family: var(--font-body);
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+}
+
+.coupon-note {
+  font-size: 0.75rem;
+  color: #166534;
+  opacity: 0.85;
+  white-space: nowrap;
 }
 
 .product-specs-list {
@@ -1447,7 +1486,16 @@ shopify-cart::part(primary-button):hover {
   }
 
   .coupon-callout {
-    font-size: 0.75rem;
+    padding: 7px 10px;
+    gap: 4px 8px;
+    font-size: 0.78rem;
+  }
+  .coupon-code-badge {
+    padding: 1px 6px;
+    font-size: 0.78rem;
+  }
+  .coupon-note {
+    font-size: 0.72rem;
   }
 
   .product-specs-list {
