@@ -105,7 +105,7 @@ ul, ol { list-style: none; }
 
 .announcement-bar__track {
   display: inline-flex;
-  animation: marquee 10s linear infinite;
+  animation: marquee 6s linear infinite;
 }
 
 .announcement-bar__item {
