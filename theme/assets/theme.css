@@ -110,7 +110,7 @@ ul, ol { list-style: none; }
 .announcement-bar__track {
   display: inline-flex !important;
   white-space: nowrap !important;
-  animation: marquee-smooth 20s linear infinite;
+  animation: marquee-smooth 25s linear infinite;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
@@ -158,7 +158,7 @@ ul, ol { list-style: none; }
     gap: 6px;
   }
   .announcement-bar__track {
-    animation: marquee-smooth 16s linear infinite;
+    animation: marquee-smooth 25s linear infinite;
   }
 }
 
