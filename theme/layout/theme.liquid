@@ -767,6 +767,45 @@
     } else {
       initFaqs();
     }
+    /* ===== SMOOTH MARQUEE (requestAnimationFrame) ===== */
+    (function() {
+      var track = document.querySelector('.announcement-bar__track');
+      if (!track) return;
+
+      var speed = 60; // pixels per second
+      var offset = 0;
+      var lastTime = 0;
+      var oneThird = 0;
+      var running = true;
+
+      function measure() {
+        oneThird = track.scrollWidth / 3;
+      }
+
+      function tick(now) {
+        if (!running) { lastTime = now; requestAnimationFrame(tick); return; }
+        if (!lastTime) lastTime = now;
+        var dt = (now - lastTime) / 1000;
+        lastTime = now;
+        // cap dt to avoid huge jumps when tab is backgrounded
+        if (dt > 0.1) dt = 0.016;
+        offset += speed * dt;
+        if (offset >= oneThird) offset -= oneThird;
+        track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+        requestAnimationFrame(tick);
+      }
+
+      // pause on hover (desktop)
+      track.addEventListener('mouseenter', function() { running = false; });
+      track.addEventListener('mouseleave', function() { running = true; });
+
+      // re-measure on resize
+      window.addEventListener('resize', measure);
+
+      // start
+      measure();
+      requestAnimationFrame(tick);
+    })();
   </script>
   </div>
 </body>
