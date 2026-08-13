@@ -17,7 +17,9 @@
     "checkout": {
       "contact": {
         "email_or_phone_label": "phone number",
-        "email_or_phone_placeholder": "phone number"
+        "email_or_phone_placeholder": "phone number",
+        "address_title": "Flat, House no., Building, Company, Apartment",
+        "address2_label": "Area, Street, Sector, Village"
       }
     }
   }
