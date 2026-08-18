@@ -455,11 +455,12 @@
 
     function handleBuyNow(e) {
       if (e) e.preventDefault();
-      let selectedVariantId = '53853852500152';
       const checkedRadio = document.querySelector('input[name="id"]:checked');
-      if (checkedRadio && checkedRadio.value) {
-        selectedVariantId = checkedRadio.value;
+      if (!checkedRadio || !checkedRadio.value) {
+        alert('Please select a size / layer option before proceeding.');
+        return;
       }
+      const selectedVariantId = checkedRadio.value;
       const qtyInput = document.querySelector('#AddToCartForm input[name="quantity"]');
       const quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
       window.location.href = '/cart/' + selectedVariantId + ':' + quantity;
@@ -467,11 +468,12 @@
 
     function handleAddToCart(e) {
       if (e) e.preventDefault();
-      let selectedVariantId = '53853852500152';
       const checkedRadio = document.querySelector('input[name="id"]:checked');
-      if (checkedRadio && checkedRadio.value) {
-        selectedVariantId = checkedRadio.value;
+      if (!checkedRadio || !checkedRadio.value) {
+        alert('Please select a size / layer option before adding to cart.');
+        return;
       }
+      const selectedVariantId = checkedRadio.value;
 
       const qtyInput = document.querySelector('#AddToCartForm input[name="quantity"]');
       const quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;

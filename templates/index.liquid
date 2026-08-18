@@ -73,7 +73,7 @@
             {% if main_product.price %}
               {{ main_product.price | money }}
             {% else %}
-              Rs. 499.00 - Rs. 849.00
+              Select a size
             {% endif %}
           </span>
           <span class="price-mrp">M.R.P.: Rs. 1,499</span>
@@ -126,7 +126,7 @@
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             {% if main_product.variants.size > 0 %}
               {% for variant in main_product.variants %}
-                <label style="border: 2px solid {% if forloop.first %}var(--dark){% else %}var(--gray-200){% endif %}; border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: {% if forloop.first %}#FDFBF7{% else %}var(--white){% endif %}; transition: all 0.2s ease;" class="variant-option-label {% if forloop.first %}active{% endif %}" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
+                <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
                   <input
                     type="radio"
                     name="id"
@@ -134,7 +134,7 @@
                     data-price="{{ variant.price | money }}"
                     data-mrp="{{ variant.compare_at_price | default: variant.price | times: 2 | money }}"
                     onchange="updateVariantSelection(this)"
-                    {% if forloop.first %}checked{% endif %}
+                    
                     style="margin-right: 6px;"
                   >
                   {{ variant.title }}{% unless variant.title contains 'Pack' %} (Pack of 2){% endunless %} — {{ variant.price | money }}
@@ -142,8 +142,8 @@
               {% endfor %}
             {% else %}
               <!-- Fallback Shopify Variant IDs -->
-              <label style="border: 2px solid var(--dark); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: #FDFBF7; transition: all 0.2s ease;" class="variant-option-label active" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
-                <input type="radio" name="id" value="53853852500152" data-price="Rs. 499.00" data-mrp="M.R.P.: Rs. 999" onchange="updateVariantSelection(this)" checked style="margin-right: 6px;">
+              <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
+                <input type="radio" name="id" value="53853852500152" data-price="Rs. 499.00" data-mrp="M.R.P.: Rs. 999" onchange="updateVariantSelection(this)" style="margin-right: 6px;">
                 3 Layer (Pack of 2) — Rs. 499.00
               </label>
               <label style="border: 2px solid var(--gray-200); border-radius: 8px; padding: 10px 16px; font-weight: 600; font-size: 0.85rem; cursor: pointer; background: var(--white); transition: all 0.2s ease;" class="variant-option-label" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
