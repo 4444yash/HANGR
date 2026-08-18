@@ -211,6 +211,31 @@
     </div>
   </div>
 
+  <!-- ===== SELECT SIZE / LAYERS MODAL POPUP ===== -->
+  <div class="variant-modal-overlay" id="variant-modal" onclick="if(event.target===this) closeVariantModal()">
+    <div class="variant-modal-content">
+      <div class="variant-modal-header">
+        <div class="variant-modal-title-wrap">
+          <h3 class="variant-modal-title">SELECT SIZE / LAYERS</h3>
+          <p class="variant-modal-subtitle">Choose an option to continue</p>
+        </div>
+        <button type="button" class="variant-modal-close" onclick="closeVariantModal()" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="variant-modal-body">
+        <div class="variant-modal-grid" id="variant-modal-grid">
+          <!-- Dynamically populated from on-page variant cards -->
+        </div>
+      </div>
+
+      <div class="variant-modal-footer">
+        <button type="button" class="btn-primary variant-modal-action-btn" id="variant-modal-confirm-btn" onclick="confirmVariantModalAction()">
+          CONTINUE TO ADD TO CART →
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== WRITE A REVIEW MODAL ===== -->
   <div class="review-modal-overlay" id="review-modal">
     <div class="review-modal-content">
@@ -453,11 +478,163 @@
       }
     }
 
+    let pendingVariantAction = null;
+
+    function populateVariantModalGrid() {
+      const grid = document.getElementById('variant-modal-grid');
+      if (!grid) return;
+
+      const pageCards = document.querySelectorAll('#AddToCartForm .variant-option-card');
+      if (pageCards.length > 0) {
+        grid.innerHTML = '';
+        pageCards.forEach(card => {
+          const radio = card.querySelector('input[name="id"]');
+          const nameEl = card.querySelector('.variant-option-name');
+          const priceEl = card.querySelector('.variant-option-price');
+          if (!radio) return;
+
+          const variantId = radio.value;
+          const title = nameEl ? nameEl.textContent.trim() : (radio.dataset.title || '');
+          const price = priceEl ? priceEl.textContent.trim() : (radio.dataset.price || '');
+          const isSelected = radio.checked;
+
+          const popupCard = document.createElement('div');
+          popupCard.className = 'variant-popup-card' + (isSelected ? ' selected' : '');
+          popupCard.setAttribute('data-variant-id', variantId);
+          popupCard.onclick = function() { selectVariantFromPopup(variantId); };
+          popupCard.innerHTML = `
+            <input type="radio" name="popup_variant_id" value="${variantId}" class="variant-popup-radio" ${isSelected ? 'checked' : ''}>
+            <div class="variant-popup-info">
+              <span class="variant-popup-title">${title}</span>
+              <span class="variant-popup-price">${price}</span>
+            </div>
+          `;
+          grid.appendChild(popupCard);
+        });
+      } else {
+        // Fallback options matching 4 standard hanger variants
+        const fallbackVariants = [
+          { id: '53853852500152', title: '3 layer (Pack of 2) —', price: 'Rs. 499.00' },
+          { id: '53853852532920', title: '4 layer (Pack of 2) —', price: 'Rs. 579.00' },
+          { id: '53853852565688', title: '6 layer (Pack of 2) —', price: 'Rs. 749.00' },
+          { id: '53853852598456', title: '8 layer (Pack of 2) —', price: 'Rs. 849.00' }
+        ];
+        const checkedPage = document.querySelector('#AddToCartForm input[name="id"]:checked');
+        const selectedVal = checkedPage ? checkedPage.value : null;
+
+        grid.innerHTML = '';
+        fallbackVariants.forEach(v => {
+          const isSelected = selectedVal === v.id;
+          const popupCard = document.createElement('div');
+          popupCard.className = 'variant-popup-card' + (isSelected ? ' selected' : '');
+          popupCard.setAttribute('data-variant-id', v.id);
+          popupCard.onclick = function() { selectVariantFromPopup(v.id); };
+          popupCard.innerHTML = `
+            <input type="radio" name="popup_variant_id" value="${v.id}" class="variant-popup-radio" ${isSelected ? 'checked' : ''}>
+            <div class="variant-popup-info">
+              <span class="variant-popup-title">${v.title}</span>
+              <span class="variant-popup-price">${v.price}</span>
+            </div>
+          `;
+          grid.appendChild(popupCard);
+        });
+      }
+    }
+
+    function openVariantModal(action) {
+      pendingVariantAction = action || 'cart';
+      populateVariantModalGrid();
+      const modal = document.getElementById('variant-modal');
+      const confirmBtn = document.getElementById('variant-modal-confirm-btn');
+      if (confirmBtn) {
+        if (pendingVariantAction === 'buy') {
+          confirmBtn.innerHTML = 'BUY NOW (CASH ON DELIVERY) →';
+          confirmBtn.style.background = 'var(--emerald, #059669)';
+        } else {
+          confirmBtn.innerHTML = 'CONTINUE TO ADD TO CART →';
+          confirmBtn.style.background = 'var(--dark, #111827)';
+        }
+      }
+      syncPopupVariantSelection();
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeVariantModal() {
+      const modal = document.getElementById('variant-modal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function selectVariantFromPopup(variantId) {
+      const pageRadios = document.querySelectorAll('#AddToCartForm input[name="id"]');
+      let matchedRadio = null;
+      pageRadios.forEach(radio => {
+        if (radio.value === variantId) {
+          radio.checked = true;
+          matchedRadio = radio;
+        } else {
+          radio.checked = false;
+        }
+      });
+
+      if (matchedRadio) {
+        updateVariantSelection(matchedRadio);
+      }
+
+      syncPopupVariantSelection();
+    }
+
+    function syncPopupVariantSelection() {
+      const checkedPageRadio = document.querySelector('#AddToCartForm input[name="id"]:checked');
+      const selectedVal = checkedPageRadio ? checkedPageRadio.value : null;
+
+      document.querySelectorAll('.variant-popup-card').forEach(card => {
+        const radio = card.querySelector('input[type="radio"]');
+        if (radio) {
+          if (selectedVal && radio.value === selectedVal) {
+            radio.checked = true;
+            card.classList.add('selected');
+          } else {
+            radio.checked = false;
+            card.classList.remove('selected');
+          }
+        }
+      });
+    }
+
+    function confirmVariantModalAction() {
+      const checkedRadio = document.querySelector('input[name="id"]:checked');
+      if (!checkedRadio || !checkedRadio.value) {
+        document.querySelectorAll('.variant-popup-card').forEach(card => {
+          card.style.borderColor = '#EF4444';
+          setTimeout(() => {
+            if (!card.classList.contains('selected')) {
+              card.style.borderColor = '';
+            }
+          }, 1000);
+        });
+        return;
+      }
+
+      closeVariantModal();
+
+      if (pendingVariantAction === 'buy') {
+        handleBuyNow();
+      } else {
+        handleAddToCart();
+      }
+    }
+
     function handleBuyNow(e) {
       if (e) e.preventDefault();
       const checkedRadio = document.querySelector('input[name="id"]:checked');
       if (!checkedRadio || !checkedRadio.value) {
-        alert('Please select a size / layer option before proceeding.');
+        openVariantModal('buy');
         return;
       }
       const selectedVariantId = checkedRadio.value;
@@ -470,7 +647,7 @@
       if (e) e.preventDefault();
       const checkedRadio = document.querySelector('input[name="id"]:checked');
       if (!checkedRadio || !checkedRadio.value) {
-        alert('Please select a size / layer option before adding to cart.');
+        openVariantModal('cart');
         return;
       }
       const selectedVariantId = checkedRadio.value;
@@ -511,18 +688,18 @@
         mrpDisplay.textContent = mrpAttr.startsWith('M.R.P.') ? mrpAttr : ('M.R.P.: ' + mrpAttr);
       }
 
-      document.querySelectorAll('.variant-option-label').forEach(label => {
+      document.querySelectorAll('.variant-option-card, .variant-option-label').forEach(label => {
         const input = label.querySelector('input[type="radio"]');
         if (input && input.checked) {
-          label.style.borderColor = 'var(--dark, #1f2937)';
-          label.style.background = '#FDFBF7';
+          label.classList.add('selected');
           label.classList.add('active');
         } else {
-          label.style.borderColor = 'var(--gray-200, #e5e7eb)';
-          label.style.background = 'var(--white, #ffffff)';
+          label.classList.remove('selected');
           label.classList.remove('active');
         }
       });
+
+      syncPopupVariantSelection();
     }
 
     function openReviewModal() {
