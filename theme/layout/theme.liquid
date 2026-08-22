@@ -19,7 +19,7 @@
 
   <!-- URGENCY COUNTDOWN BAR -->
   <div class="top-urgency-bar">
-    <span>🔥 SPECIAL FESTIVE SALE: Extra 10% OFF on Orders | Use Code: <strong>HANGR10</strong></span>
+    <span>💳 FLAT 10% OFF on Prepaid Orders | Pay via UPI / Card / Netbanking & Save Extra!</span>
     <span>Offers Ends In: <span class="countdown-timer" id="timer">14:59</span></span>
   </div>
 
@@ -548,7 +548,7 @@
       const confirmBtn = document.getElementById('variant-modal-confirm-btn');
       if (confirmBtn) {
         if (pendingVariantAction === 'buy') {
-          confirmBtn.innerHTML = 'BUY NOW (CASH ON DELIVERY) →';
+          confirmBtn.innerHTML = 'BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE →';
           confirmBtn.style.background = 'var(--emerald, #059669)';
         } else {
           confirmBtn.innerHTML = 'CONTINUE TO ADD TO CART →';
@@ -700,6 +700,16 @@
       });
 
       syncPopupVariantSelection();
+
+      // Calculate and display prepaid price (10% off)
+      const prepaidEl = document.getElementById('prepaid-price-display');
+      if (prepaidEl && priceAttr) {
+        const numericPrice = parseFloat(priceAttr.replace(/[^0-9.]/g, ''));
+        if (!isNaN(numericPrice) && numericPrice > 0) {
+          const prepaidPrice = Math.round(numericPrice * 0.9);
+          prepaidEl.textContent = 'Rs. ' + prepaidPrice;
+        }
+      }
     }
 
     function openReviewModal() {

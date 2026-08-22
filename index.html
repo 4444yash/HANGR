@@ -1,918 +1,1061 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
   <title>HANGR — One Hanger. Endless Ways to Organize.</title>
-  <meta name="description" content="HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.">
+  <meta name="description"
+    content="HANGR Multi Tier Steel Hanger — the perfect storage solution for your bangles, accessories, belts, hairbands & more. Smart. Stylish. Space-saving.">
   <link rel="icon" type="image/jpeg" href="./assets/favicon.jpg">
   <link rel="shortcut icon" href="./assets/favicon.jpg">
   <link rel="apple-touch-icon" href="./assets/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
   <link rel="stylesheet" href="./assets/theme.css">
 </head>
+
 <body>
   <div class="page-container">
 
-  <!-- ===== SHOPIFY STORE CONFIG ===== -->
-  <shopify-store
-    store-domain="https://nrqbvn-sy.myshopify.com"
-    public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
-    country="IN"
-    language="en"
-  ></shopify-store>
+    <!-- ===== SHOPIFY STORE CONFIG ===== -->
+    <shopify-store store-domain="https://nrqbvn-sy.myshopify.com" public-access-token="f4022f3801b4eeb396c11fa77dd5e082"
+      country="IN" language="en"></shopify-store>
 
-  <!-- ===== URGENCY COUNTDOWN BAR ===== -->
-  <div class="top-urgency-bar">
-    <span>🔥 SPECIAL FESTIVE SALE: Extra 10% OFF on Orders | Use Code: <strong>HANGR10</strong></span>
-    <span>Offers Ends In: <span class="countdown-timer" id="timer">14:59</span></span>
-  </div>
+    <!-- ===== URGENCY COUNTDOWN BAR ===== -->
+    <div class="top-urgency-bar">
+      <span>💳 FLAT 10% OFF on Prepaid Orders | Pay via UPI / Card / Netbanking & Save Extra!</span>
+      <span>Offers Ends In: <span class="countdown-timer" id="timer">14:59</span></span>
+    </div>
 
-  <!-- ===== 1. ANNOUNCEMENT MARQUEE ===== -->
-  <div class="announcement-bar" id="announcement-bar">
-    <div class="announcement-bar__track">
-      <!-- Set 1 -->
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        FREE EXPRESS SHIPPING ACROSS INDIA
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        CASH ON DELIVERY (COD) AVAILABLE
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        100% QUALITY ASSURED GUARANTEE
-      </div>
+    <!-- ===== 1. ANNOUNCEMENT MARQUEE ===== -->
+    <div class="announcement-bar" id="announcement-bar">
+      <div class="announcement-bar__track">
+        <!-- Set 1 -->
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          FREE EXPRESS SHIPPING ACROSS INDIA
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          CASH ON DELIVERY (COD) AVAILABLE
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+          </svg>
+          100% QUALITY ASSURED GUARANTEE
+        </div>
 
-      <!-- Set 2 -->
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        FREE EXPRESS SHIPPING ACROSS INDIA
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        CASH ON DELIVERY (COD) AVAILABLE
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        100% QUALITY ASSURED GUARANTEE
-      </div>
+        <!-- Set 2 -->
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          FREE EXPRESS SHIPPING ACROSS INDIA
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          CASH ON DELIVERY (COD) AVAILABLE
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+          </svg>
+          100% QUALITY ASSURED GUARANTEE
+        </div>
 
-      <!-- Set 3 -->
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        FREE EXPRESS SHIPPING ACROSS INDIA
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        CASH ON DELIVERY (COD) AVAILABLE
-      </div>
-      <div class="announcement-bar__item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        100% QUALITY ASSURED GUARANTEE
+        <!-- Set 3 -->
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          FREE EXPRESS SHIPPING ACROSS INDIA
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          CASH ON DELIVERY (COD) AVAILABLE
+        </div>
+        <div class="announcement-bar__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+          </svg>
+          100% QUALITY ASSURED GUARANTEE
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ===== 2. NAVIGATION ===== -->
-  <nav class="nav" id="main-nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">
-        <span class="nav__logo-name">HANGR</span>
-        <span class="nav__logo-tagline">Organize. Display. Simplify.</span>
-      </a>
+    <!-- ===== 2. NAVIGATION ===== -->
+    <nav class="nav" id="main-nav">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo">
+          <span class="nav__logo-name">HANGR</span>
+          <span class="nav__logo-tagline">Organize. Display. Simplify.</span>
+        </a>
 
-      <div class="nav__links" id="nav-links">
-        <a href="#" class="nav__link nav__link--active">Home</a>
-        <a href="#hero" class="nav__link">Shop Hanger</a>
-        <a href="#comparison-section" class="nav__link">Why HANGR?</a>
-        <a href="#reviews-section" class="nav__link">Customer Reviews</a>
-        <a href="#faq-section" class="nav__link">FAQs</a>
-      </div>
+        <div class="nav__links" id="nav-links">
+          <a href="#" class="nav__link nav__link--active">Home</a>
+          <a href="#hero" class="nav__link">Shop Hanger</a>
+          <a href="#comparison-section" class="nav__link">Why HANGR?</a>
+          <a href="#reviews-section" class="nav__link">Customer Reviews</a>
+          <a href="#faq-section" class="nav__link">FAQs</a>
+        </div>
 
-      <div class="nav__actions">
-        <button class="nav__action-btn" aria-label="Cart" onclick="document.getElementById('main-cart').showModal()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <span class="nav__cart-badge">0</span>
-        </button>
-        <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Menu" onclick="document.getElementById('nav-links').classList.toggle('mobile-open')">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ===== 3. HERO & PRODUCT PURCHASE SECTION (ABOVE THE FOLD) ===== -->
-  <section class="hero" id="hero">
-    <div class="hero__inner">
-      <!-- Left Column: Interactive Product Image Gallery -->
-      <div class="product-gallery-container">
-        <div class="product-gallery-main" id="gallery-main-wrapper">
-          <button type="button" class="gallery-nav-btn gallery-nav-prev" onclick="prevGalleryImage(event)" aria-label="Previous Image">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <div class="nav__actions">
+          <button class="nav__action-btn" aria-label="Cart" onclick="document.getElementById('main-cart').showModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+            <span class="nav__cart-badge">0</span>
           </button>
-          <img
-            id="main-product-display"
-            src="assets/hanger-hero.png"
-            onerror="this.onerror=null; this.src='images/hanger-hero.png';"
-            alt="Multi Tier Steel Hanger"
-            style="width: 100%; height: 100%; object-fit: contain;"
-          >
-          <button type="button" class="gallery-nav-btn gallery-nav-next" onclick="nextGalleryImage(event)" aria-label="Next Image">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Menu"
+            onclick="document.getElementById('nav-links').classList.toggle('mobile-open')">
+            <span></span><span></span><span></span>
           </button>
         </div>
-        <div class="gallery-thumbs">
-          <img class="thumb-img active" src="assets/hanger-hero.png" data-full-src="assets/hanger-hero.png" onerror="this.onerror=null; this.src='images/hanger-hero.png';" onclick="switchMainImage(this)" alt="Studio Multi-Tier Hanger View">
-          <img class="thumb-img" src="assets/hanger-swing-arms.png" data-full-src="assets/hanger-swing-arms.png" onerror="this.onerror=null; this.src='images/hanger-swing-arms.png';" onclick="switchMainImage(this)" alt="Openable Swing Arm Detail">
-          <img class="thumb-img" src="assets/hanger-closet-lifestyle.png" data-full-src="assets/hanger-closet-lifestyle.png" onerror="this.onerror=null; this.src='images/hanger-closet-lifestyle.png';" onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
-          <img class="thumb-img" src="assets/hanger-hook-detail.png" data-full-src="assets/hanger-hook-detail.png" onerror="this.onerror=null; this.src='images/hanger-hook-detail.png';" onclick="switchMainImage(this)" alt="Heavy Duty Anti-Scratch Hook">
-          <img class="thumb-img" src="assets/hanger-dimensions-spec.png" data-full-src="assets/hanger-dimensions-spec.png" onerror="this.onerror=null; this.src='images/hanger-dimensions-spec.png';" onclick="switchMainImage(this)" alt="Dimensions & Layer Spacing">
-          <img class="thumb-img" src="assets/8layer-hanger.jpeg" data-full-src="assets/8layer-hanger.jpeg" onerror="this.onerror=null; this.src='images/8layer-hanger.jpeg';" onclick="switchMainImage(this)" alt="Real Product Photo">
-          <img class="thumb-img" src="assets/IMG_1216.jpeg" data-full-src="assets/IMG_1216.jpeg" onerror="this.onerror=null; this.src='images/IMG_1216.jpeg';" onclick="switchMainImage(this)" alt="Real Closet Setup Photo">
-        </div>
       </div>
+    </nav>
 
-      <!-- Right Column: High-Converting Shopify Buy Box -->
-      <div class="hero__product-card" id="product-card">
-        <shopify-context type="product" handle="multi-tier-cloth-bangle-steel-hanger">
-          <template>
-            <div class="product-brand-tag">
-              <shopify-data query="product.vendor"></shopify-data> • Official Store
-            </div>
-            <h1 class="product-headline-title">
-              <shopify-data query="product.title"></shopify-data>
-            </h1>
+    <!-- ===== 3. HERO & PRODUCT PURCHASE SECTION (ABOVE THE FOLD) ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <!-- Left Column: Interactive Product Image Gallery -->
+        <div class="product-gallery-container">
+          <div class="product-gallery-main" id="gallery-main-wrapper">
+            <button type="button" class="gallery-nav-btn gallery-nav-prev" onclick="prevGalleryImage(event)"
+              aria-label="Previous Image">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <img id="main-product-display" src="assets/hanger-hero.png"
+              onerror="this.onerror=null; this.src='images/hanger-hero.png';" alt="Multi Tier Steel Hanger"
+              style="width: 100%; height: 100%; object-fit: contain;">
+            <button type="button" class="gallery-nav-btn gallery-nav-next" onclick="nextGalleryImage(event)"
+              aria-label="Next Image">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="gallery-thumbs">
+            <img class="thumb-img active" src="assets/hanger-hero.png" data-full-src="assets/hanger-hero.png"
+              onerror="this.onerror=null; this.src='images/hanger-hero.png';" onclick="switchMainImage(this)"
+              alt="Studio Multi-Tier Hanger View">
+            <img class="thumb-img" src="assets/hanger-swing-arms.png" data-full-src="assets/hanger-swing-arms.png"
+              onerror="this.onerror=null; this.src='images/hanger-swing-arms.png';" onclick="switchMainImage(this)"
+              alt="Openable Swing Arm Detail">
+            <img class="thumb-img" src="assets/hanger-closet-lifestyle.png"
+              data-full-src="assets/hanger-closet-lifestyle.png"
+              onerror="this.onerror=null; this.src='images/hanger-closet-lifestyle.png';"
+              onclick="switchMainImage(this)" alt="Before & After Closet Space Saver">
+            <img class="thumb-img" src="assets/hanger-hook-detail.png" data-full-src="assets/hanger-hook-detail.png"
+              onerror="this.onerror=null; this.src='images/hanger-hook-detail.png';" onclick="switchMainImage(this)"
+              alt="Heavy Duty Anti-Scratch Hook">
+            <img class="thumb-img" src="assets/hanger-dimensions-spec.png"
+              data-full-src="assets/hanger-dimensions-spec.png"
+              onerror="this.onerror=null; this.src='images/hanger-dimensions-spec.png';" onclick="switchMainImage(this)"
+              alt="Dimensions & Layer Spacing">
+            <img class="thumb-img" src="assets/8layer-hanger.jpeg" data-full-src="assets/8layer-hanger.jpeg"
+              onerror="this.onerror=null; this.src='images/8layer-hanger.jpeg';" onclick="switchMainImage(this)"
+              alt="Real Product Photo">
+            <img class="thumb-img" src="assets/IMG_1216.jpeg" data-full-src="assets/IMG_1216.jpeg"
+              onerror="this.onerror=null; this.src='images/IMG_1216.jpeg';" onclick="switchMainImage(this)"
+              alt="Real Closet Setup Photo">
+          </div>
+        </div>
 
-            <div class="product-rating-row">
-              <span class="stars-gold">★★★★★</span>
-              <span style="font-weight: 700; color: var(--dark);">4.9 / 5.0</span>
-              <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
-            </div>
-
-            <div class="product-price-box">
-              <div class="price-main">
-                <span class="price-current">
-                  <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-                </span>
-                <span class="price-mrp">M.R.P.: ₹1,499</span>
-                <span class="price-discount-badge">Save 50% OFF</span>
+        <!-- Right Column: High-Converting Shopify Buy Box -->
+        <div class="hero__product-card" id="product-card">
+          <shopify-context type="product" handle="multi-tier-cloth-bangle-steel-hanger">
+            <template>
+              <div class="product-brand-tag">
+                <shopify-data query="product.vendor"></shopify-data> • Official Store
               </div>
-              <div class="coupon-callout">
-                <span class="coupon-main">🔥 Extra 10% OFF with Code: <strong class="coupon-code-badge">HANGR10</strong></span>
-                <span class="coupon-note">(Applied at checkout)</span>
+              <h1 class="product-headline-title">
+                <shopify-data query="product.title"></shopify-data>
+              </h1>
+
+              <div class="product-rating-row">
+                <span class="stars-gold">★★★★★</span>
+                <span style="font-weight: 700; color: var(--dark);">4.9 / 5.0</span>
+                <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
+              </div>
+
+              <div class="product-price-box">
+                <div class="price-main">
+                  <span class="price-current">
+                    <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                  </span>
+                  <span class="price-mrp">M.R.P.: ₹1,499</span>
+                  <span class="price-discount-badge">Save 50% OFF</span>
+                </div>
+                <div class="prepaid-discount-banner" id="prepaid-discount-banner">
+                  <div class="prepaid-discount-inner">
+                    <div class="prepaid-discount-left">
+                      <span class="prepaid-icon">💳</span>
+                      <div class="prepaid-text">
+                        <span class="prepaid-headline">Flat 10% OFF on Prepaid Orders</span>
+                        <span class="prepaid-subtext">Pay via UPI / Card / Netbanking & save extra!</span>
+                      </div>
+                    </div>
+                    <div class="prepaid-discount-right">
+                      <span class="prepaid-price-label">PREPAID PRICE</span>
+                      <span class="prepaid-price-value" id="prepaid-price-display">From ₹449</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Amazon-style Spec Highlights -->
+              <div class="product-specs-list">
+                <div class="spec-item"
+                  style="background: #ECFDF5; border-left: 3px solid #10B981; padding: 6px 10px; border-radius: 4px;">
+                  <span class="spec-icon" style="color: #059669;">🎁</span>
+                  <span style="color: #065F46;"><strong>PACK OF 2 INCLUDED</strong>: Double the storage! You get 2 full
+                    hangers in every order</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">✓</span>
+                  <span><strong>Premium Build Quality</strong>: Durable metal with anti-rust chrome finish</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">✓</span>
+                  <span><strong>Holds Up To 100+ Bangles / 15kg</strong>: Heavy duty, sturdy & reliable</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">✓</span>
+                  <span><strong>Compact 80% Space Saver</strong>: Organizes bangles, scrunchies, belts & jhumkas</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-icon">✓</span>
+                  <span><strong>Smooth Anti-Scratch Edges</strong>: Safe for delicate glass & silk bangles</span>
+                </div>
+              </div>
+
+              <shopify-variant-selector></shopify-variant-selector>
+
+              <div class="product-card__buttons">
+                <button type="button" class="product-card__add-btn"
+                  onclick="document.getElementById('main-cart').addLine(event).showModal();">ADD TO CART</button>
+                <button type="button" class="product-card__buy-btn"
+                  onclick="document.querySelector('shopify-store').buyNow(event);">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
+              </div>
+
+              <div
+                style="font-size: 0.78rem; color: var(--gray-600); text-align: center; display: flex; justify-content: center; gap: 16px; margin-top: 4px; flex-wrap: wrap;">
+                <span>💳 10% OFF Prepaid</span>
+                <span>📦 Cash On Delivery Available</span>
+                <span>🚚 Free Shipping ₹999+</span>
+                <span>🛡️ 100% Quality Assured</span>
+              </div>
+            </template>
+
+            <!-- Instant Pre-rendered Fallback (Fixes Reload Blank Space) -->
+            <div shopify-loading-placeholder>
+              <div class="product-brand-tag">HANGR • Official Store</div>
+              <h1 class="product-headline-title">Multi-Tier Heavy Duty Metal Hanger Pack of 2</h1>
+              <div class="product-rating-row">
+                <span class="stars-gold">★★★★★</span>
+                <span style="font-weight: 700;">4.9 / 5.0</span>
+                <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
+              </div>
+              <div class="product-price-box">
+                <div class="price-main">
+                  <span class="price-current">₹499.00 - ₹849.00</span>
+                  <span class="price-mrp">M.R.P.: ₹1,499</span>
+                  <span class="price-discount-badge">Save 50% OFF</span>
+                </div>
+                <div class="prepaid-discount-banner">
+                  <div class="prepaid-discount-inner">
+                    <div class="prepaid-discount-left">
+                      <span class="prepaid-icon">💳</span>
+                      <div class="prepaid-text">
+                        <span class="prepaid-headline">Flat 10% OFF on Prepaid Orders</span>
+                        <span class="prepaid-subtext">Pay via UPI / Card / Netbanking & save extra!</span>
+                      </div>
+                    </div>
+                    <div class="prepaid-discount-right">
+                      <span class="prepaid-price-label">PREPAID PRICE</span>
+                      <span class="prepaid-price-value">From ₹449</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="product-specs-list">
+                <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Premium Build Quality</strong>:
+                    Durable metal with anti-rust chrome finish</span></div>
+                <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Holds Up To 100+ Bangles /
+                      15kg</strong>: Heavy duty, sturdy & reliable</span></div>
+                <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Compact 80% Space Saver</strong>:
+                    Organizes bangles, scrunchies & belts</span></div>
+              </div>
+              <div class="product-card__buttons">
+                <button type="button" class="product-card__add-btn">ADD TO CART</button>
+                <button type="button" class="product-card__buy-btn">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
+              </div>
+            </div>
+          </shopify-context>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. PERFECT FOR ORGANIZING ===== -->
+    <section class="organizing" id="organizing">
+      <div class="organizing__inner">
+        <h2 class="organizing__title">Perfect For<br>Organizing</h2>
+        <div class="organizing__items">
+          <div class="organizing__item">
+            <div class="organizing__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="12" cy="12" r="1" />
+              </svg>
+            </div>
+            <span class="organizing__item-label">Bangles &<br>Bracelets</span>
+          </div>
+          <div class="organizing__item">
+            <div class="organizing__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L8 8l-6 1 4.5 4L5 19l7-3.5L19 19l-1.5-6L22 9l-6-1z" />
+              </svg>
+            </div>
+            <span class="organizing__item-label">Earrings &<br>Jhumkas</span>
+          </div>
+          <div class="organizing__item">
+            <div class="organizing__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="6" r="4" />
+                <path d="M8 10h8" />
+                <path d="M6 14h12" />
+                <path d="M8 18h8" />
+              </svg>
+            </div>
+            <span class="organizing__item-label">Hairbands &<br>Scrunchies</span>
+          </div>
+          <div class="organizing__item">
+            <div class="organizing__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <line x1="12" y1="2" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="22" />
+              </svg>
+            </div>
+            <span class="organizing__item-label">Belts &<br>Watches</span>
+          </div>
+          <div class="organizing__item">
+            <div class="organizing__item-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2" />
+                <path d="M2 12h20" />
+                <path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10" />
+                <path d="M12 2c-2.5 2.5-4 6-4 10s1.5 7.5 4 10" />
+              </svg>
+            </div>
+            <span class="organizing__item-label">Necklaces &<br>Chains</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. DECLUTTER GALLERY ===== -->
+    <section class="gallery" id="gallery">
+      <div class="section-label">Real Indian Homes</div>
+      <h2 class="gallery__headline fade-in">Declutter. Display. Delight.</h2>
+      <p class="gallery__subtext fade-in">One hanger for all your essentials. Keep your wardrobe organized and elegant.
+      </p>
+      <div class="gallery__grid">
+        <div class="gallery__card fade-in fade-in-delay-1">
+          <img src="./assets/bangles.png" alt="Bangles" loading="lazy" width="320" height="427">
+          <div class="gallery__card-overlay">
+            <div class="gallery__card-title">BRIDAL BANGLES</div>
+            <div class="gallery__card-desc">Tangle-free & easy to pick</div>
+          </div>
+        </div>
+        <div class="gallery__card fade-in fade-in-delay-2">
+          <img src="./assets/hair-accessories.png" alt="Hair accessories" loading="lazy" width="320" height="427">
+          <div class="gallery__card-overlay">
+            <div class="gallery__card-title">HAIR ACCESSORIES</div>
+            <div class="gallery__card-desc">Store 30+ scrunchies easily</div>
+          </div>
+        </div>
+        <div class="gallery__card fade-in fade-in-delay-3">
+          <img src="./assets/belts-watches.png" alt="Belts and watches" loading="lazy" width="320" height="427">
+          <div class="gallery__card-overlay">
+            <div class="gallery__card-title">BELTS & WATCHES</div>
+            <div class="gallery__card-desc">No more tangled straps</div>
+          </div>
+        </div>
+        <div class="gallery__card fade-in fade-in-delay-4">
+          <img src="./assets/earrings.png" alt="Earrings" loading="lazy" width="320" height="427">
+          <div class="gallery__card-overlay">
+            <div class="gallery__card-title">JHUMKAS & EARRINGS</div>
+            <div class="gallery__card-desc">Hang your heavy jewelry safely</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. COMPARISON TABLE ===== -->
+    <section class="comparison-section" id="comparison-section">
+      <div style="text-align: center;">
+        <div class="section-label">WHY CHOOSE US</div>
+        <h2 class="gallery__headline">HANGR vs Cheap Racks & Hooks</h2>
+      </div>
+
+      <div class="comparison-table">
+        <div class="comparison-header">
+          <div>Features</div>
+          <div class="highlight-col">HANGR Steel Hanger</div>
+          <div>Cheap Plastic Racks</div>
+        </div>
+        <div class="comparison-row">
+          <div>Rust-Proof Metal Build</div>
+          <div><span class="badge-check">✓</span></div>
+          <div><span class="badge-cross">✕</span></div>
+        </div>
+        <div class="comparison-row">
+          <div>Holds Heavy Load (Up to 15kg / 100+ Bangles)</div>
+          <div><span class="badge-check">✓</span></div>
+          <div><span class="badge-cross">✕</span> (Bends & Breaks)</div>
+        </div>
+        <div class="comparison-row">
+          <div>Compact Wardrobe Space Saver</div>
+          <div><span class="badge-check">✓</span></div>
+          <div><span class="badge-cross">✕</span> (Bulky Racks)</div>
+        </div>
+        <div class="comparison-row">
+          <div>Smooth Anti-Scratch Finish</div>
+          <div><span class="badge-check">✓</span></div>
+          <div><span class="badge-cross">✕</span></div>
+        </div>
+        <div class="comparison-row">
+          <div>100% Rust-Free Guarantee</div>
+          <div><span class="badge-check">✓</span></div>
+          <div><span class="badge-cross">✕</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. CUSTOMER REVIEWS & PHOTO SUBMISSION ===== -->
+    <section class="reviews-section" id="reviews-section">
+      <div class="reviews-header">
+        <div>
+          <div class="section-label">CUSTOMER FEEDBACK</div>
+          <h2 class="gallery__headline" style="margin-bottom: 0;">Verified Buyer Reviews</h2>
+        </div>
+
+        <div class="reviews-summary">
+          <div class="reviews-score">
+            <div class="reviews-score__number">4.9</div>
+            <div class="reviews-score__stars">★★★★★</div>
+            <div class="reviews-score__count">Based on 1,480+ Indian Reviews</div>
+          </div>
+
+          <button class="btn-write-review" onclick="openReviewModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+            Write a Review
+          </button>
+        </div>
+      </div>
+
+      <div class="reviews-grid" id="reviews-grid">
+        <!-- Customer Review 1 -->
+        <div class="review-card">
+          <div class="review-card__user">
+            <div class="review-card__avatar">PS</div>
+            <div class="review-card__meta">
+              <span class="review-card__name">Priya Sharma</span>
+              <span class="review-card__location">Mumbai, Maharashtra</span>
+            </div>
+          </div>
+          <div class="verified-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Verified Buyer (India)
+          </div>
+          <div class="review-card__rating">★★★★★</div>
+          <div class="review-card__title">Best closet organizer ever bought!</div>
+          <div class="review-card__text">Freed up so much space in my wardrobe! The bangles don't slip and the steel is
+            extremely thick and sturdy. Love the openable arms. Pack of 2 is super value.</div>
+          <div class="review-card__photo">
+            <img src="assets/customer-review1.jpg" onerror="this.onerror=null; this.src='customer review1.jpg';"
+              alt="Customer closet review photo" loading="lazy">
+          </div>
+          <div class="review-card__footer">
+            <span>Verified Purchase • 2 days ago</span>
+            <button class="helpful-btn">👍 Helpful (24)</button>
+          </div>
+        </div>
+
+        <!-- Customer Review 2 -->
+        <div class="review-card">
+          <div class="review-card__user">
+            <div class="review-card__avatar">AR</div>
+            <div class="review-card__meta">
+              <span class="review-card__name">Ananya Reddy</span>
+              <span class="review-card__location">Hyderabad, Telangana</span>
+            </div>
+          </div>
+          <div class="verified-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Verified Buyer (India)
+          </div>
+          <div class="review-card__rating">★★★★★</div>
+          <div class="review-card__title">Heavy duty steel quality & zero rust</div>
+          <div class="review-card__text">Was worried about quality, but this is genuine heavy steel, not cheap plastic
+            coated wire. Holds all my heavy bridal silk bangles easily without bending!</div>
+          <div class="review-card__photo">
+            <img src="assets/review-photo-1.jpg" onerror="this.onerror=null; this.src='71wTyUAsk7L.jpg';"
+              alt="Customer hanger photo" loading="lazy">
+          </div>
+          <div class="review-card__footer">
+            <span>Verified Purchase • 4 days ago</span>
+            <button class="helpful-btn">👍 Helpful (18)</button>
+          </div>
+        </div>
+
+        <!-- Customer Review 3 -->
+        <div class="review-card">
+          <div class="review-card__user">
+            <div class="review-card__avatar">MK</div>
+            <div class="review-card__meta">
+              <span class="review-card__name">Meera Kapoor</span>
+              <span class="review-card__location">Delhi NCR</span>
+            </div>
+          </div>
+          <div class="verified-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Verified Buyer (India)
+          </div>
+          <div class="review-card__rating">★★★★★</div>
+          <div class="review-card__title">Super neat & organized wardrobe now</div>
+          <div class="review-card__text">Got the 6-layer pack of 2. It organized all my bangles, dupattas and scarves in
+            one single place. My almirah looks so clean and aesthetic now!</div>
+          <div class="review-card__photo">
+            <img src="assets/review-photo-2.jpg" onerror="this.onerror=null; this.src='81k+XkhBUeL.jpg';"
+              alt="Customer review photo" loading="lazy">
+          </div>
+          <div class="review-card__footer">
+            <span>Verified Purchase • 1 week ago</span>
+            <button class="helpful-btn">👍 Helpful (31)</button>
+          </div>
+        </div>
+
+        <!-- Customer Review 4 -->
+        <div class="review-card">
+          <div class="review-card__user">
+            <div class="review-card__avatar">SG</div>
+            <div class="review-card__meta">
+              <span class="review-card__name">Sunita Gupta</span>
+              <span class="review-card__location">Bengaluru, Karnataka</span>
+            </div>
+          </div>
+          <div class="verified-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Verified Buyer (India)
+          </div>
+          <div class="review-card__rating">★★★★★</div>
+          <div class="review-card__title">Worth every rupee! Excellent finish.</div>
+          <div class="review-card__text">Smooth edges so my silk sarees and glass bangles stay scratch-free. Delivery
+            was fast and packing was great. Highly recommend to everyone!</div>
+          <div class="review-card__photo">
+            <img src="assets/review-photo-3.jpg" onerror="this.onerror=null; this.src='C1iISHwvScS.jpg';"
+              alt="Customer closet photo" loading="lazy">
+          </div>
+          <div class="review-card__footer">
+            <span>Verified Purchase • 1 week ago</span>
+            <button class="helpful-btn">👍 Helpful (15)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WRITE REVIEW MODAL ===== -->
+    <div class="modal-overlay" id="review-modal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeReviewModal()">&times;</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 8px;">Write a Customer Review
+        </h3>
+        <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 20px;">Share your experience with photos to
+          help other buyers!</p>
+
+        <form id="review-form" onsubmit="submitReview(event)">
+          <div class="form-group">
+            <label>Your Overall Rating</label>
+            <div class="star-rating-select" id="star-picker">
+              <span class="star selected" data-value="1">★</span>
+              <span class="star selected" data-value="2">★</span>
+              <span class="star selected" data-value="3">★</span>
+              <span class="star selected" data-value="4">★</span>
+              <span class="star selected" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="review-rating-val" value="5">
+          </div>
+
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="review-name" class="form-input" placeholder="e.g. Kavita Patel" required>
+          </div>
+
+          <div class="form-group">
+            <label>City / Location</label>
+            <input type="text" id="review-city" class="form-input" placeholder="e.g. Ahmedabad, Gujarat" required>
+          </div>
+
+          <div class="form-group">
+            <label>Review Headline</label>
+            <input type="text" id="review-headline" class="form-input"
+              placeholder="e.g. Amazing space saver for bangles!" required>
+          </div>
+
+          <div class="form-group">
+            <label>Detailed Review</label>
+            <textarea id="review-body" class="form-textarea" rows="3"
+              placeholder="Tell us how you use HANGR in your home..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Hanger Photo (Optional)</label>
+            <input type="file" id="review-photo-input" accept="image/*" onchange="previewReviewPhoto(event)"
+              class="form-input">
+            <img id="photo-preview-img" class="photo-preview" alt="Preview">
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+            SUBMIT REVIEW
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== 8. FAQ ACCORDION SECTION ===== -->
+    <section class="faq-section" id="faq-section">
+      <div style="text-align: center;">
+        <div class="section-label">HAVE QUESTIONS?</div>
+        <h2 class="gallery__headline">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item active">
+          <button class="faq-question" type="button">
+            <span>Is Cash on Delivery (COD) available for my pincode?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            Yes! We offer Cash on Delivery (COD) across 19,000+ pincodes all over India. You can pay cash at your
+            doorstep when the delivery agent arrives.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>How many bangles or items can one hanger hold?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            Depending on the tier option (3, 4, 6, or 8 layers), one HANGR steel rack can hold up to 100+ bangles, 30+
+            hair scrunchies, 20+ leather belts, or heavy metallic jewelry effortlessly.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Will it rust or lose shine in humid weather?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            No! HANGR features a premium metal build with a multi-layer electroplated chrome polish that resists rust
+            and corrosion — even in high humidity coastal areas like Mumbai, Chennai, or Kolkata.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What is the estimated delivery time?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            Orders dispatched within 24 hours. Delivery takes 3 to 5 working days depending on your location in India.
+            Tracking link is provided via SMS & WhatsApp.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10. TRUST BAR ===== -->
+    <section class="trust">
+      <div class="trust__grid">
+        <div class="trust__item">
+          <div class="trust__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <div class="trust__item-text">
+            <span class="trust__item-title">Free Express Shipping</span>
+            <span class="trust__item-desc">On orders over ₹999</span>
+          </div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <polyline points="9 12 11 14 15 10" />
+            </svg>
+          </div>
+          <div class="trust__item-text">
+            <span class="trust__item-title">Cash on Delivery</span>
+            <span class="trust__item-desc">100% Verified COD</span>
+          </div>
+        </div>
+        <div class="trust__item">
+          <div class="trust__item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="1 4 1 10 7 10" />
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+            </svg>
+          </div>
+          <div class="trust__item-text">
+            <span class="trust__item-title">Quality Assured</span>
+            <span class="trust__item-desc">Rust-Free Steel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__brand-name">HANGR</div>
+          <p class="footer__brand-desc">The smarter way to organize your accessories. Premium quality steel hangers
+            designed for Indian households.</p>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Quick Links</div>
+          <a href="#" class="footer__col-link">Home</a>
+          <a href="#hero" class="footer__col-link">Shop Hanger</a>
+          <a href="#reviews-section" class="footer__col-link">Customer Reviews</a>
+          <a href="#faq-section" class="footer__col-link">FAQs</a>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Policies & Legal</div>
+          <a href="javascript:void(0)" onclick="openPolicyModal('terms')" class="footer__col-link">Terms &
+            Conditions</a>
+          <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" class="footer__col-link">Shipping
+            Policy</a>
+          <a href="javascript:void(0)" onclick="openPolicyModal('return')" class="footer__col-link">Return & Replacement
+            Policy</a>
+          <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" class="footer__col-link">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 HANGR. All rights reserved. Made with ♥ in India.</p>
+        <div class="footer__policy-bar"
+          style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; font-size: 0.78rem; opacity: 0.85;">
+          <a href="javascript:void(0)" onclick="openPolicyModal('terms')"
+            style="color: inherit; text-decoration: underline;">Terms & Conditions</a>
+          <span>•</span>
+          <a href="javascript:void(0)" onclick="openPolicyModal('shipping')"
+            style="color: inherit; text-decoration: underline;">Shipping Policy</a>
+          <span>•</span>
+          <a href="javascript:void(0)" onclick="openPolicyModal('return')"
+            style="color: inherit; text-decoration: underline;">Return Policy</a>
+          <span>•</span>
+          <a href="javascript:void(0)" onclick="openPolicyModal('privacy')"
+            style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MOBILE STICKY BUY BAR ===== -->
+    <div class="sticky-buy-bar" id="sticky-bar">
+      <div class="sticky-buy-info">
+        <span class="sticky-buy-title">HANGR Steel Hanger</span>
+        <span class="sticky-buy-price">Multi-Tier Space Saver</span>
+      </div>
+      <button type="button" class="btn-sticky-buy" onclick="triggerShopifyBuyNow(event)">
+        BUY NOW
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+      <!-- ===== WRITE A REVIEW MODAL ===== -->
+      <div class="review-modal-overlay" id="review-modal">
+        <div class="review-modal-content">
+          <div class="review-modal-header">
+            <h3>Write a Customer Review</h3>
+            <span class="review-modal-close" onclick="closeReviewModal()">&times;</span>
+          </div>
+          <form id="review-form" onsubmit="submitReview(event)">
+            <div class="review-form-group">
+              <label>Your Overall Rating</label>
+              <div class="star-rating-picker" id="star-picker">
+                <span class="star selected" data-value="1">★</span>
+                <span class="star selected" data-value="2">★</span>
+                <span class="star selected" data-value="3">★</span>
+                <span class="star selected" data-value="4">★</span>
+                <span class="star selected" data-value="5">★</span>
+              </div>
+              <input type="hidden" id="review-rating-val" value="5">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="review-form-group">
+                <label for="review-name">Your Name</label>
+                <input type="text" id="review-name" required placeholder="e.g. Sunita Agarwal">
+              </div>
+              <div class="review-form-group">
+                <label for="review-city">City & State</label>
+                <input type="text" id="review-city" required placeholder="e.g. Jaipur, Rajasthan">
               </div>
             </div>
 
-            <!-- Amazon-style Spec Highlights -->
-            <div class="product-specs-list">
-              <div class="spec-item" style="background: #ECFDF5; border-left: 3px solid #10B981; padding: 6px 10px; border-radius: 4px;">
-                <span class="spec-icon" style="color: #059669;">🎁</span>
-                <span style="color: #065F46;"><strong>PACK OF 2 INCLUDED</strong>: Double the storage! You get 2 full hangers in every order</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-icon">✓</span>
-                <span><strong>Premium Build Quality</strong>: Durable metal with anti-rust chrome finish</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-icon">✓</span>
-                <span><strong>Holds Up To 100+ Bangles / 15kg</strong>: Heavy duty, sturdy & reliable</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-icon">✓</span>
-                <span><strong>Compact 80% Space Saver</strong>: Organizes bangles, scrunchies, belts & jhumkas</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-icon">✓</span>
-                <span><strong>Smooth Anti-Scratch Edges</strong>: Safe for delicate glass & silk bangles</span>
-              </div>
+            <div class="review-form-group">
+              <label for="review-headline">Review Headline</label>
+              <input type="text" id="review-headline" required placeholder="e.g. Absolutely loved this organizer!">
             </div>
 
-            <shopify-variant-selector></shopify-variant-selector>
-
-            <div class="product-card__buttons">
-              <button
-                type="button"
-                class="product-card__add-btn"
-                onclick="document.getElementById('main-cart').addLine(event).showModal();"
-              >ADD TO CART</button>
-              <button
-                type="button"
-                class="product-card__buy-btn"
-                onclick="document.querySelector('shopify-store').buyNow(event);"
-              >BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
+            <div class="review-form-group">
+              <label for="review-body">Review Description</label>
+              <textarea id="review-body" rows="4" required
+                placeholder="Share details about the quality, space saving, or durability..."></textarea>
             </div>
 
-            <div style="font-size: 0.78rem; color: var(--gray-600); text-align: center; display: flex; justify-content: center; gap: 16px; margin-top: 4px;">
-              <span>📦 Cash On Delivery Available</span>
-              <span>🚚 Free Shipping ₹999+</span>
-              <span>🛡️ 100% Quality Assured</span>
+            <div class="review-form-group">
+              <label for="review-photo">Add Product Photo (Optional)</label>
+              <input type="file" id="review-photo" accept="image/*" onchange="previewReviewPhoto(event)">
+              <img id="photo-preview-img" src="" alt="Photo preview"
+                style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-top: 8px; border: 1px solid var(--gray-200);">
             </div>
-          </template>
 
-          <!-- Instant Pre-rendered Fallback (Fixes Reload Blank Space) -->
-          <div shopify-loading-placeholder>
-            <div class="product-brand-tag">HANGR • Official Store</div>
-            <h1 class="product-headline-title">Multi-Tier Heavy Duty Metal Hanger Pack of 2</h1>
-            <div class="product-rating-row">
-              <span class="stars-gold">★★★★★</span>
-              <span style="font-weight: 700;">4.9 / 5.0</span>
-              <span style="color: var(--gray-600);">(1,480+ Verified Buyer Reviews)</span>
-            </div>
-            <div class="product-price-box">
-              <div class="price-main">
-                <span class="price-current">₹499.00 - ₹849.00</span>
-                <span class="price-mrp">M.R.P.: ₹1,499</span>
-                <span class="price-discount-badge">Save 50% OFF</span>
-              </div>
-              <div class="coupon-callout">
-                <span class="coupon-main">🔥 Extra 10% OFF with Code: <strong class="coupon-code-badge">HANGR10</strong></span>
-                <span class="coupon-note">(Applied at checkout)</span>
-              </div>
-            </div>
-            <div class="product-specs-list">
-              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Premium Build Quality</strong>: Durable metal with anti-rust chrome finish</span></div>
-              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Holds Up To 100+ Bangles / 15kg</strong>: Heavy duty, sturdy & reliable</span></div>
-              <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Compact 80% Space Saver</strong>: Organizes bangles, scrunchies & belts</span></div>
-            </div>
-            <div class="product-card__buttons">
-              <button type="button" class="product-card__add-btn">ADD TO CART</button>
-              <button type="button" class="product-card__buy-btn">BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
-            </div>
+            <button type="submit" class="btn-primary"
+              style="width: 100%; justify-content: center; margin-top: 10px; border-radius: 50px;">
+              SUBMIT REVIEW NOW
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== STORE POLICIES MODAL ===== -->
+      <div class="policy-modal-overlay" id="policy-modal">
+        <div class="policy-modal-content">
+          <div class="policy-modal-header">
+            <h3 id="policy-modal-title">Store Policy</h3>
+            <span class="policy-modal-close" onclick="closePolicyModal()">&times;</span>
           </div>
-        </shopify-context>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 4. PERFECT FOR ORGANIZING ===== -->
-  <section class="organizing" id="organizing">
-    <div class="organizing__inner">
-      <h2 class="organizing__title">Perfect For<br>Organizing</h2>
-      <div class="organizing__items">
-        <div class="organizing__item">
-          <div class="organizing__item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
-          </div>
-          <span class="organizing__item-label">Bangles &<br>Bracelets</span>
-        </div>
-        <div class="organizing__item">
-          <div class="organizing__item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L8 8l-6 1 4.5 4L5 19l7-3.5L19 19l-1.5-6L22 9l-6-1z"/></svg>
-          </div>
-          <span class="organizing__item-label">Earrings &<br>Jhumkas</span>
-        </div>
-        <div class="organizing__item">
-          <div class="organizing__item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="4"/><path d="M8 10h8"/><path d="M6 14h12"/><path d="M8 18h8"/></svg>
-          </div>
-          <span class="organizing__item-label">Hairbands &<br>Scrunchies</span>
-        </div>
-        <div class="organizing__item">
-          <div class="organizing__item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
-          </div>
-          <span class="organizing__item-label">Belts &<br>Watches</span>
-        </div>
-        <div class="organizing__item">
-          <div class="organizing__item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/><path d="M2 12h20"/><path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10"/><path d="M12 2c-2.5 2.5-4 6-4 10s1.5 7.5 4 10"/></svg>
-          </div>
-          <span class="organizing__item-label">Necklaces &<br>Chains</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 5. DECLUTTER GALLERY ===== -->
-  <section class="gallery" id="gallery">
-    <div class="section-label">Real Indian Homes</div>
-    <h2 class="gallery__headline fade-in">Declutter. Display. Delight.</h2>
-    <p class="gallery__subtext fade-in">One hanger for all your essentials. Keep your wardrobe organized and elegant.</p>
-    <div class="gallery__grid">
-      <div class="gallery__card fade-in fade-in-delay-1">
-        <img src="./assets/bangles.png" alt="Bangles" loading="lazy" width="320" height="427">
-        <div class="gallery__card-overlay">
-          <div class="gallery__card-title">BRIDAL BANGLES</div>
-          <div class="gallery__card-desc">Tangle-free & easy to pick</div>
-        </div>
-      </div>
-      <div class="gallery__card fade-in fade-in-delay-2">
-        <img src="./assets/hair-accessories.png" alt="Hair accessories" loading="lazy" width="320" height="427">
-        <div class="gallery__card-overlay">
-          <div class="gallery__card-title">HAIR ACCESSORIES</div>
-          <div class="gallery__card-desc">Store 30+ scrunchies easily</div>
-        </div>
-      </div>
-      <div class="gallery__card fade-in fade-in-delay-3">
-        <img src="./assets/belts-watches.png" alt="Belts and watches" loading="lazy" width="320" height="427">
-        <div class="gallery__card-overlay">
-          <div class="gallery__card-title">BELTS & WATCHES</div>
-          <div class="gallery__card-desc">No more tangled straps</div>
-        </div>
-      </div>
-      <div class="gallery__card fade-in fade-in-delay-4">
-        <img src="./assets/earrings.png" alt="Earrings" loading="lazy" width="320" height="427">
-        <div class="gallery__card-overlay">
-          <div class="gallery__card-title">JHUMKAS & EARRINGS</div>
-          <div class="gallery__card-desc">Hang your heavy jewelry safely</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 6. COMPARISON TABLE ===== -->
-  <section class="comparison-section" id="comparison-section">
-    <div style="text-align: center;">
-      <div class="section-label">WHY CHOOSE US</div>
-      <h2 class="gallery__headline">HANGR vs Cheap Racks & Hooks</h2>
-    </div>
-
-    <div class="comparison-table">
-      <div class="comparison-header">
-        <div>Features</div>
-        <div class="highlight-col">HANGR Steel Hanger</div>
-        <div>Cheap Plastic Racks</div>
-      </div>
-      <div class="comparison-row">
-        <div>Rust-Proof Metal Build</div>
-        <div><span class="badge-check">✓</span></div>
-        <div><span class="badge-cross">✕</span></div>
-      </div>
-      <div class="comparison-row">
-        <div>Holds Heavy Load (Up to 15kg / 100+ Bangles)</div>
-        <div><span class="badge-check">✓</span></div>
-        <div><span class="badge-cross">✕</span> (Bends & Breaks)</div>
-      </div>
-      <div class="comparison-row">
-        <div>Compact Wardrobe Space Saver</div>
-        <div><span class="badge-check">✓</span></div>
-        <div><span class="badge-cross">✕</span> (Bulky Racks)</div>
-      </div>
-      <div class="comparison-row">
-        <div>Smooth Anti-Scratch Finish</div>
-        <div><span class="badge-check">✓</span></div>
-        <div><span class="badge-cross">✕</span></div>
-      </div>
-      <div class="comparison-row">
-        <div>100% Rust-Free Guarantee</div>
-        <div><span class="badge-check">✓</span></div>
-        <div><span class="badge-cross">✕</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 7. CUSTOMER REVIEWS & PHOTO SUBMISSION ===== -->
-  <section class="reviews-section" id="reviews-section">
-    <div class="reviews-header">
-      <div>
-        <div class="section-label">CUSTOMER FEEDBACK</div>
-        <h2 class="gallery__headline" style="margin-bottom: 0;">Verified Buyer Reviews</h2>
-      </div>
-
-      <div class="reviews-summary">
-        <div class="reviews-score">
-          <div class="reviews-score__number">4.9</div>
-          <div class="reviews-score__stars">★★★★★</div>
-          <div class="reviews-score__count">Based on 1,480+ Indian Reviews</div>
-        </div>
-
-        <button class="btn-write-review" onclick="openReviewModal()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          Write a Review
-        </button>
-      </div>
-    </div>
-
-    <div class="reviews-grid" id="reviews-grid">
-      <!-- Customer Review 1 -->
-      <div class="review-card">
-        <div class="review-card__user">
-          <div class="review-card__avatar">PS</div>
-          <div class="review-card__meta">
-            <span class="review-card__name">Priya Sharma</span>
-            <span class="review-card__location">Mumbai, Maharashtra</span>
+          <div class="policy-modal-body" id="policy-modal-body">
+            <!-- Dynamically injected policy content -->
           </div>
         </div>
-        <div class="verified-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Verified Buyer (India)
-        </div>
-        <div class="review-card__rating">★★★★★</div>
-        <div class="review-card__title">Best closet organizer ever bought!</div>
-        <div class="review-card__text">Freed up so much space in my wardrobe! The bangles don't slip and the steel is extremely thick and sturdy. Love the openable arms. Pack of 2 is super value.</div>
-        <div class="review-card__photo">
-          <img src="assets/customer-review1.jpg" onerror="this.onerror=null; this.src='customer review1.jpg';" alt="Customer closet review photo" loading="lazy">
-        </div>
-        <div class="review-card__footer">
-          <span>Verified Purchase • 2 days ago</span>
-          <button class="helpful-btn">👍 Helpful (24)</button>
-        </div>
       </div>
 
-      <!-- Customer Review 2 -->
-      <div class="review-card">
-        <div class="review-card__user">
-          <div class="review-card__avatar">AR</div>
-          <div class="review-card__meta">
-            <span class="review-card__name">Ananya Reddy</span>
-            <span class="review-card__location">Hyderabad, Telangana</span>
-          </div>
-        </div>
-        <div class="verified-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Verified Buyer (India)
-        </div>
-        <div class="review-card__rating">★★★★★</div>
-        <div class="review-card__title">Heavy duty steel quality & zero rust</div>
-        <div class="review-card__text">Was worried about quality, but this is genuine heavy steel, not cheap plastic coated wire. Holds all my heavy bridal silk bangles easily without bending!</div>
-        <div class="review-card__photo">
-          <img src="assets/review-photo-1.jpg" onerror="this.onerror=null; this.src='71wTyUAsk7L.jpg';" alt="Customer hanger photo" loading="lazy">
-        </div>
-        <div class="review-card__footer">
-          <span>Verified Purchase • 4 days ago</span>
-          <button class="helpful-btn">👍 Helpful (18)</button>
-        </div>
-      </div>
+      <!-- ===== SHOPIFY CART ===== -->
+      <shopify-cart id="main-cart">
+        <div slot="checkout-button">PROCEED TO CHECKOUT →</div>
+        <div slot="empty">Your cart is empty. Start shopping!</div>
+      </shopify-cart>
 
-      <!-- Customer Review 3 -->
-      <div class="review-card">
-        <div class="review-card__user">
-          <div class="review-card__avatar">MK</div>
-          <div class="review-card__meta">
-            <span class="review-card__name">Meera Kapoor</span>
-            <span class="review-card__location">Delhi NCR</span>
-          </div>
-        </div>
-        <div class="verified-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Verified Buyer (India)
-        </div>
-        <div class="review-card__rating">★★★★★</div>
-        <div class="review-card__title">Super neat & organized wardrobe now</div>
-        <div class="review-card__text">Got the 6-layer pack of 2. It organized all my bangles, dupattas and scarves in one single place. My almirah looks so clean and aesthetic now!</div>
-        <div class="review-card__photo">
-          <img src="assets/review-photo-2.jpg" onerror="this.onerror=null; this.src='81k+XkhBUeL.jpg';" alt="Customer review photo" loading="lazy">
-        </div>
-        <div class="review-card__footer">
-          <span>Verified Purchase • 1 week ago</span>
-          <button class="helpful-btn">👍 Helpful (31)</button>
-        </div>
-      </div>
+      <!-- ===== JAVASCRIPT ===== -->
+      <script>
+        // Image Thumbnail Switcher
+        function switchMainImage(thumb) {
+          const main = document.getElementById('main-product-display');
+          if (!main || !thumb) return;
 
-      <!-- Customer Review 4 -->
-      <div class="review-card">
-        <div class="review-card__user">
-          <div class="review-card__avatar">SG</div>
-          <div class="review-card__meta">
-            <span class="review-card__name">Sunita Gupta</span>
-            <span class="review-card__location">Bengaluru, Karnataka</span>
-          </div>
-        </div>
-        <div class="verified-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          Verified Buyer (India)
-        </div>
-        <div class="review-card__rating">★★★★★</div>
-        <div class="review-card__title">Worth every rupee! Excellent finish.</div>
-        <div class="review-card__text">Smooth edges so my silk sarees and glass bangles stay scratch-free. Delivery was fast and packing was great. Highly recommend to everyone!</div>
-        <div class="review-card__photo">
-          <img src="assets/review-photo-3.jpg" onerror="this.onerror=null; this.src='C1iISHwvScS.jpg';" alt="Customer closet photo" loading="lazy">
-        </div>
-        <div class="review-card__footer">
-          <span>Verified Purchase • 1 week ago</span>
-          <button class="helpful-btn">👍 Helpful (15)</button>
-        </div>
-      </div>
-    </div>
-  </section>
+          let targetSrc = thumb.getAttribute('data-full-src');
+          if (!targetSrc || targetSrc === '') {
+            targetSrc = thumb.src.replace('_150x', '_1600x').replace('_300x', '_1600x').replace(/width=\d+/, 'width=1600');
+          }
 
-  <!-- ===== WRITE REVIEW MODAL ===== -->
-  <div class="modal-overlay" id="review-modal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeReviewModal()">&times;</span>
-      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 8px;">Write a Customer Review</h3>
-      <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 20px;">Share your experience with photos to help other buyers!</p>
+          main.style.opacity = '0.5';
+          const imgPreloader = new Image();
+          imgPreloader.onload = function () {
+            main.src = targetSrc;
+            main.style.opacity = '1';
+          };
+          imgPreloader.onerror = function () {
+            main.src = targetSrc;
+            main.style.opacity = '1';
+          };
+          imgPreloader.src = targetSrc;
 
-      <form id="review-form" onsubmit="submitReview(event)">
-        <div class="form-group">
-          <label>Your Overall Rating</label>
-          <div class="star-rating-select" id="star-picker">
-            <span class="star selected" data-value="1">★</span>
-            <span class="star selected" data-value="2">★</span>
-            <span class="star selected" data-value="3">★</span>
-            <span class="star selected" data-value="4">★</span>
-            <span class="star selected" data-value="5">★</span>
-          </div>
-          <input type="hidden" id="review-rating-val" value="5">
-        </div>
+          document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
 
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="review-name" class="form-input" placeholder="e.g. Kavita Patel" required>
-        </div>
-
-        <div class="form-group">
-          <label>City / Location</label>
-          <input type="text" id="review-city" class="form-input" placeholder="e.g. Ahmedabad, Gujarat" required>
-        </div>
-
-        <div class="form-group">
-          <label>Review Headline</label>
-          <input type="text" id="review-headline" class="form-input" placeholder="e.g. Amazing space saver for bangles!" required>
-        </div>
-
-        <div class="form-group">
-          <label>Detailed Review</label>
-          <textarea id="review-body" class="form-textarea" rows="3" placeholder="Tell us how you use HANGR in your home..." required></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Upload Hanger Photo (Optional)</label>
-          <input type="file" id="review-photo-input" accept="image/*" onchange="previewReviewPhoto(event)" class="form-input">
-          <img id="photo-preview-img" class="photo-preview" alt="Preview">
-        </div>
-
-        <button type="submit" class="btn-primary" style="width: 100%; border-radius: 10px; margin-top: 10px;">
-          SUBMIT REVIEW
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ===== 8. FAQ ACCORDION SECTION ===== -->
-  <section class="faq-section" id="faq-section">
-    <div style="text-align: center;">
-      <div class="section-label">HAVE QUESTIONS?</div>
-      <h2 class="gallery__headline">Frequently Asked Questions</h2>
-    </div>
-
-    <div class="faq-container">
-      <div class="faq-item active">
-        <button class="faq-question" type="button">
-          <span>Is Cash on Delivery (COD) available for my pincode?</span>
-          <span class="faq-icon">▼</span>
-        </button>
-        <div class="faq-answer">
-          Yes! We offer Cash on Delivery (COD) across 19,000+ pincodes all over India. You can pay cash at your doorstep when the delivery agent arrives.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          <span>How many bangles or items can one hanger hold?</span>
-          <span class="faq-icon">▼</span>
-        </button>
-        <div class="faq-answer">
-          Depending on the tier option (3, 4, 6, or 8 layers), one HANGR steel rack can hold up to 100+ bangles, 30+ hair scrunchies, 20+ leather belts, or heavy metallic jewelry effortlessly.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          <span>Will it rust or lose shine in humid weather?</span>
-          <span class="faq-icon">▼</span>
-        </button>
-        <div class="faq-answer">
-          No! HANGR features a premium metal build with a multi-layer electroplated chrome polish that resists rust and corrosion — even in high humidity coastal areas like Mumbai, Chennai, or Kolkata.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" type="button">
-          <span>What is the estimated delivery time?</span>
-          <span class="faq-icon">▼</span>
-        </button>
-        <div class="faq-answer">
-          Orders dispatched within 24 hours. Delivery takes 3 to 5 working days depending on your location in India. Tracking link is provided via SMS & WhatsApp.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 10. TRUST BAR ===== -->
-  <section class="trust">
-    <div class="trust__grid">
-      <div class="trust__item">
-        <div class="trust__item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        </div>
-        <div class="trust__item-text">
-          <span class="trust__item-title">Free Express Shipping</span>
-          <span class="trust__item-desc">On orders over ₹999</span>
-        </div>
-      </div>
-      <div class="trust__item">
-        <div class="trust__item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        </div>
-        <div class="trust__item-text">
-          <span class="trust__item-title">Cash on Delivery</span>
-          <span class="trust__item-desc">100% Verified COD</span>
-        </div>
-      </div>
-      <div class="trust__item">
-        <div class="trust__item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-        </div>
-        <div class="trust__item-text">
-          <span class="trust__item-title">Quality Assured</span>
-          <span class="trust__item-desc">Rust-Free Steel</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" id="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <div class="footer__brand-name">HANGR</div>
-        <p class="footer__brand-desc">The smarter way to organize your accessories. Premium quality steel hangers designed for Indian households.</p>
-      </div>
-      <div class="footer__col">
-        <div class="footer__col-title">Quick Links</div>
-        <a href="#" class="footer__col-link">Home</a>
-        <a href="#hero" class="footer__col-link">Shop Hanger</a>
-        <a href="#reviews-section" class="footer__col-link">Customer Reviews</a>
-        <a href="#faq-section" class="footer__col-link">FAQs</a>
-      </div>
-      <div class="footer__col">
-        <div class="footer__col-title">Policies & Legal</div>
-        <a href="javascript:void(0)" onclick="openPolicyModal('terms')" class="footer__col-link">Terms & Conditions</a>
-        <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" class="footer__col-link">Shipping Policy</a>
-        <a href="javascript:void(0)" onclick="openPolicyModal('return')" class="footer__col-link">Return & Replacement Policy</a>
-        <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" class="footer__col-link">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__copyright">&copy; 2026 HANGR. All rights reserved. Made with ♥ in India.</p>
-      <div class="footer__policy-bar" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; font-size: 0.78rem; opacity: 0.85;">
-        <a href="javascript:void(0)" onclick="openPolicyModal('terms')" style="color: inherit; text-decoration: underline;">Terms & Conditions</a>
-        <span>•</span>
-        <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" style="color: inherit; text-decoration: underline;">Shipping Policy</a>
-        <span>•</span>
-        <a href="javascript:void(0)" onclick="openPolicyModal('return')" style="color: inherit; text-decoration: underline;">Return Policy</a>
-        <span>•</span>
-        <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===== MOBILE STICKY BUY BAR ===== -->
-  <div class="sticky-buy-bar" id="sticky-bar">
-    <div class="sticky-buy-info">
-      <span class="sticky-buy-title">HANGR Steel Hanger</span>
-      <span class="sticky-buy-price">Multi-Tier Space Saver</span>
-    </div>
-    <button
-      type="button"
-      class="btn-sticky-buy"
-      onclick="triggerShopifyBuyNow(event)"
-    >
-      BUY NOW
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
-  <!-- ===== WRITE A REVIEW MODAL ===== -->
-  <div class="review-modal-overlay" id="review-modal">
-    <div class="review-modal-content">
-      <div class="review-modal-header">
-        <h3>Write a Customer Review</h3>
-        <span class="review-modal-close" onclick="closeReviewModal()">&times;</span>
-      </div>
-      <form id="review-form" onsubmit="submitReview(event)">
-        <div class="review-form-group">
-          <label>Your Overall Rating</label>
-          <div class="star-rating-picker" id="star-picker">
-            <span class="star selected" data-value="1">★</span>
-            <span class="star selected" data-value="2">★</span>
-            <span class="star selected" data-value="3">★</span>
-            <span class="star selected" data-value="4">★</span>
-            <span class="star selected" data-value="5">★</span>
-          </div>
-          <input type="hidden" id="review-rating-val" value="5">
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div class="review-form-group">
-            <label for="review-name">Your Name</label>
-            <input type="text" id="review-name" required placeholder="e.g. Sunita Agarwal">
-          </div>
-          <div class="review-form-group">
-            <label for="review-city">City & State</label>
-            <input type="text" id="review-city" required placeholder="e.g. Jaipur, Rajasthan">
-          </div>
-        </div>
-
-        <div class="review-form-group">
-          <label for="review-headline">Review Headline</label>
-          <input type="text" id="review-headline" required placeholder="e.g. Absolutely loved this organizer!">
-        </div>
-
-        <div class="review-form-group">
-          <label for="review-body">Review Description</label>
-          <textarea id="review-body" rows="4" required placeholder="Share details about the quality, space saving, or durability..."></textarea>
-        </div>
-
-        <div class="review-form-group">
-          <label for="review-photo">Add Product Photo (Optional)</label>
-          <input type="file" id="review-photo" accept="image/*" onchange="previewReviewPhoto(event)">
-          <img id="photo-preview-img" src="" alt="Photo preview" style="display: none; width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-top: 8px; border: 1px solid var(--gray-200);">
-        </div>
-
-        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px; border-radius: 50px;">
-          SUBMIT REVIEW NOW
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ===== STORE POLICIES MODAL ===== -->
-  <div class="policy-modal-overlay" id="policy-modal">
-    <div class="policy-modal-content">
-      <div class="policy-modal-header">
-        <h3 id="policy-modal-title">Store Policy</h3>
-        <span class="policy-modal-close" onclick="closePolicyModal()">&times;</span>
-      </div>
-      <div class="policy-modal-body" id="policy-modal-body">
-        <!-- Dynamically injected policy content -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== SHOPIFY CART ===== -->
-  <shopify-cart id="main-cart">
-    <div slot="checkout-button">PROCEED TO CHECKOUT →</div>
-    <div slot="empty">Your cart is empty. Start shopping!</div>
-  </shopify-cart>
-
-  <!-- ===== JAVASCRIPT ===== -->
-  <script>
-    // Image Thumbnail Switcher
-    function switchMainImage(thumb) {
-      const main = document.getElementById('main-product-display');
-      if (!main || !thumb) return;
-
-      let targetSrc = thumb.getAttribute('data-full-src');
-      if (!targetSrc || targetSrc === '') {
-        targetSrc = thumb.src.replace('_150x', '_1600x').replace('_300x', '_1600x').replace(/width=\d+/, 'width=1600');
-      }
-
-      main.style.opacity = '0.5';
-      const imgPreloader = new Image();
-      imgPreloader.onload = function() {
-        main.src = targetSrc;
-        main.style.opacity = '1';
-      };
-      imgPreloader.onerror = function() {
-        main.src = targetSrc;
-        main.style.opacity = '1';
-      };
-      imgPreloader.src = targetSrc;
-
-      document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-      thumb.classList.add('active');
-
-      if (typeof thumb.scrollIntoView === 'function') {
-        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    }
-    window.switchMainImage = switchMainImage;
-
-    function prevGalleryImage(e) {
-      if (e && e.cancelable && typeof e.preventDefault === 'function') {
-        try { e.preventDefault(); } catch(err) {}
-      }
-      if (e && typeof e.stopPropagation === 'function') {
-        try { e.stopPropagation(); } catch(err) {}
-      }
-      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
-      if (!thumbs.length) return;
-      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
-      if (currentIndex <= 0) currentIndex = thumbs.length;
-      switchMainImage(thumbs[currentIndex - 1]);
-    }
-    window.prevGalleryImage = prevGalleryImage;
-
-    function nextGalleryImage(e) {
-      if (e && e.cancelable && typeof e.preventDefault === 'function') {
-        try { e.preventDefault(); } catch(err) {}
-      }
-      if (e && typeof e.stopPropagation === 'function') {
-        try { e.stopPropagation(); } catch(err) {}
-      }
-      const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
-      if (!thumbs.length) return;
-      let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
-      if (currentIndex === -1 || currentIndex >= thumbs.length - 1) {
-        switchMainImage(thumbs[0]);
-      } else {
-        switchMainImage(thumbs[currentIndex + 1]);
-      }
-    }
-    window.nextGalleryImage = nextGalleryImage;
-
-    // Countdown Timer
-    let duration = 14 * 60 + 59;
-    const timerDisplay = document.getElementById('timer');
-    setInterval(() => {
-      let minutes = Math.floor(duration / 60);
-      let seconds = duration % 60;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-      if (timerDisplay) timerDisplay.textContent = `${minutes}:${seconds}`;
-      if (duration > 0) duration--;
-    }, 1000);
-
-    // Trigger Official Shopify Buy Now from Sticky Bar
-    function triggerShopifyBuyNow(event) {
-      const buyBtn = document.querySelector('.product-card__buy-btn');
-      if (buyBtn && !buyBtn.disabled) {
-        buyBtn.click();
-      } else {
-        const store = document.querySelector('shopify-store');
-        if (store && store.buyNow) {
-          store.buyNow(event);
-        } else {
-          document.getElementById('product-card').scrollIntoView({ behavior: 'smooth' });
+          if (typeof thumb.scrollIntoView === 'function') {
+            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
         }
-      }
-    }
+        window.switchMainImage = switchMainImage;
 
-    // Sticky Buy Bar on Scroll
-    window.addEventListener('scroll', () => {
-      const stickyBar = document.getElementById('sticky-bar');
-      if (stickyBar) {
-        if (window.scrollY > 400) stickyBar.classList.add('active');
-        else stickyBar.classList.remove('active');
-      }
-    });
+        function prevGalleryImage(e) {
+          if (e && e.cancelable && typeof e.preventDefault === 'function') {
+            try { e.preventDefault(); } catch (err) { }
+          }
+          if (e && typeof e.stopPropagation === 'function') {
+            try { e.stopPropagation(); } catch (err) { }
+          }
+          const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+          if (!thumbs.length) return;
+          let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+          if (currentIndex <= 0) currentIndex = thumbs.length;
+          switchMainImage(thumbs[currentIndex - 1]);
+        }
+        window.prevGalleryImage = prevGalleryImage;
 
-    // FAQ Toggle Handler
-    function initFaqs() {
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', function() {
-          this.classList.toggle('active');
+        function nextGalleryImage(e) {
+          if (e && e.cancelable && typeof e.preventDefault === 'function') {
+            try { e.preventDefault(); } catch (err) { }
+          }
+          if (e && typeof e.stopPropagation === 'function') {
+            try { e.stopPropagation(); } catch (err) { }
+          }
+          const thumbs = Array.from(document.querySelectorAll('.thumb-img'));
+          if (!thumbs.length) return;
+          let currentIndex = thumbs.findIndex(t => t.classList.contains('active'));
+          if (currentIndex === -1 || currentIndex >= thumbs.length - 1) {
+            switchMainImage(thumbs[0]);
+          } else {
+            switchMainImage(thumbs[currentIndex + 1]);
+          }
+        }
+        window.nextGalleryImage = nextGalleryImage;
+
+        // Countdown Timer
+        let duration = 14 * 60 + 59;
+        const timerDisplay = document.getElementById('timer');
+        setInterval(() => {
+          let minutes = Math.floor(duration / 60);
+          let seconds = duration % 60;
+          seconds = seconds < 10 ? '0' + seconds : seconds;
+          if (timerDisplay) timerDisplay.textContent = `${minutes}:${seconds}`;
+          if (duration > 0) duration--;
+        }, 1000);
+
+        // Trigger Official Shopify Buy Now from Sticky Bar
+        function triggerShopifyBuyNow(event) {
+          const buyBtn = document.querySelector('.product-card__buy-btn');
+          if (buyBtn && !buyBtn.disabled) {
+            buyBtn.click();
+          } else {
+            const store = document.querySelector('shopify-store');
+            if (store && store.buyNow) {
+              store.buyNow(event);
+            } else {
+              document.getElementById('product-card').scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }
+
+        // Sticky Buy Bar on Scroll
+        window.addEventListener('scroll', () => {
+          const stickyBar = document.getElementById('sticky-bar');
+          if (stickyBar) {
+            if (window.scrollY > 400) stickyBar.classList.add('active');
+            else stickyBar.classList.remove('active');
+          }
         });
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFaqs);
-    } else {
-      initFaqs();
-    }
 
-    // Modal Control
-    function openReviewModal() { document.getElementById('review-modal').classList.add('active'); }
-    function closeReviewModal() { document.getElementById('review-modal').classList.remove('active'); }
+        // FAQ Toggle Handler
+        function initFaqs() {
+          document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function () {
+              this.classList.toggle('active');
+            });
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initFaqs);
+        } else {
+          initFaqs();
+        }
 
-    // Star Rating Selection
-    let selectedRating = 5;
-    const stars = document.querySelectorAll('#star-picker .star');
-    stars.forEach(star => {
-      star.addEventListener('click', function() {
-        selectedRating = parseInt(this.getAttribute('data-value'));
-        document.getElementById('review-rating-val').value = selectedRating;
-        stars.forEach((s, idx) => {
-          if (idx < selectedRating) s.classList.add('selected');
-          else s.classList.remove('selected');
+        // Modal Control
+        function openReviewModal() { document.getElementById('review-modal').classList.add('active'); }
+        function closeReviewModal() { document.getElementById('review-modal').classList.remove('active'); }
+
+        // Star Rating Selection
+        let selectedRating = 5;
+        const stars = document.querySelectorAll('#star-picker .star');
+        stars.forEach(star => {
+          star.addEventListener('click', function () {
+            selectedRating = parseInt(this.getAttribute('data-value'));
+            document.getElementById('review-rating-val').value = selectedRating;
+            stars.forEach((s, idx) => {
+              if (idx < selectedRating) s.classList.add('selected');
+              else s.classList.remove('selected');
+            });
+          });
         });
-      });
-    });
 
-    // Photo Preview
-    let reviewPhotoData = null;
-    function previewReviewPhoto(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          reviewPhotoData = e.target.result;
-          const previewImg = document.getElementById('photo-preview-img');
-          previewImg.src = reviewPhotoData;
-          previewImg.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+        // Photo Preview
+        let reviewPhotoData = null;
+        function previewReviewPhoto(event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              reviewPhotoData = e.target.result;
+              const previewImg = document.getElementById('photo-preview-img');
+              previewImg.src = reviewPhotoData;
+              previewImg.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+          }
+        }
 
-    // Submit Review
-    function submitReview(e) {
-      e.preventDefault();
-      const name = document.getElementById('review-name').value;
-      const city = document.getElementById('review-city').value;
-      const headline = document.getElementById('review-headline').value;
-      const body = document.getElementById('review-body').value;
-      const ratingStars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+        // Submit Review
+        function submitReview(e) {
+          e.preventDefault();
+          const name = document.getElementById('review-name').value;
+          const city = document.getElementById('review-city').value;
+          const headline = document.getElementById('review-headline').value;
+          const body = document.getElementById('review-body').value;
+          const ratingStars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
 
-      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0,2);
+          const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
 
-      const reviewCard = document.createElement('div');
-      reviewCard.className = 'review-card fade-in visible';
-      reviewCard.innerHTML = `
+          const reviewCard = document.createElement('div');
+          reviewCard.className = 'review-card fade-in visible';
+          reviewCard.innerHTML = `
         <div class="review-card__user">
           <div class="review-card__avatar">${initials}</div>
           <div class="review-card__meta">
@@ -934,30 +1077,30 @@
         </div>
       `;
 
-      const grid = document.getElementById('reviews-grid');
-      const emptyNotice = document.getElementById('empty-reviews-notice');
-      if (emptyNotice) emptyNotice.remove();
-      if (grid) {
-        grid.insertBefore(reviewCard, grid.firstChild);
-      }
+          const grid = document.getElementById('reviews-grid');
+          const emptyNotice = document.getElementById('empty-reviews-notice');
+          if (emptyNotice) emptyNotice.remove();
+          if (grid) {
+            grid.insertBefore(reviewCard, grid.firstChild);
+          }
 
-      closeReviewModal();
-      document.getElementById('review-form').reset();
-      document.getElementById('photo-preview-img').style.display = 'none';
-      reviewPhotoData = null;
+          closeReviewModal();
+          document.getElementById('review-form').reset();
+          document.getElementById('photo-preview-img').style.display = 'none';
+          reviewPhotoData = null;
 
-      alert('Thank you! Your review has been submitted successfully.');
-    }
+          alert('Thank you! Your review has been submitted successfully.');
+        }
 
-    function openPolicyModal(type) {
-      const modal = document.getElementById('policy-modal');
-      const title = document.getElementById('policy-modal-title');
-      const body = document.getElementById('policy-modal-body');
-      if (!modal || !title || !body) return;
+        function openPolicyModal(type) {
+          const modal = document.getElementById('policy-modal');
+          const title = document.getElementById('policy-modal-title');
+          const body = document.getElementById('policy-modal-body');
+          if (!modal || !title || !body) return;
 
-      if (type === 'return') {
-        title.textContent = 'Return & Replacement Policy';
-        body.innerHTML = `
+          if (type === 'return') {
+            title.textContent = 'Return & Replacement Policy';
+            body.innerHTML = `
           <div style="background: #FEF2F2; border-left: 4px solid #EF4444; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; color: #991B1B; font-weight: 600; font-size: 0.88rem;">
             ⚠️ IMPORTANT: Returns are allowed ONLY on damaged/defective goods and require a continuous unboxing video proof submitted within 3 days of delivery.
           </div>
@@ -972,9 +1115,9 @@
           <h4>5. Non-Returnable Conditions</h4>
           <p>Claims raised after 3 days, claims submitted without unboxing video proof, or return requests due to personal preference/change of mind are strictly non-eligible.</p>
         `;
-      } else if (type === 'shipping') {
-        title.textContent = 'Shipping & Delivery Policy';
-        body.innerHTML = `
+          } else if (type === 'shipping') {
+            title.textContent = 'Shipping & Delivery Policy';
+            body.innerHTML = `
           <h4>1. Free Express Shipping</h4>
           <p>We provide Free Express Shipping across India on all orders over ₹999.</p>
           <h4>2. Order Processing & Dispatch</h4>
@@ -984,9 +1127,9 @@
           <h4>4. Cash on Delivery (COD)</h4>
           <p>100% verified Cash on Delivery is available nationwide.</p>
         `;
-      } else if (type === 'terms') {
-        title.textContent = 'Terms & Conditions';
-        body.innerHTML = `
+          } else if (type === 'terms') {
+            title.textContent = 'Terms & Conditions';
+            body.innerHTML = `
           <h4>1. Acceptance of Terms</h4>
           <p>By accessing or placing an order on HANGR, you agree to these Terms & Conditions.</p>
           <h4>2. Pack of 2 Product Guarantee</h4>
@@ -994,24 +1137,25 @@
           <h4>3. Pricing & Payments</h4>
           <p>All prices are in Indian Rupees (INR) inclusive of GST. Payments can be made via COD, UPI, or Cards.</p>
         `;
-      } else if (type === 'privacy') {
-        title.textContent = 'Privacy Policy';
-        body.innerHTML = `
+          } else if (type === 'privacy') {
+            title.textContent = 'Privacy Policy';
+            body.innerHTML = `
           <h4>1. Information Collection & Use</h4>
           <p>We collect your name, shipping address, email, and mobile number solely to fulfill orders and send tracking updates.</p>
           <h4>2. Data Security</h4>
           <p>Your details are protected using 256-bit SSL encryption. We do NOT sell or share customer data with third-party marketing companies.</p>
         `;
-      }
+          }
 
-      modal.classList.add('active');
-    }
+          modal.classList.add('active');
+        }
 
-    function closePolicyModal() {
-      const modal = document.getElementById('policy-modal');
-      if (modal) modal.classList.remove('active');
-    }
-  </script>
-  </div>
+        function closePolicyModal() {
+          const modal = document.getElementById('policy-modal');
+          if (modal) modal.classList.remove('active');
+        }
+      </script>
+    </div>
 </body>
+
 </html>

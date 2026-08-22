@@ -79,9 +79,20 @@
           <span class="price-mrp">M.R.P.: Rs. 1,499</span>
           <span class="price-discount-badge">Save 50% OFF</span>
         </div>
-        <div class="coupon-callout">
-          <span class="coupon-main">🔥 Extra 10% OFF with Code: <strong class="coupon-code-badge">HANGR10</strong></span>
-          <span class="coupon-note">(Applied at checkout)</span>
+        <div class="prepaid-discount-banner" id="prepaid-discount-banner">
+          <div class="prepaid-discount-inner">
+            <div class="prepaid-discount-left">
+              <span class="prepaid-icon">💳</span>
+              <div class="prepaid-text">
+                <span class="prepaid-headline">Flat 10% OFF on Prepaid Orders</span>
+                <span class="prepaid-subtext">Pay via UPI / Card / Netbanking & save extra!</span>
+              </div>
+            </div>
+            <div class="prepaid-discount-right">
+              <span class="prepaid-price-label">PREPAID PRICE</span>
+              <span class="prepaid-price-value" id="prepaid-price-display">From Rs. 449</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -186,11 +197,12 @@
             type="button"
             class="product-card__buy-btn"
             onclick="handleBuyNow(event)"
-          >BUY NOW (CASH ON DELIVERY AVAILABLE)</button>
+          >BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
         </div>
       </form>
 
       <div class="product-trust-badges" style="font-size: 0.78rem; color: var(--gray-600); text-align: center; display: flex; justify-content: center; gap: 12px; margin-top: 4px; flex-wrap: wrap;">
+        <span>💳 10% OFF Prepaid</span>
         <span>📦 COD Available</span>
         <span>🚚 Free Shipping ₹999+</span>
         <span>🛡️ Quality Assured</span>
