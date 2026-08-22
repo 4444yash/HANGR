@@ -90,13 +90,7 @@
             </div>
             <div class="prepaid-discount-right">
               <span class="prepaid-price-label">PREPAID PRICE</span>
-              <span class="prepaid-price-value" id="prepaid-price-display">
-                {% if main_product.price %}
-                  {{ main_product.price | times: 0.9 | round | money }}
-                {% else %}
-                  From Rs. 549
-                {% endif %}
-              </span>
+              <span class="prepaid-price-value" id="prepaid-price-display">From Rs. 549</span>
             </div>
           </div>
         </div>

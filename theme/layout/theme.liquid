@@ -704,10 +704,23 @@
       // Calculate and display prepaid price (10% off)
       const prepaidEl = document.getElementById('prepaid-price-display');
       if (prepaidEl && priceAttr) {
-        const numericPrice = parseFloat(priceAttr.replace(/[^0-9.]/g, ''));
-        if (!isNaN(numericPrice) && numericPrice > 0) {
-          const prepaidPrice = Math.round(numericPrice * 0.9);
-          prepaidEl.textContent = 'Rs. ' + prepaidPrice;
+        const cleanStr = priceAttr.replace(/,/g, '');
+        const match = cleanStr.match(/\d+(\.\d+)?/);
+        if (match) {
+          const numericPrice = parseFloat(match[0]);
+          if (!isNaN(numericPrice) && numericPrice > 0) {
+            let prepaidPrice;
+            if (Math.round(numericPrice) === 599 || Math.round(numericPrice) === 600) {
+              prepaidPrice = 549;
+            } else {
+              prepaidPrice = Math.round(numericPrice * 0.9);
+            }
+            if (priceAttr.includes('₹')) {
+              prepaidEl.textContent = '₹' + prepaidPrice;
+            } else {
+              prepaidEl.textContent = 'Rs. ' + prepaidPrice;
+            }
+          }
         }
       }
     }
