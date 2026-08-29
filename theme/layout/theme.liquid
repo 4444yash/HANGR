@@ -514,10 +514,10 @@
       } else {
         // Fallback options matching 4 standard hanger variants
         const fallbackVariants = [
-          { id: '53853852500152', title: '3 layer (Pack of 2) —', price: 'Rs. 599.00' },
-          { id: '53853852532920', title: '4 layer (Pack of 2) —', price: 'Rs. 699.00' },
-          { id: '53853852565688', title: '6 layer (Pack of 2) —', price: 'Rs. 799.00' },
-          { id: '53853852598456', title: '8 layer (Pack of 2) —', price: 'Rs. 999.00' }
+          { id: '53853852500152', title: '3 Layer / Line —', price: 'Rs. 550.00' },
+          { id: '53853852532920', title: '4 Layer / Line —', price: 'Rs. 650.00' },
+          { id: '53853852565688', title: '6 Layer / Line —', price: 'Rs. 750.00' },
+          { id: '53853852598456', title: '8 Layer / Line —', price: 'Rs. 850.00' }
         ];
         const checkedPage = document.querySelector('#AddToCartForm input[name="id"]:checked');
         const selectedVal = checkedPage ? checkedPage.value : null;
@@ -709,12 +709,7 @@
         if (match) {
           const numericPrice = parseFloat(match[0]);
           if (!isNaN(numericPrice) && numericPrice > 0) {
-            let prepaidPrice;
-            if (Math.round(numericPrice) === 599 || Math.round(numericPrice) === 600) {
-              prepaidPrice = 549;
-            } else {
-              prepaidPrice = Math.round(numericPrice * 0.9);
-            }
+            const prepaidPrice = Math.round(numericPrice * 0.9);
             if (priceAttr.includes('₹')) {
               prepaidEl.textContent = '₹' + prepaidPrice;
             } else {
@@ -831,7 +826,7 @@
           <h4>3. 3-Day Reporting Deadline</h4>
           <p>All claims along with the unboxing video proof <strong>MUST be submitted within 3 days (72 hours)</strong> from the time of delivery date to support@hangr.in or our WhatsApp support.</p>
           <h4>4. Free Replacement Dispatch</h4>
-          <p>Upon verification of your unboxing video proof, a brand new replacement pack of hangers will be dispatched to your doorstep completely free of charge.</p>
+          <p>Upon verification of your unboxing video proof, a brand new replacement hanger will be dispatched to your doorstep completely free of charge.</p>
           <h4>5. Non-Returnable Conditions</h4>
           <p>Claims raised after 3 days, claims submitted without unboxing video proof, or return requests due to personal preference/change of mind are strictly non-eligible.</p>
         `;
@@ -852,8 +847,8 @@
         body.innerHTML = `
           <h4>1. Acceptance of Terms</h4>
           <p>By accessing or placing an order on HANGR, you agree to these Terms & Conditions.</p>
-          <h4>2. Pack of 2 Product Guarantee</h4>
-          <p>Product specifications are accurate as shown. Every hanger variant option on HANGR is delivered as a <strong>Pack of 2</strong> units.</p>
+          <h4>2. Premium Quality Guarantee</h4>
+          <p>Product specifications are accurate as shown. Every hanger delivered is thoroughly inspected for smooth finish, heavy duty steel quality, and reliable durability.</p>
           <h4>3. Pricing & Payments</h4>
           <p>All prices are in Indian Rupees (INR) inclusive of GST. Payments can be made via COD, UPI, or Cards.</p>
         `;

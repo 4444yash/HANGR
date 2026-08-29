@@ -58,7 +58,7 @@
         {{ main_product.vendor | default: 'HANGR' }} • Official Store
       </div>
       <h1 class="product-headline-title">
-        {{ main_product.title | default: 'Multi-Tier Heavy Duty Metal Hanger (Pack of 2)' }}
+        {{ main_product.title | default: 'Multi-Tier Heavy Duty Metal Hanger' }}
       </h1>
 
       <div class="product-rating-row">
@@ -90,7 +90,7 @@
             </div>
             <div class="prepaid-discount-right">
               <span class="prepaid-price-label">PREPAID PRICE</span>
-              <span class="prepaid-price-value" id="prepaid-price-display">From Rs. 549</span>
+              <span class="prepaid-price-value" id="prepaid-price-display">From Rs. 495</span>
             </div>
           </div>
         </div>
@@ -99,8 +99,8 @@
       <!-- Specs Highlights -->
       <div class="product-specs-list">
         <div class="spec-item" style="background: #ECFDF5; border-left: 3px solid #10B981; padding: 6px 10px; border-radius: 4px;">
-          <span class="spec-icon" style="color: #059669;">🎁</span>
-          <span style="color: #065F46;"><strong>PACK OF 2 INCLUDED</strong>: Double the storage! You get 2 full hangers in every order</span>
+          <span class="spec-icon" style="color: #059669;">✨</span>
+          <span style="color: #065F46;"><strong>SPACE-SAVING ORGANIZER</strong>: Holds 100+ bangles, dupattas, scarves & belts with swing-open arms</span>
         </div>
         <div class="spec-item">
           <span class="spec-icon">✓</span>
@@ -148,7 +148,7 @@
                     class="variant-option-radio"
                   >
                   <div class="variant-option-text">
-                    <span class="variant-option-name">{{ variant.title }}{% unless variant.title contains 'Pack' %} (Pack of 2){% endunless %} —</span>
+                    <span class="variant-option-name">{{ variant.title }} —</span>
                     <span class="variant-option-price">{{ variant.price | money }}</span>
                   </div>
                 </label>
@@ -156,31 +156,31 @@
             {% else %}
               <!-- Fallback Shopify Variant IDs -->
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
-                <input type="radio" name="id" value="53853852500152" data-price="Rs. 599.00" data-mrp="M.R.P.: Rs. 1,199" onchange="updateVariantSelection(this)" class="variant-option-radio">
+                <input type="radio" name="id" value="53853852500152" data-price="Rs. 550.00" data-mrp="M.R.P.: Rs. 1,100" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">3 layer (Pack of 2) —</span>
-                  <span class="variant-option-price">Rs. 599.00</span>
+                  <span class="variant-option-name">3 Layer / Line —</span>
+                  <span class="variant-option-price">Rs. 550.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
-                <input type="radio" name="id" value="53853852532920" data-price="Rs. 699.00" data-mrp="M.R.P.: Rs. 1,399" onchange="updateVariantSelection(this)" class="variant-option-radio">
+                <input type="radio" name="id" value="53853852532920" data-price="Rs. 650.00" data-mrp="M.R.P.: Rs. 1,300" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">4 layer (Pack of 2) —</span>
-                  <span class="variant-option-price">Rs. 699.00</span>
+                  <span class="variant-option-name">4 Layer / Line —</span>
+                  <span class="variant-option-price">Rs. 650.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
-                <input type="radio" name="id" value="53853852565688" data-price="Rs. 799.00" data-mrp="M.R.P.: Rs. 1,599" onchange="updateVariantSelection(this)" class="variant-option-radio">
+                <input type="radio" name="id" value="53853852565688" data-price="Rs. 750.00" data-mrp="M.R.P.: Rs. 1,500" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">6 layer (Pack of 2) —</span>
-                  <span class="variant-option-price">Rs. 799.00</span>
+                  <span class="variant-option-name">6 Layer / Line —</span>
+                  <span class="variant-option-price">Rs. 750.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
-                <input type="radio" name="id" value="53853852598456" data-price="Rs. 999.00" data-mrp="M.R.P.: Rs. 1,999" onchange="updateVariantSelection(this)" class="variant-option-radio">
+                <input type="radio" name="id" value="53853852598456" data-price="Rs. 850.00" data-mrp="M.R.P.: Rs. 1,700" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">8 layer (Pack of 2) —</span>
-                  <span class="variant-option-price">Rs. 999.00</span>
+                  <span class="variant-option-name">8 Layer / Line —</span>
+                  <span class="variant-option-price">Rs. 850.00</span>
                 </div>
               </label>
             {% endif %}
@@ -366,7 +366,7 @@
       </div>
       <div class="review-card__rating">★★★★★</div>
       <div class="review-card__title">Best closet organizer ever bought!</div>
-      <div class="review-card__text">Freed up so much space in my wardrobe! The bangles don't slip and the steel is extremely thick and sturdy. Love the openable arms. Pack of 2 is super value.</div>
+      <div class="review-card__text">Freed up so much space in my wardrobe! The bangles don't slip and the steel is extremely thick and sturdy. Love the openable arms. It is super value.</div>
       <div class="review-card__photo">
         <img src="{{ 'customer-review1.jpg' | asset_url }}" onerror="this.onerror=null; this.src='customer-review1.jpg';" alt="Customer closet review photo" loading="lazy">
       </div>
@@ -416,7 +416,7 @@
       </div>
       <div class="review-card__rating">★★★★★</div>
       <div class="review-card__title">Super neat & organized wardrobe now</div>
-      <div class="review-card__text">Got the 6-layer pack of 2. It organized all my bangles, dupattas and scarves in one single place. My almirah looks so clean and aesthetic now!</div>
+      <div class="review-card__text">Got the 6-layer hanger. It organized all my bangles, dupattas and scarves in one single place. My almirah looks so clean and aesthetic now!</div>
       <div class="review-card__photo">
         <img src="{{ 'review-photo-2.jpg' | asset_url }}" onerror="this.onerror=null; this.src='review-photo-2.jpg';" alt="Customer review photo" loading="lazy">
       </div>
