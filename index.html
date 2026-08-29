@@ -234,7 +234,7 @@
                 <button type="button" class="product-card__add-btn"
                   onclick="document.getElementById('main-cart').addLine(event).showModal();">ADD TO CART</button>
                 <button type="button" class="product-card__buy-btn"
-                  onclick="document.querySelector('shopify-store').buyNow(event);">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
+                  onclick="handleBuyNow(event)">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
               </div>
 
               <!-- Amazon-style Spec Highlights -->
@@ -305,7 +305,7 @@
               </div>
               <div class="product-card__buttons">
                 <button type="button" class="product-card__add-btn">ADD TO CART</button>
-                <button type="button" class="product-card__buy-btn">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
+                <button type="button" class="product-card__buy-btn" onclick="handleBuyNow(event)">BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE</button>
               </div>
               <div class="product-specs-list" style="margin-top: 16px;">
                 <div class="spec-item"><span class="spec-icon">✓</span><span><strong>Premium Build Quality</strong>:
@@ -817,7 +817,54 @@
           <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
       </button>
-      <!-- ===== WRITE A REVIEW MODAL ===== -->
+    </div>
+
+    <!-- ===== PACK OF 2 UPSELL MODAL ===== -->
+    <div class="upsell-modal-overlay" id="upsell-modal" onclick="if(event.target===this) closeUpsellModal()">
+      <div class="upsell-modal-content">
+        <div class="upsell-modal-header">
+          <div class="variant-modal-title-wrap">
+            <h3 class="variant-modal-title">🎉 SPECIAL DEAL!</h3>
+            <p class="variant-modal-subtitle">Get more, save more — limited time offer</p>
+          </div>
+          <button type="button" class="variant-modal-close" onclick="closeUpsellModal()" aria-label="Close">&times;</button>
+        </div>
+
+        <div class="upsell-modal-body">
+          <div class="upsell-options-grid" id="upsell-options-grid">
+            <!-- Option 1: Single unit -->
+            <label class="upsell-option-card selected" id="upsell-opt-single" onclick="selectUpsellOption('single')">
+              <input type="radio" name="upsell_choice" value="single" class="variant-popup-radio" checked>
+              <div class="upsell-option-info">
+                <span class="upsell-option-title">Single Hanger</span>
+                <span class="upsell-option-detail" id="upsell-single-price">₹550.00</span>
+                <span class="upsell-option-sub">Standard price</span>
+              </div>
+            </label>
+
+            <!-- Option 2: Pack of 2 at 20% OFF -->
+            <label class="upsell-option-card upsell-option-highlight" id="upsell-opt-pack2" onclick="selectUpsellOption('pack2')">
+              <div class="upsell-best-deal-badge">BEST DEAL</div>
+              <input type="radio" name="upsell_choice" value="pack2" class="variant-popup-radio">
+              <div class="upsell-option-info">
+                <span class="upsell-option-title">Pack of 2 <span class="upsell-save-tag">SAVE 20%</span></span>
+                <span class="upsell-option-detail" id="upsell-pack2-price">₹880.00</span>
+                <span class="upsell-option-sub"><s id="upsell-pack2-mrp">₹1,100.00</s> &nbsp;· You save <strong id="upsell-pack2-savings">₹220</strong></span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="upsell-modal-footer">
+          <button type="button" class="btn-primary variant-modal-action-btn" id="upsell-confirm-btn" onclick="confirmUpsellAction()" style="background: var(--emerald, #059669);">
+            CONTINUE TO CHECKOUT →
+          </button>
+          <p style="font-size: 0.72rem; color: var(--gray-500, #6b7280); text-align: center; margin: 4px 0 0;">💳 10% extra off on Prepaid (Auto-Applied in Razorpay) · 📦 COD Available</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== WRITE A REVIEW MODAL ===== -->
       <div class="review-modal-overlay" id="review-modal">
         <div class="review-modal-content">
           <div class="review-modal-header">
@@ -970,19 +1017,93 @@
           if (duration > 0) duration--;
         }, 1000);
 
+        // Buy Now & Pack of 2 Upsell Flow
+        function handleBuyNow(e) {
+          if (e) e.preventDefault();
+          openUpsellModal();
+        }
+
+        function openUpsellModal() {
+          populateUpsellPrices();
+          const modal = document.getElementById('upsell-modal');
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+          selectUpsellOption('single');
+        }
+
+        function closeUpsellModal() {
+          const modal = document.getElementById('upsell-modal');
+          if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+
+        function populateUpsellPrices() {
+          let unitPrice = 550;
+          const priceEl = document.querySelector('.price-current') || document.getElementById('product-price-display');
+          if (priceEl && priceEl.textContent) {
+            const cleanStr = priceEl.textContent.replace(/,/g, '');
+            const match = cleanStr.match(/[\d]+(\.\d+)?/);
+            if (match) unitPrice = parseFloat(match[0]);
+          }
+
+          const singlePriceEl = document.getElementById('upsell-single-price');
+          if (singlePriceEl) {
+            singlePriceEl.textContent = '₹' + unitPrice.toFixed(2);
+          }
+
+          const totalWithout = unitPrice * 2;
+          const totalWith = Math.round(totalWithout * 0.8);
+          const savings = Math.round(totalWithout - totalWith);
+
+          const pack2PriceEl = document.getElementById('upsell-pack2-price');
+          const pack2MrpEl = document.getElementById('upsell-pack2-mrp');
+          const pack2SavingsEl = document.getElementById('upsell-pack2-savings');
+
+          if (pack2PriceEl) pack2PriceEl.textContent = '₹' + totalWith.toFixed(2);
+          if (pack2MrpEl) pack2MrpEl.textContent = '₹' + totalWithout.toFixed(2);
+          if (pack2SavingsEl) pack2SavingsEl.textContent = '₹' + savings;
+        }
+
+        function selectUpsellOption(option) {
+          const singleCard = document.getElementById('upsell-opt-single');
+          const pack2Card = document.getElementById('upsell-opt-pack2');
+          const singleRadio = singleCard ? singleCard.querySelector('input[type="radio"]') : null;
+          const pack2Radio = pack2Card ? pack2Card.querySelector('input[type="radio"]') : null;
+
+          if (option === 'pack2') {
+            if (singleCard) singleCard.classList.remove('selected');
+            if (pack2Card) pack2Card.classList.add('selected');
+            if (singleRadio) singleRadio.checked = false;
+            if (pack2Radio) pack2Radio.checked = true;
+          } else {
+            if (singleCard) singleCard.classList.add('selected');
+            if (pack2Card) pack2Card.classList.remove('selected');
+            if (singleRadio) singleRadio.checked = true;
+            if (pack2Radio) pack2Radio.checked = false;
+          }
+        }
+
+        function confirmUpsellAction() {
+          const upsellChoice = document.querySelector('input[name="upsell_choice"]:checked');
+          const isPack2 = upsellChoice && upsellChoice.value === 'pack2';
+
+          closeUpsellModal();
+
+          const store = document.querySelector('shopify-store');
+          if (store && store.buyNow) {
+            store.buyNow();
+          } else {
+            window.location.href = 'https://hangr-porpoise.myshopify.com/checkout';
+          }
+        }
+
         // Trigger Official Shopify Buy Now from Sticky Bar
         function triggerShopifyBuyNow(event) {
-          const buyBtn = document.querySelector('.product-card__buy-btn');
-          if (buyBtn && !buyBtn.disabled) {
-            buyBtn.click();
-          } else {
-            const store = document.querySelector('shopify-store');
-            if (store && store.buyNow) {
-              store.buyNow(event);
-            } else {
-              document.getElementById('product-card').scrollIntoView({ behavior: 'smooth' });
-            }
-          }
+          handleBuyNow(event);
         }
 
         // Sticky Buy Bar on Scroll

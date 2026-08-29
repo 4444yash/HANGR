@@ -237,6 +237,52 @@
   </div>
 
   <!-- ===== WRITE A REVIEW MODAL ===== -->
+  <!-- ===== PACK OF 2 UPSELL MODAL ===== -->
+  <div class="upsell-modal-overlay" id="upsell-modal" onclick="if(event.target===this) closeUpsellModal()">
+    <div class="upsell-modal-content">
+      <div class="upsell-modal-header">
+        <div class="variant-modal-title-wrap">
+          <h3 class="variant-modal-title">🎉 SPECIAL DEAL!</h3>
+          <p class="variant-modal-subtitle">Get more, save more — limited time offer</p>
+        </div>
+        <button type="button" class="variant-modal-close" onclick="closeUpsellModal()" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="upsell-modal-body">
+        <div class="upsell-options-grid" id="upsell-options-grid">
+          <!-- Option 1: Single unit -->
+          <label class="upsell-option-card selected" id="upsell-opt-single" onclick="selectUpsellOption('single')">
+            <input type="radio" name="upsell_choice" value="single" class="variant-popup-radio" checked>
+            <div class="upsell-option-info">
+              <span class="upsell-option-title">Single Hanger</span>
+              <span class="upsell-option-detail" id="upsell-single-price">Rs. 550.00</span>
+              <span class="upsell-option-sub">Standard price</span>
+            </div>
+          </label>
+
+          <!-- Option 2: Pack of 2 at 20% OFF -->
+          <label class="upsell-option-card upsell-option-highlight" id="upsell-opt-pack2" onclick="selectUpsellOption('pack2')">
+            <div class="upsell-best-deal-badge">BEST DEAL</div>
+            <input type="radio" name="upsell_choice" value="pack2" class="variant-popup-radio">
+            <div class="upsell-option-info">
+              <span class="upsell-option-title">Pack of 2 <span class="upsell-save-tag">SAVE 20%</span></span>
+              <span class="upsell-option-detail" id="upsell-pack2-price">Rs. 880.00</span>
+              <span class="upsell-option-sub"><s id="upsell-pack2-mrp">Rs. 1,100.00</s> &nbsp;· You save <strong id="upsell-pack2-savings">Rs. 220</strong></span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="upsell-modal-footer">
+        <button type="button" class="btn-primary variant-modal-action-btn" id="upsell-confirm-btn" onclick="confirmUpsellAction()" style="background: var(--emerald, #059669);">
+          CONTINUE TO CHECKOUT →
+        </button>
+        <p style="font-size: 0.72rem; color: var(--gray-500, #6b7280); text-align: center; margin: 4px 0 0;">💳 10% extra off on Prepaid (Auto-Applied in Razorpay) · 📦 COD Available</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WRITE A REVIEW MODAL (contd.) ===== -->
   <div class="review-modal-overlay" id="review-modal">
     <div class="review-modal-content">
       <div class="review-modal-header">
@@ -637,9 +683,89 @@
         openVariantModal('buy');
         return;
       }
+      // Show upsell popup instead of going to checkout directly
+      openUpsellModal();
+    }
+
+    function openUpsellModal() {
+      populateUpsellPrices();
+      const modal = document.getElementById('upsell-modal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      // Default to single selected
+      selectUpsellOption('single');
+    }
+
+    function closeUpsellModal() {
+      const modal = document.getElementById('upsell-modal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function populateUpsellPrices() {
+      const checkedRadio = document.querySelector('input[name="id"]:checked');
+      if (!checkedRadio) return;
+
+      const priceAttr = checkedRadio.getAttribute('data-price') || '';
+      const cleanStr = priceAttr.replace(/,/g, '');
+      const match = cleanStr.match(/[\d]+(\.\d+)?/);
+      const unitPrice = match ? parseFloat(match[0]) : 550;
+
+      // Single price display
+      const singlePriceEl = document.getElementById('upsell-single-price');
+      if (singlePriceEl) {
+        singlePriceEl.textContent = 'Rs. ' + unitPrice.toFixed(2);
+      }
+
+      // Pack of 2 at 20% off (per unit discount applied to total)
+      const totalWithout = unitPrice * 2;
+      const totalWith = Math.round(totalWithout * 0.8);
+      const savings = Math.round(totalWithout - totalWith);
+
+      const pack2PriceEl = document.getElementById('upsell-pack2-price');
+      const pack2MrpEl = document.getElementById('upsell-pack2-mrp');
+      const pack2SavingsEl = document.getElementById('upsell-pack2-savings');
+
+      if (pack2PriceEl) pack2PriceEl.textContent = 'Rs. ' + totalWith.toFixed(2);
+      if (pack2MrpEl) pack2MrpEl.textContent = 'Rs. ' + totalWithout.toFixed(2);
+      if (pack2SavingsEl) pack2SavingsEl.textContent = 'Rs. ' + savings;
+    }
+
+    function selectUpsellOption(option) {
+      const singleCard = document.getElementById('upsell-opt-single');
+      const pack2Card = document.getElementById('upsell-opt-pack2');
+      const singleRadio = singleCard ? singleCard.querySelector('input[type="radio"]') : null;
+      const pack2Radio = pack2Card ? pack2Card.querySelector('input[type="radio"]') : null;
+
+      if (option === 'pack2') {
+        if (singleCard) singleCard.classList.remove('selected');
+        if (pack2Card) pack2Card.classList.add('selected');
+        if (singleRadio) singleRadio.checked = false;
+        if (pack2Radio) pack2Radio.checked = true;
+      } else {
+        if (singleCard) singleCard.classList.add('selected');
+        if (pack2Card) pack2Card.classList.remove('selected');
+        if (singleRadio) singleRadio.checked = true;
+        if (pack2Radio) pack2Radio.checked = false;
+      }
+    }
+
+    function confirmUpsellAction() {
+      const checkedRadio = document.querySelector('input[name="id"]:checked');
+      if (!checkedRadio || !checkedRadio.value) return;
+
       const selectedVariantId = checkedRadio.value;
-      const qtyInput = document.querySelector('#AddToCartForm input[name="quantity"]');
-      const quantity = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+      const upsellChoice = document.querySelector('input[name="upsell_choice"]:checked');
+      const isPack2 = upsellChoice && upsellChoice.value === 'pack2';
+      const quantity = isPack2 ? 2 : 1;
+
+      closeUpsellModal();
+
+      // Go to checkout
       window.location.href = '/cart/' + selectedVariantId + ':' + quantity;
     }
 
