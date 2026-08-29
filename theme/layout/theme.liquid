@@ -494,7 +494,7 @@
           if (!radio) return;
 
           const variantId = radio.value;
-          const title = nameEl ? nameEl.textContent.trim() : (radio.dataset.title || '');
+          const title = nameEl ? nameEl.textContent.replace(/[—–-]/g, '').trim() : (radio.dataset.title || '');
           const price = priceEl ? priceEl.textContent.trim() : (radio.dataset.price || '');
           const isSelected = radio.checked;
 
@@ -514,10 +514,10 @@
       } else {
         // Fallback options matching 4 standard hanger variants
         const fallbackVariants = [
-          { id: '53853852500152', title: '3 Layer / Line —', price: 'Rs. 550.00' },
-          { id: '53853852532920', title: '4 Layer / Line —', price: 'Rs. 650.00' },
-          { id: '53853852565688', title: '6 Layer / Line —', price: 'Rs. 750.00' },
-          { id: '53853852598456', title: '8 Layer / Line —', price: 'Rs. 850.00' }
+          { id: '53853852500152', title: '3 Layer / Line', price: 'Rs. 550.00' },
+          { id: '53853852532920', title: '4 Layer / Line', price: 'Rs. 650.00' },
+          { id: '53853852565688', title: '6 Layer / Line', price: 'Rs. 750.00' },
+          { id: '53853852598456', title: '8 Layer / Line', price: 'Rs. 850.00' }
         ];
         const checkedPage = document.querySelector('#AddToCartForm input[name="id"]:checked');
         const selectedVal = checkedPage ? checkedPage.value : null;
