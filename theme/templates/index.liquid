@@ -124,7 +124,7 @@
                     class="variant-option-radio"
                   >
                   <div class="variant-option-text">
-                    <span class="variant-option-name">{{ variant.title | remove: '—' | remove: '-' | strip }}</span>
+                    <span class="variant-option-name">{{ variant.title | remove: '—' | remove: '-' | remove: '(Pack of 1)' | remove: 'Pack of 1' | strip }} (Pack of 1)</span>
                     <span class="variant-option-price">{{ variant.price | money }}</span>
                   </div>
                 </label>
@@ -134,28 +134,28 @@
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
                 <input type="radio" name="id" value="53853852500152" data-price="Rs. 550.00" data-mrp="M.R.P.: Rs. 1,100" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">3 Layer / Line</span>
+                  <span class="variant-option-name">3 Layer / Line (Pack of 1)</span>
                   <span class="variant-option-price">Rs. 550.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
                 <input type="radio" name="id" value="53853852532920" data-price="Rs. 650.00" data-mrp="M.R.P.: Rs. 1,300" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">4 Layer / Line</span>
+                  <span class="variant-option-name">4 Layer / Line (Pack of 1)</span>
                   <span class="variant-option-price">Rs. 650.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
                 <input type="radio" name="id" value="53853852565688" data-price="Rs. 750.00" data-mrp="M.R.P.: Rs. 1,500" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">6 Layer / Line</span>
+                  <span class="variant-option-name">6 Layer / Line (Pack of 1)</span>
                   <span class="variant-option-price">Rs. 750.00</span>
                 </div>
               </label>
               <label class="variant-option-card" onclick="const r = this.querySelector('input[type=radio]'); if(r){ r.checked = true; updateVariantSelection(r); }">
                 <input type="radio" name="id" value="53853852598456" data-price="Rs. 850.00" data-mrp="M.R.P.: Rs. 1,700" onchange="updateVariantSelection(this)" class="variant-option-radio">
                 <div class="variant-option-text">
-                  <span class="variant-option-name">8 Layer / Line</span>
+                  <span class="variant-option-name">8 Layer / Line (Pack of 1)</span>
                   <span class="variant-option-price">Rs. 850.00</span>
                 </div>
               </label>
