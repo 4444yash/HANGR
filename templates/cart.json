@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart-main",
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,36 @@
+<!-- ===== SHOPIFY CART PAGE SECTION ===== -->
+<section class="cart-page-section" style="padding: 60px 24px; max-width: 900px; margin: 0 auto; min-height: 60vh;">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <h1 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; margin-bottom: 12px;">Your Shopping Cart</h1>
+    <p style="color: var(--gray-600); font-size: 0.95rem;">Review your selected HANGR items before proceeding to checkout.</p>
+  </div>
+
+  <div id="cart-page-container">
+    <shopify-cart id="cart-page-view"></shopify-cart>
+  </div>
+
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        {% render block %}
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="/#product-section" class="btn-primary" style="display: inline-flex;">
+      ← CONTINUE SHOPPING
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart Main",
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}
