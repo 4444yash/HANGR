@@ -1325,15 +1325,39 @@ shopify-variant-selector::part(radio-selected) {
 .btn-sticky-buy {
   background: #278841;
   color: var(--white);
-  padding: 12px 24px;
+  padding: 12px 20px;
   border-radius: 30px;
   font-weight: 800;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.04em;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-sticky-add {
+  background: var(--white);
+  color: var(--dark);
+  border: 1.5px solid var(--dark);
+  padding: 11px 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-sticky-add:hover {
+  background: var(--off-white);
+  border-color: #000000;
 }
 
 /* ========== CUSTOM D2C CART DRAWER ========== */
@@ -2940,6 +2964,33 @@ html, body {
 }
 
 .variant-modal-action-btn:active {
+  transform: scale(0.98);
+}
+
+.variant-modal-add-btn {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 0.90rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--white, #ffffff);
+  color: var(--dark, #111827);
+  border: 1.5px solid var(--dark, #111827);
+}
+
+.variant-modal-add-btn:hover {
+  background: var(--off-white, #f9fafb);
+  border-color: #000000;
+}
+
+.variant-modal-add-btn:active {
   transform: scale(0.98);
 }
 

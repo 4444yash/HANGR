@@ -176,14 +176,23 @@
       <span class="sticky-buy-title">HANGR Steel Hanger</span>
       <span class="sticky-buy-price">Multi-Tier Space Saver</span>
     </div>
-    <button
-      type="button"
-      class="btn-sticky-buy"
-      onclick="triggerShopifyBuyNow(event)"
-    >
-      BUY NOW
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <button
+        type="button"
+        class="btn-sticky-add"
+        onclick="handleAddToCart(event)"
+      >
+        ADD TO CART
+      </button>
+      <button
+        type="button"
+        class="btn-sticky-buy"
+        onclick="triggerShopifyBuyNow(event)"
+      >
+        BUY NOW
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- ===== CUSTOM D2C CART DRAWER MODAL ===== -->
@@ -229,8 +238,11 @@
       </div>
 
       <div class="variant-modal-footer">
-        <button type="button" class="btn-primary variant-modal-action-btn" id="variant-modal-confirm-btn" onclick="confirmVariantModalAction()">
-          CONTINUE TO ADD TO CART →
+        <button type="button" class="variant-modal-add-btn" id="variant-modal-add-btn" onclick="confirmVariantModalAddAction()">
+          ADD TO CART
+        </button>
+        <button type="button" class="variant-modal-action-btn" id="variant-modal-confirm-btn" onclick="confirmVariantModalBuyAction()" style="background: var(--emerald, #059669);">
+          BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE →
         </button>
       </div>
     </div>
@@ -591,16 +603,6 @@
       pendingVariantAction = action || 'cart';
       populateVariantModalGrid();
       const modal = document.getElementById('variant-modal');
-      const confirmBtn = document.getElementById('variant-modal-confirm-btn');
-      if (confirmBtn) {
-        if (pendingVariantAction === 'buy') {
-          confirmBtn.innerHTML = 'BUY NOW — 10% OFF ON PREPAID | COD AVAILABLE →';
-          confirmBtn.style.background = 'var(--emerald, #059669)';
-        } else {
-          confirmBtn.innerHTML = 'CONTINUE TO ADD TO CART →';
-          confirmBtn.style.background = 'var(--dark, #111827)';
-        }
-      }
       syncPopupVariantSelection();
       if (modal) {
         modal.classList.add('active');
@@ -653,26 +655,42 @@
       });
     }
 
-    function confirmVariantModalAction() {
+    function confirmVariantModalAddAction() {
       const checkedRadio = document.querySelector('input[name="id"]:checked');
       if (!checkedRadio || !checkedRadio.value) {
-        document.querySelectorAll('.variant-popup-card').forEach(card => {
-          card.style.borderColor = '#EF4444';
-          setTimeout(() => {
-            if (!card.classList.contains('selected')) {
-              card.style.borderColor = '';
-            }
-          }, 1000);
-        });
+        highlightVariantModalError();
         return;
       }
-
       closeVariantModal();
+      handleAddToCart();
+    }
 
+    function confirmVariantModalBuyAction() {
+      const checkedRadio = document.querySelector('input[name="id"]:checked');
+      if (!checkedRadio || !checkedRadio.value) {
+        highlightVariantModalError();
+        return;
+      }
+      closeVariantModal();
+      handleBuyNow();
+    }
+
+    function highlightVariantModalError() {
+      document.querySelectorAll('.variant-popup-card').forEach(card => {
+        card.style.borderColor = '#EF4444';
+        setTimeout(() => {
+          if (!card.classList.contains('selected')) {
+            card.style.borderColor = '';
+          }
+        }, 1000);
+      });
+    }
+
+    function confirmVariantModalAction() {
       if (pendingVariantAction === 'buy') {
-        handleBuyNow();
+        confirmVariantModalBuyAction();
       } else {
-        handleAddToCart();
+        confirmVariantModalAddAction();
       }
     }
 
@@ -765,8 +783,36 @@
 
       closeUpsellModal();
 
-      // Go to checkout
-      window.location.href = '/cart/' + selectedVariantId + ':' + quantity;
+      const confirmBtn = document.getElementById('upsell-confirm-btn');
+      if (confirmBtn) {
+        confirmBtn.textContent = 'PROCEEDING...';
+        confirmBtn.disabled = true;
+      }
+
+      // Clear cart and add selected variant & quantity, then trigger COD King popup
+      fetch('/cart/clear.js', { method: 'POST' })
+        .then(() => fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: parseInt(selectedVariantId), quantity: quantity })
+        }))
+        .then(() => {
+          if (confirmBtn) {
+            confirmBtn.textContent = 'CONTINUE TO CHECKOUT →';
+            confirmBtn.disabled = false;
+          }
+          // Trigger COD King checkout popup
+          const drawerCheckoutBtn = document.querySelector('#cart-drawer-form button[name="checkout"]') || document.querySelector('#checkout');
+          if (drawerCheckoutBtn) {
+            drawerCheckoutBtn.click();
+          } else {
+            window.location.href = '/checkout';
+          }
+        })
+        .catch(err => {
+          console.error('Checkout error:', err);
+          window.location.href = '/cart/' + selectedVariantId + ':' + quantity;
+        });
     }
 
     function handleAddToCart(e) {
