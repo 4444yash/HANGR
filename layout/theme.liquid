@@ -198,16 +198,16 @@
         <!-- Dynamically rendered via /cart.js -->
       </div>
 
-      <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <form action="{{ routes.cart_url }}" method="post" id="cart-drawer-form" class="cart-drawer-footer">
         <div class="cart-subtotal-row">
           <span>Subtotal</span>
           <span id="cart-subtotal-price">Rs. 0.00</span>
         </div>
         <p style="font-size: 0.75rem; color: var(--gray-600); margin-bottom: 12px; text-align: center;">Taxes & Free Shipping calculated at checkout</p>
-        <a href="/checkout" class="btn-primary btn-checkout" style="width: 100%; justify-content: center; text-align: center; border-radius: 50px;">
+        <button type="submit" name="checkout" class="btn-primary btn-checkout" style="width: 100%; justify-content: center; text-align: center; border-radius: 50px; cursor: pointer; border: none; padding: 14px; font-size: 0.95rem; font-weight: 800;">
           PROCEED TO CHECKOUT →
-        </a>
-      </div>
+        </button>
+      </form>
     </div>
   </div>
 
